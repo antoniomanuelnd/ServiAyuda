@@ -1,0 +1,22 @@
+<resources>
+    <string name="nombre_app">ServiAyuda</string>
+    <string name="inicio_1">¿Tienes una cuenta?</string>
+    <string name="inicio_2">Iniciar sesión</string>
+    <string name="inicio_3">¿Aún no tienes cuenta?</string>
+    <string name="inicio_4">Crear cuenta</string>
+
+    <string name="registro_1">Registro</string>
+    <string name="registro_2">Nombre</string>
+    <string name="registro_3">Correo electrónico</string>
+    <string name="registro_4">ejemplo@gmail.com</string>
+    <string name="registro_5">Contraseña</string>
+    <string name="registro_6">Finalizar</string>
+
+    <string name="iniciosesion_1">Iniciar sesión</string>
+    <string name="iniciosesion_2">Introduzca su correo electrónico</string>
+    <string name="iniciosesion_3">ejemplo@gmail.com</string>
+    <string name="iniciosesion_4">Introduzca su contraseña:</string>
+    <string name="iniciosesion_5">Contraseña</string>
+    <string name="iniciosesion_6">Entrar</string>
+
+</resources>
