@@ -1,54 +1,59 @@
 package com.serviayuda.pc.serviayuda;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
-import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * Created by PC on 08/02/2018.
- */
 
-public class Perfil extends AppCompatActivity {
+public class PerfilFragment extends Fragment {
 
     ImageView imagenPerfil;
     TextView campoProfesion;
     ImageView botonAjustes;
     ImageView botonEditar;
+    View view;
 
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.perfil);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
+        view = inflater.inflate(R.layout.fragment_perfil, container, false);
+        FrameLayout fr = view.findViewById(R.id.fragment1);
         iniciarVistas();
         iniciarListeners();
+        return view;
     }
 
     private void iniciarVistas(){
-        imagenPerfil = findViewById(R.id.perfilImagen);
+        imagenPerfil = view.findViewById(R.id.perfilImagen);
 
         Bitmap foto = BitmapFactory.decodeResource(getResources(), R.drawable.yo);
         RoundedBitmapDrawable roundedImagen = RoundedBitmapDrawableFactory.create(getResources(), foto);
         roundedImagen.setCornerRadius(200);
         imagenPerfil.setImageDrawable(roundedImagen);
 
-        botonAjustes = findViewById(R.id.perfilBotonAjustes);
+        botonAjustes = view.findViewById(R.id.perfilBotonAjustes);
         botonAjustes.setBackgroundResource(R.drawable.botonajusteslayout);
-        botonEditar = findViewById(R.id.perfilBotonEditar);
+        botonEditar = view.findViewById(R.id.perfilBotonEditar);
         botonEditar.setBackgroundResource(R.drawable.botoneditarlayout);
 
 
-        campoProfesion = findViewById(R.id.perfilProfesion);
+        campoProfesion = view.findViewById(R.id.perfilProfesion);
         GradientDrawable gd = new GradientDrawable();
         gd.setShape(GradientDrawable.RECTANGLE);
         gd.setColor(Color.parseColor("#1D7196"));
@@ -61,16 +66,17 @@ public class Perfil extends AppCompatActivity {
         botonAjustes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Perfil.this, Ajustes.class);
+                Intent i = new Intent(view.getContext(), Ajustes.class);
                 startActivity(i);
             }
         });
         botonEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Perfil.this, Ajustes.class);
+                Intent i = new Intent(view.getContext(), Ajustes.class);
                 startActivity(i);
             }
         });
     }
+
 }

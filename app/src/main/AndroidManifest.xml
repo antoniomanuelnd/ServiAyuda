@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.serviayuda.pc.serviayuda">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -12,15 +12,21 @@
         android:roundIcon="@mipmap/icono_app"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".Perfil">
+        <activity android:name=".Inicio"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".InicioSesion"/>
-        <activity android:name=".Registro"/>
+        <activity android:name=".InicioSesion" />
+        <activity android:name=".Registro" />
+        <activity android:name=".MenuViewPagerAdmin"/>
+        <activity android:name=".MenuViewPagerProveedor"/>
+        <activity android:name=".MenuViewPagerSolicitante"/>
+        <activity android:name=".Ajustes" />
+
     </application>
 
 </manifest>

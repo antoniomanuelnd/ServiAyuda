@@ -19,6 +19,7 @@ public class InicioSesion extends AppCompatActivity {
     EditText campoPassword;
     TextView campoResultado;
     ManejadorPreferencias mp;
+    private final AppCompatActivity activity = InicioSesion.this;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,17 +40,17 @@ public class InicioSesion extends AppCompatActivity {
         botonIniciarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                muestraResultado();
+                iniciarSesion();
             }
         });
     }
 
-    private void muestraResultado() {
+    private void iniciarSesion() {
 
         String email = campoEmail.getText().toString();
         String password = campoPassword.getText().toString();
         mp.guardarPreferencias("KEY_EMAIL", email);
-        new InicioSesionActivity(this, campoResultado).execute(email, password);
+        new InicioSesionActivity(this, campoResultado, activity).execute(email, password);
 
     }
 }

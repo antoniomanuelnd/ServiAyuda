@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinnerTipos">
+        <item>-- Seleccione un servicio --</item>
+        <item>Peluquería</item>
+        <item>Asistencia</item>
+        <item>Fisioterapia</item>
+        <item>Limpieza</item>
+        <item>Otro (Indicar en la descripción)</item>
+    </string-array>
+</resources>

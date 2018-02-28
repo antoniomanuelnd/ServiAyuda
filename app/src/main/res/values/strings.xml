@@ -19,4 +19,20 @@
     <string name="iniciosesion_5">Contraseña</string>
     <string name="iniciosesion_6">Entrar</string>
 
+    <string name="perfil_1">Descripción</string>
+    <string name="perfil_2">Ubicación</string>
+    <string name="perfil_3">Experiencia</string>
+    <string name="perfil_4">Horario</string>
+
+    <string name="envioanuncio_1">Tipo:</string>
+    <string name="envioanuncio_2">Hora deseada:</string>
+    <string name="envioanuncio_3">Introduzca la hora que desee</string>
+    <string name="envioanuncio_4">Horas:</string>
+    <string name="envioanuncio_5">Descripción de la solicitud (Opcional):</string>
+    <string name="envioanuncio_6">Escriba aquí su anuncio</string>
+
+    <string name="vistaanuncio_1">Nombre: </string>
+    <string name="vistaanuncio_2">Tipo: </string>
+    <string name="vistaanuncio_3">Descripción: </string>
+
 </resources>

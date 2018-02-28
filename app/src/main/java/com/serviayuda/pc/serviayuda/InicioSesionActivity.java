@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.provider.ContactsContract;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,10 +24,13 @@ public class InicioSesionActivity extends AsyncTask {
 
     private Context context;
     private TextView res;
+    private final AppCompatActivity activity;
+    private Usuario usuario = new Usuario();
 
-    public InicioSesionActivity(Context context, TextView res) {
+    public InicioSesionActivity(Context context, TextView res, AppCompatActivity activity) {
         this.context = context;
         this.res = res;
+        this.activity = activity;
     }
 
     protected void onPreExecute() {
@@ -36,9 +41,10 @@ public class InicioSesionActivity extends AsyncTask {
         try {
             //Obtenemos los elementos a insertar en la BBDD
             String email = (String) arg0[0];
+            usuario.setEmail(email);
             String password = (String) arg0[1];
             //Generamos el link
-            String link = "https://apptfg.000webhostapp.com/inicioSesion2.php";
+            String link = "https://apptfg.000webhostapp.com/inicioSesion.php";
             String data = URLEncoder.encode("email", "UTF-8") + "=" +
                     URLEncoder.encode(email, "UTF-8");
             data += "&" + URLEncoder.encode("password", "UTF-8") + "=" +
@@ -71,19 +77,24 @@ public class InicioSesionActivity extends AsyncTask {
 
     protected void onPostExecute(Object res) {
         String respuesta = res.toString();
-        /*
+
         if (respuesta.compareTo("Solicitante") == 0) {
             Toast.makeText(context.getApplicationContext(), "Iniciando sesión", Toast.LENGTH_LONG).show();
-            Intent i = new Intent(context, UsuarioSolicitante.class);
+            Intent i = new Intent(context, MenuViewPagerSolicitante.class);
             context.startActivity(i);
         } else if (respuesta.compareTo("Proveedor") == 0) {
             Toast.makeText(context.getApplicationContext(), "Iniciando sesión", Toast.LENGTH_LONG).show();
-            Intent i = new Intent(context, UsuarioProveedor.class);
+            Intent i = new Intent(context, MenuViewPagerProveedor.class);
+            context.startActivity(i);
+        }else if (respuesta.compareTo("Administrador") == 0){
+            Toast.makeText(context.getApplicationContext(), "Iniciando sesión", Toast.LENGTH_LONG).show();
+            new RecibeUsuarioActivity(context, activity, usuario).execute(usuario.getEmail());
+            Intent i = new Intent(context, MenuViewPagerAdmin.class);
             context.startActivity(i);
         } else {
             this.res.setTextColor(Color.parseColor("#CF000F"));
             this.res.setText("No se ha podido iniciar sesión");
-        }*/
+        }
     }
 
 }

@@ -1,0 +1,12 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--Presionado-->
+    <item android:drawable="@drawable/ajustespressed"
+        android:state_pressed="true"
+        />
+
+    <!--No presionado -->
+    <item android:drawable="@drawable/ajustesnotpressed"
+        android:state_focused="false"
+        android:state_pressed="false"/>
+</selector>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,34 +16,34 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 
 /**
- * Created by PC on 07/02/2018.
+ * Created by PC on 28/02/2018.
  */
 
-public class RegistroActivity extends AsyncTask {
+public class RecogeAnunciosActivity extends AsyncTask {
 
     private Context context;
-    private TextView res;
+    private final AppCompatActivity activity;
+    private DatabaseHelper databaseHelper;
 
-    public RegistroActivity(Context context, TextView res){
+    public RecogeAnunciosActivity(Context context, AppCompatActivity activity, DatabaseHelper databaseHelper){
         this.context = context;
-        this.res = res;
+        this.activity = activity;
+        this.databaseHelper = databaseHelper;
+        this.databaseHelper = new DatabaseHelper(activity);
     }
 
-    protected void onPreExecute(){
+    protected void onPreExecute() {
     }
 
-    protected Object doInBackground(Object[] arg0){
+    protected Object doInBackground(Object[] arg0) {
         //Método POST
-        try{
+        try {
             //Obtenemos los elementos a insertar en la BBDD
-            String nombre = (String) arg0[0];
-            String email = (String) arg0[1];
-            String password = (String) arg0[2];
+            String email = (String) arg0[0];
+            String password = (String) arg0[1];
             //Generamos el link
-            String link="https://apptfg.000webhostapp.com/registro.php";
-            String data  = URLEncoder.encode("nombre", "UTF-8") + "=" +
-                    URLEncoder.encode(nombre, "UTF-8");
-            data += "&" + URLEncoder.encode("email", "UTF-8") + "=" +
+            String link = "https://apptfg.000webhostapp.com/inicioSesion.php";
+            String data = URLEncoder.encode("email", "UTF-8") + "=" +
                     URLEncoder.encode(email, "UTF-8");
             data += "&" + URLEncoder.encode("password", "UTF-8") + "=" +
                     URLEncoder.encode(password, "UTF-8");
@@ -62,27 +63,24 @@ public class RegistroActivity extends AsyncTask {
             String linea = "";
 
             //Leer respuesta del servidor
-            while ((linea = reader.readLine()) != null){
+            while ((linea = reader.readLine()) != null) {
                 sb.append(linea);
                 break;
             }
             return sb.toString();
-        }catch (Exception e){
+        } catch (Exception e) {
             return new String("Excepción: " + e.getMessage());
         }
     }
 
-    protected void onPostExecute(Object resultado){
-        String respuesta = resultado.toString();
-        if(respuesta.compareTo("Correcto")==0){
-            Toast.makeText(context.getApplicationContext(), "Usuario creado con éxito", Toast.LENGTH_LONG).show();
-            //Aquí puede ir tanto a la actividad InicioSesion, como a la actividad Perfil
-            Intent i = new Intent(context, InicioSesion.class);
+    protected void onPostExecute(Object res) {
+        String respuesta = res.toString();
+
+        if (respuesta.compareTo("Solicitante") == 0) {
+            Toast.makeText(context.getApplicationContext(), "Iniciando sesión", Toast.LENGTH_LONG).show();
+            Intent i = new Intent(context, MenuViewPagerSolicitante.class);
             context.startActivity(i);
-        }else {
-            this.res.setTextColor(Color.parseColor("#CF000F"));
-            this.res.setText("El usuario no ha podi");
+
         }
     }
-
 }
