@@ -81,7 +81,7 @@ public class RegistroActivity extends AsyncTask {
             context.startActivity(i);
         }else {
             this.res.setTextColor(Color.parseColor("#CF000F"));
-            this.res.setText("El usuario no ha podi");
+            this.res.setText("El usuario no ha podido ser registrado");
         }
     }
 

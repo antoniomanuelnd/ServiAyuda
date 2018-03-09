@@ -1,5 +1,7 @@
 package com.serviayuda.pc.serviayuda;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -7,14 +9,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 
 public class EnviarAnuncioFragment extends Fragment {
 
     Spinner spinnerTipos;
     Spinner spinnerHoras;
+    TextView campoHora;
+    TextView campoDescripción;
+    Button botonEnviar;
+    ManejadorPreferencias mp;
+
     AdapterView.OnItemSelectedListener spinnerListenerTipos;
     AdapterView.OnItemSelectedListener spinnerListenerHoras;
     View view;
@@ -45,6 +54,13 @@ public class EnviarAnuncioFragment extends Fragment {
         spinnerHoras.setAdapter(adapterHoras);
         spinnerHoras.setOnItemSelectedListener(spinnerListenerHoras);
 
+        campoHora = view.findViewById(R.id.envioAnuncioTextTime);
+        campoDescripción = view.findViewById(R.id.envioAnuncioTextAnuncio);
+
+        SharedPreferences preferences = getActivity().getSharedPreferences("SESION", Activity.MODE_PRIVATE);
+        mp = new ManejadorPreferencias(preferences);
+
+        botonEnviar = view.findViewById(R.id.enviarAnuncioBoton);
     }
 
     private void iniciarListeners(){
@@ -65,5 +81,24 @@ public class EnviarAnuncioFragment extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
         };
+
+        botonEnviar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Anuncio anuncio = new Anuncio();
+                anuncio.setEmail(mp.cargarPreferencias("KEY_EMAIL"));
+                anuncio.setNombre(mp.cargarPreferencias("KEY_NOMBRE"));
+                anuncio.setDescripcion(campoDescripción.getText().toString());
+                anuncio.setTipoAnuncio(spinnerTipos.getSelectedItem().toString());
+                anuncio.setHoras(spinnerHoras.getSelectedItem().toString());
+                anuncio.setHoraDeseada(campoHora.getText().toString());
+                enviaAnuncio(anuncio);
+            }
+        });
+    }
+
+    //Método que inserta/actualiza un anuncio en la base de datos
+    private void enviaAnuncio(Anuncio anuncio){
+        new EnviaAnuncioActivity(getContext(), anuncio).execute();
     }
 }

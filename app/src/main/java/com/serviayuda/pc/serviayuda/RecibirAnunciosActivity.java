@@ -1,8 +1,12 @@
 package com.serviayuda.pc.serviayuda;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -16,34 +20,30 @@ import java.net.URLEncoder;
  * Created by PC on 28/02/2018.
  */
 
-public class RecibeUsuarioActivity extends AsyncTask {
-    private Context context;
-    private final AppCompatActivity activity;
-    private DatabaseHelper databaseHelper;
-    private Usuario usuario;
+public class RecibirAnunciosActivity extends AsyncTask {
 
-    public RecibeUsuarioActivity(Context context, AppCompatActivity activity, Usuario usuario){
+    private Context context;
+    private Activity activity;
+    private DatabaseHelper databaseHelper;
+
+    public RecibirAnunciosActivity(Context context, Activity activity, DatabaseHelper databaseHelper){
         this.context = context;
         this.activity = activity;
         this.databaseHelper = new DatabaseHelper(activity);
-        this.usuario = usuario;
     }
 
-    protected void onPreExecute(){
+    protected void onPreExecute() {
     }
 
-    protected Object doInBackground(Object[] arg0){
-
+    protected Object doInBackground(Object[] arg0) {
         //Método POST
-        try{
+        try {
             //Obtenemos los elementos a insertar en la BBDD
 
-            String email = (String) arg0[0];
             //Generamos el link
-            String link="https://apptfg.000webhostapp.com/recibeUsuario.php";
-            String data  = URLEncoder.encode("email", "UTF-8") + "=" +
-                    URLEncoder.encode(email, "UTF-8");
-
+            String link = "https://apptfg.000webhostapp.com/recibeAnuncios.php";
+            String data = URLEncoder.encode("email", "UTF-8") + "=" +
+                    URLEncoder.encode("email", "UTF-8");
 
             URL url = new URL(link);
             URLConnection conn = url.openConnection();
@@ -59,33 +59,32 @@ public class RecibeUsuarioActivity extends AsyncTask {
             String linea = "";
 
             //Leer respuesta del servidor
-            while ((linea = reader.readLine()) != null){
+            while ((linea = reader.readLine()) != null) {
                 sb.append(linea);
                 break;
             }
             return sb.toString();
-        }catch (Exception e){
+        } catch (Exception e) {
             return new String("Excepción: " + e.getMessage());
         }
     }
 
-    protected void onPostExecute(Object resultado){
-        String respuesta = resultado.toString();
-        String res[] = respuesta.split("<.>");
+    protected void onPostExecute(Object res) {
+        String aux = res.toString();
+        String respuesta[] = aux.split("<.>");
+        Anuncio anuncio = new Anuncio();
 
-        usuario.setNombre(res[0]);
-        usuario.setApellidos(res[1]);
-        usuario.setEmail(res[2]);
-        usuario.setTipoPerfil(res[3]);
-        usuario.setTipoServicio(res[4]);
-        usuario.setUbicacion(res[5]);
-        usuario.setCodigoPostal(res[6]);
-        usuario.setDescripcion(res[7]);
-        usuario.setExperiencia(res[8]);
-        usuario.setHorario(res[9]);
-        usuario.setEdad((res[10]));
+        for (int i=0; i<respuesta.length; i=i+7){
 
-        databaseHelper.addUsuario(usuario);
+            anuncio.setEmail(respuesta[i]);
+            anuncio.setNombre(respuesta[i+1]);
+            anuncio.setTipoAnuncio(respuesta[i+2]);
+            anuncio.setHoras(respuesta[i+3]);
+            anuncio.setHoraDeseada(respuesta[i+4]);
+            anuncio.setDescripcion(respuesta[i+5]);
+            anuncio.setEstado(respuesta[i+6]);
 
+            databaseHelper.addAnuncio(anuncio);
+        }
     }
 }

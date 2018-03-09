@@ -13,19 +13,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".Inicio"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".InicioSesion" />
-        <activity android:name=".Registro" />
-        <activity android:name=".MenuViewPagerAdmin"/>
-        <activity android:name=".MenuViewPagerProveedor"/>
-        <activity android:name=".MenuViewPagerSolicitante"/>
-        <activity android:name=".Ajustes" />
+        <activity android:name=".InicioSesion"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Registro"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".BienvenidaAdministrador"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MenuViewPagerAdmin"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MenuViewPagerProveedor"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MenuViewPagerSolicitante"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Ajustes"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AnuncioAmpliado"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VisitarPerfil"
+            android:screenOrientation="portrait"/>
 
     </application>
 

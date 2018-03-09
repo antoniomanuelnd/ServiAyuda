@@ -1,6 +1,5 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/azulLogo"
@@ -29,28 +28,12 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/perfilBotonEditar"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_alignTop="@+id/perfilBotonAjustes"
-                        android:layout_marginEnd="43dp"
-                        android:layout_toStartOf="@+id/perfilImagen" />
-
-                    <ImageView
-                        android:id="@+id/perfilImagen"
+                        android:id="@+id/visitarPerfilImagen"
                         android:layout_width="130dp"
                         android:layout_height="130dp"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true" />
 
-                    <ImageView
-                        android:id="@+id/perfilBotonAjustes"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_alignBottom="@+id/perfilImagen"
-                        android:layout_marginBottom="32dp"
-                        android:layout_marginStart="41dp"
-                        android:layout_toEndOf="@+id/perfilImagen" />
                 </RelativeLayout>
 
 
@@ -62,14 +45,14 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/perfilNombre"
+                        android:id="@+id/visitarPerfilNombre"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/blanco"
                         android:textSize="16dp" />
 
                     <TextView
-                        android:id="@+id/perfilProfesion"
+                        android:id="@+id/visitarPerfilProfesion"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
@@ -109,7 +92,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="15dp"
-                                android:id="@+id/perfilDescripcion" />
+                                android:id="@+id/visitarPerfilDescripcion" />
                         </LinearLayout>
 
 
@@ -136,7 +119,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
-                            android:id="@+id/perfilUbicacion"/>
+                            android:id="@+id/visitarPerfilUbicacion"/>
                     </LinearLayout>
 
                     <View
@@ -160,7 +143,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
-                            android:id="@+id/perfilExperiencia" />
+                            android:id="@+id/visitarPerfilExperiencia" />
                     </LinearLayout>
 
                     <View
@@ -184,7 +167,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
-                            android:id="@+id/perfilHorario" />
+                            android:id="@+id/visitarPerfilHorario" />
                     </LinearLayout>
 
                     <View
@@ -195,4 +178,4 @@
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>
-</FrameLayout>
+</LinearLayout>

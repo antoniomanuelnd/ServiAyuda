@@ -1,5 +1,6 @@
 package com.serviayuda.pc.serviayuda;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -33,7 +34,7 @@ public class InicioSesion extends AppCompatActivity {
         campoPassword = findViewById(R.id.inicioSesionPassword);
         botonIniciarSesion = findViewById(R.id.inicioSesionEntrar);
         campoResultado = findViewById(R.id.inicioSesionResultado);
-        mp = new ManejadorPreferencias((getSharedPreferences("SESION", Context.MODE_PRIVATE)));
+        mp = new ManejadorPreferencias((getSharedPreferences("SESION", Activity.MODE_PRIVATE)));
     }
 
     private void iniciarListeners() {
@@ -46,11 +47,9 @@ public class InicioSesion extends AppCompatActivity {
     }
 
     private void iniciarSesion() {
-
         String email = campoEmail.getText().toString();
         String password = campoPassword.getText().toString();
         mp.guardarPreferencias("KEY_EMAIL", email);
         new InicioSesionActivity(this, campoResultado, activity).execute(email, password);
-
     }
 }

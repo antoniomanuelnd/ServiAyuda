@@ -1,9 +1,9 @@
 package com.serviayuda.pc.serviayuda;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,35 +13,35 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 
 /**
- * Created by PC on 28/02/2018.
+ * Created by PC on 07/03/2018.
  */
 
-public class RecibeUsuarioActivity extends AsyncTask {
+public class RecibeUsuarioPerfilActivity extends AsyncTask {
     private Context context;
-    private final AppCompatActivity activity;
+    private final Activity activity;
     private DatabaseHelper databaseHelper;
-    private Usuario usuario;
 
-    public RecibeUsuarioActivity(Context context, AppCompatActivity activity, Usuario usuario){
+
+    public RecibeUsuarioPerfilActivity(Context context, Activity activity) {
         this.context = context;
         this.activity = activity;
         this.databaseHelper = new DatabaseHelper(activity);
-        this.usuario = usuario;
+
     }
 
-    protected void onPreExecute(){
+    protected void onPreExecute() {
     }
 
-    protected Object doInBackground(Object[] arg0){
+    protected Object doInBackground(Object[] arg0) {
 
         //Método POST
-        try{
+        try {
             //Obtenemos los elementos a insertar en la BBDD
 
             String email = (String) arg0[0];
             //Generamos el link
-            String link="https://apptfg.000webhostapp.com/recibeUsuario.php";
-            String data  = URLEncoder.encode("email", "UTF-8") + "=" +
+            String link = "https://apptfg.000webhostapp.com/recibeUsuario.php";
+            String data = URLEncoder.encode("email", "UTF-8") + "=" +
                     URLEncoder.encode(email, "UTF-8");
 
 
@@ -59,20 +59,21 @@ public class RecibeUsuarioActivity extends AsyncTask {
             String linea = "";
 
             //Leer respuesta del servidor
-            while ((linea = reader.readLine()) != null){
+            while ((linea = reader.readLine()) != null) {
                 sb.append(linea);
                 break;
             }
             return sb.toString();
-        }catch (Exception e){
+        } catch (Exception e) {
             return new String("Excepción: " + e.getMessage());
         }
     }
 
-    protected void onPostExecute(Object resultado){
+    protected void onPostExecute(Object resultado) {
         String respuesta = resultado.toString();
         String res[] = respuesta.split("<.>");
 
+        Usuario usuario = new Usuario();
         usuario.setNombre(res[0]);
         usuario.setApellidos(res[1]);
         usuario.setEmail(res[2]);

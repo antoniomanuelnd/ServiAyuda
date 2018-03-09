@@ -37,7 +37,7 @@ public class Perfil extends AppCompatActivity {
     private void iniciarVistas(){
         imagenPerfil = findViewById(R.id.perfilImagen);
 
-        Bitmap foto = BitmapFactory.decodeResource(getResources(), R.drawable.yo);
+        Bitmap foto = BitmapFactory.decodeResource(getResources(), R.drawable.defaultphotoprofile);
         RoundedBitmapDrawable roundedImagen = RoundedBitmapDrawableFactory.create(getResources(), foto);
         roundedImagen.setCornerRadius(200);
         imagenPerfil.setImageDrawable(roundedImagen);

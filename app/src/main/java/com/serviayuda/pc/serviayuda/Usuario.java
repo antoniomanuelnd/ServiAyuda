@@ -12,11 +12,11 @@ public class Usuario {
     private String tipo_perfil;
     private String tipo_servicio;
     private String ubicacion;
-    private Integer codigo_postal;
+    private String codigo_postal;
     private String descripcion;
     private String experiencia;
     private String horario;
-    private Integer edad;
+    private String edad;
 
     public String getNombre(){
         return nombre;
@@ -54,10 +54,10 @@ public class Usuario {
     public void setUbicacion(String ubicacion){
         this.ubicacion = ubicacion;
     }
-    public Integer getCodigoPostal(){
+    public String getCodigoPostal(){
         return codigo_postal;
     }
-    public void setCodigoPostal(Integer codigo_postal){
+    public void setCodigoPostal(String codigo_postal){
         this.codigo_postal = codigo_postal;
     }
     public String getDescripcion(){
@@ -78,10 +78,10 @@ public class Usuario {
     public void setHorario(String horario){
         this.horario = horario;
     }
-    public Integer getEdad(){
+    public String getEdad(){
         return edad;
     }
-    public void setEdad(Integer edad){
+    public void setEdad(String edad){
         this.edad = edad;
     }
 }
