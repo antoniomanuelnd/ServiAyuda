@@ -97,8 +97,8 @@ public class MenuViewPagerProveedor extends AppCompatActivity {
                     PerfilFragment frag1 = new PerfilFragment();
                     return frag1;
                 case 1:
-                    RecibirAnuncioFragment frag3 = new RecibirAnuncioFragment();
-                    return frag3;
+                    RecibirAnuncioFragment frag2 = new RecibirAnuncioFragment();
+                    return frag2;
             }
             return null;
         }

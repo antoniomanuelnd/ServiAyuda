@@ -22,6 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Nombre de la tabla
     private static final String TABLE_ANUNCIO = "tabla_anuncio";
     private static final String TABLE_USUARIO = "tabla_usuario";
+    private static final String TABLE_SOLICITUDES = "tabla_solicitudes";
 
     //Columnas de la tabla usuario
     private static final String COLUMN_USUARIO_NOMBRE = "nombre";
@@ -45,6 +46,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_ANUNCIO_HORADESEADA = "hora_deseada";
     private static final String COLUMN_ANUNCIO_ESTADO = "estado";
 
+    //Columnas de la tabla solicitudes
+    private static final String COLUMN_SOLICITUDES_EMAILSOLICITANTE = "email_solicitante";
+    private static final String COLUMN_SOLICITUDES_EMAILPROVEEDOR = "email_proveedor";
+    private static final String COLUMN_SOLICITUDES_TIPOANUNCIO = "tipo_anuncio";
+
     //Creación de la tabla anuncio
     private String CREATE_ANUNCIO_TABLE = "CREATE TABLE " + TABLE_ANUNCIO + " ( "
             + COLUMN_ANUNCIO_NOMBRE + " TEXT, " + COLUMN_ANUNCIO_EMAIL + " TEXT PRIMARY KEY, " + COLUMN_ANUNCIO_TIPOANUNCIO + " TEXT, "
@@ -57,11 +63,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + " TEXT, " + COLUMN_USUARIO_DESCRIPCION + " TEXT, " + COLUMN_USUARIO_EXPERIENCIA + " TEXT, " + COLUMN_USUARIO_HORARIO +
             " TEXT, " + COLUMN_USUARIO_EDAD + " TEXT" + " )";
 
+    //Creación de la tabla solicitudes
+    private String CREATE_SOLICITUDES_TABLE = "CREATE TABLE " + TABLE_SOLICITUDES + " ( " + COLUMN_SOLICITUDES_EMAILSOLICITANTE + " TEXT, "
+            + COLUMN_SOLICITUDES_EMAILPROVEEDOR + " TEXT, " + COLUMN_SOLICITUDES_TIPOANUNCIO + " TEXT" + " )";
+
     //Eliminación de la tabla anuncio
     private String DROP_ANUNCIO_TABLE = "DROP TABLE IF EXISTS " + TABLE_ANUNCIO;
 
     //Eliminación de la tabla usuario
     private String DROP_USUARIO_TABLE = "DROP TABLE IF EXISTS " + TABLE_USUARIO;
+
+    //Eliminación de la tabla solicitudes
+    private String DROP_SOLICITUDES_TABLE = "DROP TABLE IF EXISTS " + TABLE_SOLICITUDES;
 
     //Constructor
     public DatabaseHelper(Context context) {
@@ -71,12 +84,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_ANUNCIO_TABLE);
         db.execSQL(CREATE_USUARIO_TABLE);
+        db.execSQL(CREATE_SOLICITUDES_TABLE);
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //Se elimina la tabla si existe
         db.execSQL(DROP_ANUNCIO_TABLE);
         db.execSQL(DROP_USUARIO_TABLE);
+        db.execSQL(DROP_SOLICITUDES_TABLE);
         //Se crea la tabla de nuevo
         onCreate(db);
     }
@@ -358,4 +373,87 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return us;
     }
+
+    //SOLICITUDES
+    //Comprueba la existencia de una solicitud
+    public boolean checkSolicitud(Solicitud solicitud) {
+        String[] columns = {
+                COLUMN_SOLICITUDES_EMAILSOLICITANTE
+        };
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selection = COLUMN_SOLICITUDES_EMAILSOLICITANTE + " =?" +  " AND " + COLUMN_SOLICITUDES_EMAILPROVEEDOR + " =?" + " AND "
+                + COLUMN_SOLICITUDES_TIPOANUNCIO + " =?";
+
+        String[] selectionArgs = {solicitud.getEmailSolicitante(), solicitud.getEmailProveedor(), solicitud.getTipoAnuncio()};
+
+        Cursor cursor = db.query(TABLE_SOLICITUDES,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null);
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        db.close();
+
+        if (cursorCount > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Añade una solicitud a la base de datos
+    public void addSolicitud(Solicitud solicitud) {
+        Boolean check = checkSolicitud(solicitud);
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_SOLICITUDES_EMAILSOLICITANTE, solicitud.getEmailSolicitante());
+        values.put(COLUMN_SOLICITUDES_EMAILPROVEEDOR, solicitud.getEmailProveedor());
+        values.put(COLUMN_SOLICITUDES_TIPOANUNCIO, solicitud.getTipoAnuncio());
+
+
+        if(check){ //Si existe la solicitud, no lo añade
+            db.close();
+        }else { //En caso contrario, inserta la nueva solicitud
+            db.insert(TABLE_SOLICITUDES, null, values);
+            db.close();
+        }
+    }
+    //Devuelve una lista de solicitudes según un email solicitante dado
+    public List<Solicitud> getAllSolicitudes(String email) {
+        String[] columns = {
+                COLUMN_SOLICITUDES_EMAILSOLICITANTE,
+                COLUMN_SOLICITUDES_EMAILPROVEEDOR,
+                COLUMN_SOLICITUDES_TIPOANUNCIO
+        };
+        List<Solicitud> solicitudList = new ArrayList<Solicitud>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selection = COLUMN_SOLICITUDES_EMAILSOLICITANTE + " =?";
+
+        String[] selectionArgs = {email};
+        Cursor cursor = db.query(TABLE_SOLICITUDES,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null);
+        if (cursor.moveToFirst()) {
+            do {
+                Solicitud solicitud = new Solicitud();
+                solicitud.setEmailSolicitante(cursor.getString(cursor.getColumnIndex(COLUMN_SOLICITUDES_EMAILSOLICITANTE)));
+                solicitud.setEmailProveedor(cursor.getString(cursor.getColumnIndex(COLUMN_SOLICITUDES_EMAILPROVEEDOR)));
+                solicitud.setTipoAnuncio(cursor.getString(cursor.getColumnIndex(COLUMN_SOLICITUDES_TIPOANUNCIO)));
+                solicitudList.add(solicitud);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return solicitudList;
+    }
+
 }

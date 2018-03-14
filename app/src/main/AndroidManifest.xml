@@ -25,8 +25,6 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".Registro"
             android:screenOrientation="portrait"/>
-        <activity android:name=".BienvenidaAdministrador"
-            android:screenOrientation="portrait"/>
         <activity android:name=".MenuViewPagerAdmin"
             android:screenOrientation="portrait"/>
         <activity android:name=".MenuViewPagerProveedor"

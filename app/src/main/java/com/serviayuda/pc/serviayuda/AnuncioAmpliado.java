@@ -1,6 +1,8 @@
 package com.serviayuda.pc.serviayuda;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -18,8 +20,10 @@ public class AnuncioAmpliado extends AppCompatActivity {
 
     TextView campoNombre, campoTipo, campoHoraDeseada, campoHoras, campoUbicacion, campoDescripcion;
     Button botonVisitarPerfil, botonVolver, botonSolicitar;
+    String emailProveedor;
     LinearLayout linearLayout;
     Anuncio anuncio = new Anuncio();
+    ManejadorPreferencias mp;
 
 
     @Override
@@ -65,6 +69,10 @@ public class AnuncioAmpliado extends AppCompatActivity {
         botonVolver = findViewById(R.id.anuncioAmpliadoBotonVolver);
         botonSolicitar = findViewById(R.id.anuncioAmpliadoBotonSolicitar);
 
+        SharedPreferences preferences = this.getSharedPreferences("SESION", Activity.MODE_PRIVATE);
+        mp = new ManejadorPreferencias(preferences);
+        emailProveedor = mp.cargarPreferencias("KEY_EMAIL");
+
     }
 
     private void iniciarListeners(){
@@ -87,7 +95,7 @@ public class AnuncioAmpliado extends AppCompatActivity {
         botonSolicitar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-
+                new EnviaSolicitudActivity(AnuncioAmpliado.this, anuncio).execute(emailProveedor);
             }
         });
 

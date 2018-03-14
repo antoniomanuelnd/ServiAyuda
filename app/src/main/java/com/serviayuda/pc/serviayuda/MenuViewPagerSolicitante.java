@@ -97,7 +97,10 @@ public class MenuViewPagerSolicitante extends AppCompatActivity {
                     PerfilFragment frag1 = new PerfilFragment();
                     return frag1;
                 case 1:
-                    EnviarAnuncioFragment frag3 = new EnviarAnuncioFragment();
+                    EnviarAnuncioFragment frag2 = new EnviarAnuncioFragment();
+                    return frag2;
+                case 2:
+                    VerSolicitudesFragment frag3 = new VerSolicitudesFragment();
                     return frag3;
             }
             return null;
@@ -105,7 +108,7 @@ public class MenuViewPagerSolicitante extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 2; //Total de páginas a mostrar
+            return 3; //Total de páginas a mostrar
         }
     }
 }

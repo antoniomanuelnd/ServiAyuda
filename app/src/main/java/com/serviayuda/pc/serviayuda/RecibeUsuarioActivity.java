@@ -1,6 +1,7 @@
 package com.serviayuda.pc.serviayuda;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ public class RecibeUsuarioActivity extends AsyncTask {
     private final AppCompatActivity activity;
     private DatabaseHelper databaseHelper;
     private Usuario usuario;
+    private String tipo;
 
     public RecibeUsuarioActivity(Context context, AppCompatActivity activity, Usuario usuario){
         this.context = context;
@@ -39,6 +41,7 @@ public class RecibeUsuarioActivity extends AsyncTask {
             //Obtenemos los elementos a insertar en la BBDD
 
             String email = (String) arg0[0];
+            tipo = (String) arg0[1];
             //Generamos el link
             String link="https://apptfg.000webhostapp.com/recibeUsuario.php";
             String data  = URLEncoder.encode("email", "UTF-8") + "=" +
@@ -86,6 +89,17 @@ public class RecibeUsuarioActivity extends AsyncTask {
         usuario.setEdad((res[10]));
 
         databaseHelper.addUsuario(usuario);
+
+        if(tipo.compareTo("Solicitante") == 0){
+            Intent i = new Intent(context, MenuViewPagerSolicitante.class);
+            context.startActivity(i);
+        }else if(tipo.compareTo("Proveedor") == 0){
+            Intent i = new Intent(context, MenuViewPagerProveedor.class);
+            context.startActivity(i);
+        }else if(tipo.compareTo("Administrador") == 0){
+            Intent i = new Intent(context, MenuViewPagerAdmin.class);
+            context.startActivity(i);
+        }
 
     }
 }

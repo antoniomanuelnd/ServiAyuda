@@ -80,19 +80,13 @@ public class InicioSesionActivity extends AsyncTask {
 
         if (respuesta.compareTo("Solicitante") == 0) {
             Toast.makeText(context.getApplicationContext(), "Iniciando sesión", Toast.LENGTH_LONG).show();
-            new RecibeUsuarioActivity(context, activity, usuario).execute(usuario.getEmail());
-            Intent i = new Intent(context, MenuViewPagerSolicitante.class);
-            context.startActivity(i);
+            new RecibeUsuarioActivity(context, activity, usuario).execute(usuario.getEmail(), "Solicitante");
         } else if (respuesta.compareTo("Proveedor") == 0) {
             Toast.makeText(context.getApplicationContext(), "Iniciando sesión", Toast.LENGTH_LONG).show();
-            new RecibeUsuarioActivity(context, activity, usuario).execute(usuario.getEmail());
-            Intent i = new Intent(context, MenuViewPagerProveedor.class);
-            context.startActivity(i);
+            new RecibeUsuarioActivity(context, activity, usuario).execute(usuario.getEmail(), "Proveedor");
         }else if (respuesta.compareTo("Administrador") == 0){
             Toast.makeText(context.getApplicationContext(), "Iniciando sesión", Toast.LENGTH_LONG).show();
-            new RecibeUsuarioActivity(context, activity, usuario).execute(usuario.getEmail());
-            Intent i = new Intent(context, BienvenidaAdministrador.class);
-            context.startActivity(i);
+            new RecibeUsuarioActivity(context, activity, usuario).execute(usuario.getEmail(), "Administrador");
         } else {
             this.res.setTextColor(Color.parseColor("#CF000F"));
             this.res.setText("No se ha podido iniciar sesión");

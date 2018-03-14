@@ -98,13 +98,16 @@ public class MenuViewPagerAdmin extends AppCompatActivity {
                 case 2:
                     RecibirAnuncioFragment frag3 = new RecibirAnuncioFragment();
                     return frag3;
+                case 3:
+                    VerSolicitudesFragment frag4 = new VerSolicitudesFragment();
+                    return frag4;
             }
             return null;
         }
 
         @Override
         public int getCount() {
-            return 3; //Total de páginas a mostrar
+            return 4; //Total de páginas a mostrar
         }
     }
 }
