@@ -1,0 +1,11 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--Presionado-->
+    <item android:drawable="@drawable/eyepressed2"
+        android:state_pressed="true" />
+
+    <!--No presionado -->
+    <item android:drawable="@drawable/eyenotpressed2"
+        android:state_focused="false"
+        android:state_pressed="false"/>
+</selector>

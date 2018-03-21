@@ -8,7 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/azulLogo"
-        android:id="@+id/verSolicitudes">
+        android:id="@+id/verSolicitudes"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
@@ -21,30 +22,37 @@
             android:text="SOLICITUDES"
             android:textColor="@color/blanco"/>
     </LinearLayout>
-    <RelativeLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/azul2"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:gravity="center">
+        <Button
+            android:layout_width="@dimen/_190sdp"
+            android:layout_height="wrap_content"
+            android:text="Actualizar"
+            android:textColor="@color/azulLogo"
+            android:id="@+id/actualizar"
+            android:background="@drawable/button"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/_5sdp"
-        android:layout_marginRight="@dimen/_15sdp"
-        android:layout_marginLeft="@dimen/_15sdp"
-        android:background="@color/azulLogo">
+        android:layout_marginRight="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_5sdp">
 
-        <ScrollView
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerSolicitudes"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/azul2"
-            >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="vertical"
-                android:id="@+id/verSolicitudesMuestraSolicitudes">
+            android:layout_height="wrap_content">
 
-            </LinearLayout>
+        </android.support.v7.widget.RecyclerView>
 
-        </ScrollView>
-
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

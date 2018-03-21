@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "961757088477",
+    "firebase_url": "https://serviayuda-b3600.firebaseio.com",
+    "project_id": "serviayuda-b3600",
+    "storage_bucket": "serviayuda-b3600.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961757088477:android:392b333394578260",
+        "android_client_info": {
+          "package_name": "com.serviayuda.pc.serviayuda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961757088477-dsdoua56p851jqmjnue51d4tr32ef8c9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.serviayuda.pc.serviayuda",
+            "certificate_hash": "cd9fa6cdc7ebfce06c7fe279ec4739f8be0abb4b"
+          }
+        },
+        {
+          "client_id": "961757088477-up3thp8l4t1groa00be9m2ctar4l1epd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbfo70kMcjP-CHA_c_bxK8Dk3AZyZVIdE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961757088477-up3thp8l4t1groa00be9m2ctar4l1epd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

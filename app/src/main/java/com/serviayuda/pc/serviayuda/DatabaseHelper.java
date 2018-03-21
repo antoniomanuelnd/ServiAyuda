@@ -456,4 +456,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return solicitudList;
     }
 
+    //Elimina solicitud
+
+    public void setEliminaSolicitud(Solicitud solicitud){
+        Boolean check = checkSolicitud(solicitud);
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        if(check){ //Si existe la solicitud, no lo elimina
+            db.delete(TABLE_SOLICITUDES, "email_solicitante=? AND email_proveedor=? AND tipo_anuncio=?", new String[]{solicitud.getEmailSolicitante(),solicitud.getEmailProveedor(), solicitud.getTipoAnuncio()});
+            db.close();
+        }else { //En caso contrario cierra la conexión
+            db.close();
+        }
+    }
+
 }

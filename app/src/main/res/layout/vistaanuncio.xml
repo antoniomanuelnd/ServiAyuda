@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:padding="10dp"
     android:orientation="horizontal"
-    android:layout_marginBottom="1dp"
+    android:layout_marginBottom="@dimen/_3sdp"
     android:background="@color/azul2">
     <LinearLayout
         android:layout_width="wrap_content"
@@ -25,9 +25,9 @@
             android:text="@string/vistaanuncio_3"/>
     </LinearLayout>
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_190sdp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="@dimen/_5sdp"
         android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"
@@ -44,5 +44,16 @@
             android:layout_height="wrap_content"
             android:id="@+id/muestraDescripcion"
             />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:id="@+id/vistaAnuncioObservar"/>
     </LinearLayout>
 </LinearLayout>

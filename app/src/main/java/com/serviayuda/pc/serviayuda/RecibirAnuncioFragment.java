@@ -1,11 +1,14 @@
 package com.serviayuda.pc.serviayuda;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +31,10 @@ public class RecibirAnuncioFragment extends Fragment {
     Button botonMostrarAnuncios;
     AdapterView.OnItemSelectedListener spinnerListenerTipos;
     View view;
-    LinearLayout scrollVistaAnuncio;
+
     DatabaseHelper databaseHelper;
+    RecyclerView recycler;
+    AdapterAnuncios adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,10 +55,11 @@ public class RecibirAnuncioFragment extends Fragment {
         adapterTipos.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinnerTipos.setAdapter(adapterTipos);
         spinnerTipos.setOnItemSelectedListener(spinnerListenerTipos);
-
         botonMostrarAnuncios = view.findViewById(R.id.recibirAnunciosBotonMostrar);
-        scrollVistaAnuncio = view.findViewById(R.id.layoutMostrarAnuncios);
         databaseHelper = new DatabaseHelper(getActivity());
+
+        recycler = view.findViewById(R.id.recyclerAnuncios);
+        recycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
     }
 
     private void iniciarListeners(){
@@ -73,45 +79,10 @@ public class RecibirAnuncioFragment extends Fragment {
         });
     }
     private void mostrarAnuncios(){
-        scrollVistaAnuncio.removeAllViews();
-        List<Anuncio> lista = databaseHelper.getAnunciosPorTipo(spinnerTipos.getSelectedItem().toString());
-        for (int i=0; i<lista.size(); i++){
-            final LinearLayout anun = (LinearLayout) LayoutInflater.from(getContext()).inflate(R.layout.vistaanuncio, null);
-            TextView nombre = anun.findViewById(R.id.muestraNombreAnuncio);
-            TextView tipo_anuncio = anun.findViewById(R.id.muestraTipoAnuncio);
-            TextView descripcion = anun.findViewById(R.id.muestraDescripcion);
-            final Anuncio an = lista.get(i);
-            nombre.setText(an.getNombre());
-            tipo_anuncio.setText(an.getTipoAnuncio());
-            descripcion.setText(an.getDescripcion());
 
-            //Estilo
+        final List<Anuncio> lista = databaseHelper.getAnunciosPorTipo(spinnerTipos.getSelectedItem().toString());
+        adapter = new AdapterAnuncios((ArrayList<Anuncio>) lista, this, getActivity());
+        recycler.setAdapter(adapter);
 
-            GradientDrawable gd = new GradientDrawable();
-            gd.setShape(GradientDrawable.RECTANGLE);
-            gd.setCornerRadius(23.0f);
-            gd.setColor(Color.parseColor("#1D7196"));
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT);
-            lp.setMargins(8,3,8,3);
-            anun.setBackground(gd);
-
-            //Añade un listener a cada anuncio
-            anun.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent i = new Intent(getActivity(), AnuncioAmpliado.class);
-                    Bundle mbundle = new Bundle();
-                    mbundle.putParcelable("anuncio", an);
-                    i.putExtras(mbundle);
-                    Usuario usuario = new Usuario();
-                    new RecibeUsuarioPerfilActivity(getContext(), getActivity()).execute(an.getEmail());
-                    startActivity(i);
-                }
-            });
-
-            //Añade el anuncio a la vista
-            scrollVistaAnuncio.addView(anun, lp);
-        }
     }
 }

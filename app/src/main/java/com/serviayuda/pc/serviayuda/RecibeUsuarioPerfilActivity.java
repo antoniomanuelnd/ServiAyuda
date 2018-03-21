@@ -17,12 +17,12 @@ import java.net.URLEncoder;
  */
 
 public class RecibeUsuarioPerfilActivity extends AsyncTask {
-    private Context context;
+    private RecibirAnuncioFragment context;
     private final Activity activity;
     private DatabaseHelper databaseHelper;
 
 
-    public RecibeUsuarioPerfilActivity(Context context, Activity activity) {
+    public RecibeUsuarioPerfilActivity(RecibirAnuncioFragment context, Activity activity) {
         this.context = context;
         this.activity = activity;
         this.databaseHelper = new DatabaseHelper(activity);
