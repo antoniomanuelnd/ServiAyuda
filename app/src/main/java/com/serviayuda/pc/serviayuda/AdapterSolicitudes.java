@@ -1,11 +1,14 @@
 package com.serviayuda.pc.serviayuda;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +30,7 @@ public class AdapterSolicitudes extends RecyclerView.Adapter<AdapterSolicitudes.
     private View.OnClickListener listener;
     Activity activity;
     DatabaseHelper databaseHelper;
+    MenuViewPagerAdmin vp = new MenuViewPagerAdmin();
 
     public AdapterSolicitudes(ArrayList<Solicitud> listUsuarios, VerSolicitudesFragment context, Activity activity){
         this.listSolicitud = listUsuarios;
@@ -39,6 +43,7 @@ public class AdapterSolicitudes extends RecyclerView.Adapter<AdapterSolicitudes.
     @Override
     public VistaSolicitudes onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.vistasolicitud, parent, false);
+
         return new VistaSolicitudes(view);
     }
 
@@ -69,6 +74,7 @@ public class AdapterSolicitudes extends RecyclerView.Adapter<AdapterSolicitudes.
         holder.aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
             }
         });

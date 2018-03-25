@@ -40,7 +40,7 @@ public class RecibeSolicitudActivity extends AsyncTask {
         //Método POST
         try {
             //Generamos el link
-            String link = "https://apptfg.000webhostapp.com/recibirSolicitud2.php";
+            String link = "https://apptfg.000webhostapp.com/recibirSolicitud.php";
             String data = URLEncoder.encode("email", "UTF-8") + "=" +
                     URLEncoder.encode(email, "UTF-8");
 

@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -49,6 +51,8 @@ public class InicioSesionActivity extends AsyncTask {
                     URLEncoder.encode(email, "UTF-8");
             data += "&" + URLEncoder.encode("password", "UTF-8") + "=" +
                     URLEncoder.encode(password, "UTF-8");
+            data += "&" + URLEncoder.encode("token", "UTF-8") + "=" +
+                    URLEncoder.encode(FirebaseInstanceId.getInstance().getToken(), "UTF-8");
 
 
             URL url = new URL(link);

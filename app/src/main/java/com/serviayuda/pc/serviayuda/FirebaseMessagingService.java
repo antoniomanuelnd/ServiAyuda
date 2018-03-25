@@ -48,7 +48,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
             MyNotificationManager mNotificationManager = new MyNotificationManager(getApplicationContext());
 
             //creating an intent for the notification
-            Intent intent = new Intent(getApplicationContext(), DisplayToken.class);
+            Intent intent = new Intent(getApplicationContext(), VerSolicitudesFragment.class);
 
             //if there is no image
             if (imageUrl.equals("null")) {
