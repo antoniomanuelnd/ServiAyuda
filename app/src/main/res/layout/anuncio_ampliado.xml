@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/azulLogo"
     android:orientation="vertical"
-    tools:context="com.serviayuda.pc.serviayuda.Inicio">
+    tools:context="com.serviayuda.pc.serviayuda.Actividades.Inicio">
 
         <LinearLayout
             android:id="@+id/anuncioAmpliadoLayout"

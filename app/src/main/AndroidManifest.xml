@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/icono_app"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".Inicio"
+        <activity android:name=".Actividades.Inicio"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -21,30 +21,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".InicioSesion"
+        <activity android:name=".Actividades.InicioSesion"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Registro"
+        <activity android:name=".Actividades.Registro"
             android:screenOrientation="portrait"/>
-        <activity android:name=".MenuViewPagerAdmin"
+        <activity android:name=".Actividades.ActivitySetViewPagerAdmin"
             android:screenOrientation="portrait"/>
-        <activity android:name=".MenuViewPagerProveedor"
+        <activity android:name=".Actividades.ActivitySetViewPagerProveedor"
             android:screenOrientation="portrait"/>
-        <activity android:name=".MenuViewPagerSolicitante"
+        <activity android:name=".Actividades.ActivitySetViewPagerSolicitante"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Ajustes"
+        <activity android:name=".Actividades.Ajustes"
             android:screenOrientation="portrait"/>
-        <activity android:name=".AnuncioAmpliado"
+        <activity android:name=".Actividades.AnuncioAmpliado"
             android:screenOrientation="portrait"/>
-        <activity android:name=".VisitarPerfil"
+        <activity android:name=".Actividades.VisitarPerfil"
             android:screenOrientation="portrait"/>
         <service
-            android:name=".FirebaseInstanceID">
+            android:name=".Firebase.FirebaseInstanceID">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
         <service
-            android:name=".FirebaseMessagingService">
+            android:name=".Firebase.FirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
