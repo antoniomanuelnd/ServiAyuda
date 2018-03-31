@@ -9,6 +9,7 @@ import com.serviayuda.pc.serviayuda.Adapters.AdapterAnuncios;
 import com.serviayuda.pc.serviayuda.Fragments.RecibirAnuncioFragment;
 import com.serviayuda.pc.serviayuda.Objetos.Anuncio;
 import com.serviayuda.pc.serviayuda.BBDD.DatabaseHelper;
+import com.serviayuda.pc.serviayuda.Objetos.Solicitud;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -88,32 +89,30 @@ public class RecibirAnunciosActivity extends AsyncTask {
             String respuesta[] = aux.split("<.>");
             Anuncio anuncio = new Anuncio();
             Anuncio anuncioPermanente;
-            Boolean check = databaseHelper.checkSolicitudEnCurso(email);
 
-            if (check){
+            Solicitud sol = databaseHelper.getSolicitud(email);
+            if(sol.getEstado()==null) {
+                for (int i = 0; i < respuesta.length; i = i + 7) {
+
+                    anuncio.setEmail(respuesta[i]);
+                    anuncio.setNombre(respuesta[i + 1]);
+                    anuncio.setTipoAnuncio(respuesta[i + 2]);
+                    anuncio.setHoras(respuesta[i + 3]);
+                    anuncio.setHoraDeseada(respuesta[i + 4]);
+                    anuncio.setDescripcion(respuesta[i + 5]);
+                    anuncio.setEstado(respuesta[i + 6]);
+
+                    databaseHelper.addAnuncio(anuncio);
+                }
+
+            }else if(sol.getEstado().compareTo("En curso") == 0){
                 anuncioPermanente = databaseHelper.getAnuncio(databaseHelper.getSolicitudEstado(email, "En curso").getEmailSolicitante());
                 databaseHelper.setEliminaTodosLosAnuncios();
                 databaseHelper.addAnuncio(anuncioPermanente);
-            }else {
-                databaseHelper.setEliminaTodosLosAnuncios();
-            }
-
-            for (int i = 0; i < respuesta.length; i = i + 7) {
-
-                anuncio.setEmail(respuesta[i]);
-                anuncio.setNombre(respuesta[i + 1]);
-                anuncio.setTipoAnuncio(respuesta[i + 2]);
-                anuncio.setHoras(respuesta[i + 3]);
-                anuncio.setHoraDeseada(respuesta[i + 4]);
-                anuncio.setDescripcion(respuesta[i + 5]);
-                anuncio.setEstado(respuesta[i + 6]);
-
-                databaseHelper.addAnuncio(anuncio);
             }
             final List<Anuncio> lista = databaseHelper.getAnunciosPorTipo(tipo);
             adapter = new AdapterAnuncios((ArrayList<Anuncio>)lista, recibirAnuncioFragment, activity);
             recycler.setAdapter(adapter);
-
         }
     }
 }

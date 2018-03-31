@@ -54,7 +54,7 @@ public class PerfilFragment extends Fragment {
         iniciarListeners();
 
         //Realizar precarga de la solicitud en curso
-        new RecibeSolicitudEnCursoActivity(getContext(),getActivity(), mp.cargarPreferencias("KEY_EMAIL")).execute();
+        new RecibeSolicitudEnCursoActivity(getContext(), getActivity(), mp.cargarPreferencias("KEY_EMAIL")).execute();
 
         return view;
     }

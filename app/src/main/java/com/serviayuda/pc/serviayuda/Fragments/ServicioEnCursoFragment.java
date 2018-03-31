@@ -11,12 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.serviayuda.pc.serviayuda.Actividades.VisitarPerfil;
+import com.serviayuda.pc.serviayuda.Activitys.EnviaPuntuacionActivity;
 import com.serviayuda.pc.serviayuda.Activitys.PendienteDePuntuacionActivity;
 import com.serviayuda.pc.serviayuda.BBDD.DatabaseHelper;
 import com.serviayuda.pc.serviayuda.Objetos.Anuncio;
@@ -43,6 +47,11 @@ public class ServicioEnCursoFragment extends Fragment {
     Anuncio anuncio;
     Solicitud solicitud;
 
+    //Rating
+    RatingBar ratingBar;
+    Button finalizarRating;
+    CheckBox respetoSi, respetoNo, servicioSi, servicioNo, recomendarSi, recomendarNo;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,11 +77,11 @@ public class ServicioEnCursoFragment extends Fragment {
             lay = (LinearLayout) LayoutInflater.from(getContext()).inflate(R.layout.vistasinservicioencurso, null);
         } else if (sol.getEstado().compareTo("En curso") == 0) { //Si la hay
             solicitud = databaseHelper.getSolicitudEstado(email, "En curso");
-            anuncio = databaseHelper.getAnuncio(solicitud.getEmailSolicitante());
+            anuncio = databaseHelper.getAnuncio(sol.getEmailSolicitante());
             if (solicitud.getEmailSolicitante().compareTo(email) == 0) { //Compruebo si estoy desde la cuenta del solicitante/anunciante
                 //Servicio solicitante
 
-                usuario = databaseHelper.getUsuario(solicitud.getEmailProveedor());
+                usuario = databaseHelper.getUsuario(sol.getEmailProveedor());
 
                 lay = (LinearLayout) LayoutInflater.from(getContext()).inflate(R.layout.serviciosolicitante, null);
                 info = lay.findViewById(R.id.servicioSolicitanteInfo);
@@ -122,7 +131,7 @@ public class ServicioEnCursoFragment extends Fragment {
             } else { //Estoy desde la cuenta del proveedor
                 //Servicio proveedor
 
-                usuario = databaseHelper.getUsuario(solicitud.getEmailSolicitante());
+                usuario = databaseHelper.getUsuario(sol.getEmailSolicitante());
 
                 lay = (LinearLayout) LayoutInflater.from(getContext()).inflate(R.layout.servicioproveedor, null);
                 info = lay.findViewById(R.id.servicioProveedorInfo);
@@ -174,9 +183,12 @@ public class ServicioEnCursoFragment extends Fragment {
                 lay = (LinearLayout) LayoutInflater.from(getContext()).inflate(R.layout.vistasinservicioencurso, null);
             }else if (sol.getEmailSolicitante().compareTo(email) == 0) { //Vista de puntuación del cliente
                 lay = (LinearLayout) LayoutInflater.from(getContext()).inflate(R.layout.vistapuntuacioncliente, null);
+                //Método rating del cliente
+                ratingCliente(lay, sol);
             } else { //Vista de puntuación del proveedor
                 lay = (LinearLayout) LayoutInflater.from(getContext()).inflate(R.layout.vistapuntuacionproveedor, null);
-
+                //Método rating del proveedor
+                ratingProveedor(lay, sol);
             }
         }
         serviciosLayout.addView(lay);
@@ -189,5 +201,177 @@ public class ServicioEnCursoFragment extends Fragment {
         } else {
             return "la ";
         }
+    }
+
+    public void ratingCliente(LinearLayout lay, final Solicitud sol){
+
+        ratingBar = lay.findViewById(R.id.clienteGradoSatisfaccion);
+        finalizarRating = lay.findViewById(R.id.clienteFinalizar);
+
+        respetoSi = lay.findViewById(R.id.clienteRespetoSi);
+        respetoNo = lay.findViewById(R.id.clienteRespetoNo);
+        servicioSi = lay.findViewById(R.id.clienteServicioSi);
+        servicioNo = lay.findViewById(R.id.clienteServicioNo);
+        recomendarSi = lay.findViewById(R.id.clienteRecomendarSi);
+        recomendarNo = lay.findViewById(R.id.clienteRecomendarNo);
+
+        respetoSi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                respetoNo.setChecked(false);
+            }
+        });
+        respetoNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                respetoSi.setChecked(false);
+            }
+        });
+        servicioSi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                servicioNo.setChecked(false);
+            }
+        });
+        servicioNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                servicioSi.setChecked(false);
+            }
+        });
+        recomendarSi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recomendarNo.setChecked(false);
+            }
+        });
+
+        recomendarNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recomendarSi.setChecked(false);
+            }
+        });
+
+        finalizarRating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Integer votos_positivos = 0;
+                Integer votos_negativos = 0;
+                Float rating = ratingBar.getRating();
+
+                if((respetoSi.isChecked()==false && respetoNo.isChecked()==false) || (servicioSi.isChecked()==false && servicioNo.isChecked()==false) || (recomendarSi.isChecked()==false && recomendarNo.isChecked()==false)){
+                    Toast.makeText(getContext(), "Existen preguntas sin puntuar", Toast.LENGTH_LONG).show();
+                }else{
+                    if(respetoSi.isChecked()){
+                        votos_positivos = votos_positivos + 1;
+                    }else if (respetoNo.isChecked()) {
+                        votos_negativos = votos_negativos + 1;
+                    }
+                    if(servicioSi.isChecked()){
+                        votos_positivos = votos_positivos + 1;
+                    }else if (servicioNo.isChecked()) {
+                        votos_negativos = votos_negativos + 1;
+                    }
+                    if(recomendarSi.isChecked()){
+                        votos_positivos = votos_positivos + 1;
+                    }else if (recomendarNo.isChecked()) {
+                        votos_negativos = votos_negativos + 1;
+                    }
+
+                    new EnviaPuntuacionActivity(getContext(), getActivity(), sol.getEmailProveedor(), sol.getEmailSolicitante(), rating, votos_positivos, votos_negativos).execute();
+                    databaseHelper.setEliminaSolicitud(sol);
+                    databaseHelper.setEliminaTodosLosAnuncios();
+                    serviciosLayout.removeAllViews();
+                    LinearLayout lay2 = (LinearLayout) LayoutInflater.from(getContext()).inflate(R.layout.vistasinservicioencurso, null);
+                    serviciosLayout.addView(lay2);
+                }
+            }
+        });
+    }
+    public void ratingProveedor(LinearLayout lay, final Solicitud sol){
+
+        ratingBar = lay.findViewById(R.id.proveedorGradoSatisfaccion);
+        finalizarRating = lay.findViewById(R.id.proveedorFinalizar);
+
+        respetoSi = lay.findViewById(R.id.proveedorRespetoSi);
+        respetoNo = lay.findViewById(R.id.proveedorRespetoNo);
+        servicioSi = lay.findViewById(R.id.proveedorServicioSi);
+        servicioNo = lay.findViewById(R.id.proveedorServicioNo);
+        recomendarSi = lay.findViewById(R.id.proveedorRecomendarSi);
+        recomendarNo = lay.findViewById(R.id.proveedorRecomendarNo);
+
+        respetoSi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                respetoNo.setChecked(false);
+            }
+        });
+        respetoNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                respetoSi.setChecked(false);
+            }
+        });
+        servicioSi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                servicioNo.setChecked(false);
+            }
+        });
+        servicioNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                servicioSi.setChecked(false);
+            }
+        });
+        recomendarSi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recomendarNo.setChecked(false);
+            }
+        });
+
+        recomendarNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recomendarSi.setChecked(false);
+            }
+        });
+
+        finalizarRating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Integer votos_positivos = 0;
+                Integer votos_negativos = 0;
+                Float rating = ratingBar.getRating();
+
+                if((respetoSi.isChecked()==false && respetoNo.isChecked()==false) || (servicioSi.isChecked()==false && servicioNo.isChecked()==false) || (recomendarSi.isChecked()==false && recomendarNo.isChecked()==false)){
+                    Toast.makeText(getContext(), "Existen preguntas sin puntuar", Toast.LENGTH_LONG).show();
+                }else{
+                    if(respetoSi.isChecked()){
+                        votos_positivos = votos_positivos + 1;
+                    }else if (respetoNo.isChecked()) {
+                        votos_negativos = votos_negativos + 1;
+                    }
+                    if(servicioSi.isChecked()){
+                        votos_positivos = votos_positivos + 1;
+                    }else if (servicioNo.isChecked()) {
+                        votos_negativos = votos_negativos + 1;
+                    }
+                    if(recomendarSi.isChecked()){
+                        votos_positivos = votos_positivos + 1;
+                    }else if (recomendarNo.isChecked()) {
+                        votos_negativos = votos_negativos + 1;
+                    }
+                    new EnviaPuntuacionActivity(getContext(), getActivity(), sol.getEmailSolicitante(), sol.getEmailProveedor(), rating, votos_positivos, votos_negativos).execute();
+                    databaseHelper.setEliminaSolicitud(sol);
+                    databaseHelper.setEliminaTodosLosAnuncios();
+                    serviciosLayout.removeAllViews();
+                    LinearLayout lay2 = (LinearLayout) LayoutInflater.from(getContext()).inflate(R.layout.vistasinservicioencurso, null);
+                    serviciosLayout.addView(lay2);
+                }
+            }
+        });
     }
 }

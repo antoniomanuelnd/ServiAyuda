@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.serviayuda.pc.serviayuda.Activitys.RecibeSolicitudActivity;
+import com.serviayuda.pc.serviayuda.Activitys.RecibeSolicitudEnCursoActivity;
 import com.serviayuda.pc.serviayuda.Adapters.AdapterSolicitudes;
 import com.serviayuda.pc.serviayuda.BBDD.DatabaseHelper;
 import com.serviayuda.pc.serviayuda.Preferencias.ManejadorPreferencias;
@@ -64,6 +65,7 @@ public class VerSolicitudesFragment extends Fragment {
         recycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         actualizar = view.findViewById(R.id.actualizar);
         databaseHelper = new DatabaseHelper(getActivity());
+        new RecibeSolicitudEnCursoActivity(getContext(), getActivity(), mp.cargarPreferencias("KEY_EMAIL")).execute();
     }
 
     private void mostrarSolicitudes() {
