@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
@@ -17,32 +18,49 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.serviayuda.pc.serviayuda.Actividades.Ajustes;
+import com.serviayuda.pc.serviayuda.Actividades.Editar;
 import com.serviayuda.pc.serviayuda.Activitys.RecibeSolicitudEnCursoActivity;
 import com.serviayuda.pc.serviayuda.BBDD.DatabaseHelper;
+import com.serviayuda.pc.serviayuda.Objetos.Imagen;
+import com.serviayuda.pc.serviayuda.Objetos.RoundedCornerTransformation;
+import com.serviayuda.pc.serviayuda.Objetos.Utilidades;
 import com.serviayuda.pc.serviayuda.Preferencias.ManejadorPreferencias;
 import com.serviayuda.pc.serviayuda.R;
 import com.serviayuda.pc.serviayuda.Objetos.Usuario;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 
 public class PerfilFragment extends Fragment {
 
-    ImageView imagenPerfil;
+    private ImageView imagenPerfil;
     //Campos de datos del usuario
-    TextView campoNombre;
-    TextView campoProfesion;
-    TextView campoDescripcion;
-    TextView campoUbicacion;
-    TextView campoExperiencia;
-    TextView campoHorario;
+    private TextView campoNombre;
+    private TextView campoProfesion;
+    private TextView campoDescripcion;
+    private TextView campoUbicacion;
+    private TextView campoExperiencia;
+    private TextView campoHorario;
     //Fin
-    ImageView botonAjustes;
-    ImageView botonEditar;
-    ManejadorPreferencias mp;
-    DatabaseHelper databaseHelper;
-    Usuario usuario = new Usuario();
-    View view;
+    private ImageView botonAjustes;
+    private ImageView botonEditar;
+    private ManejadorPreferencias mp;
+    private DatabaseHelper databaseHelper;
+    private Usuario usuario = new Usuario();
+    private View view;
+
+    private FirebaseStorage mStorage;
+    private DatabaseReference mDatabaseRef;
+    private ValueEventListener mDBListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,12 +101,16 @@ public class PerfilFragment extends Fragment {
         campoProfesion.setBackground(gd);
         campoProfesion.setText(usuario.getTipoServicio());
 
+        //Imagen de perfil
         imagenPerfil = view.findViewById(R.id.perfilImagen);
 
         Bitmap foto = BitmapFactory.decodeResource(getResources(), R.drawable.defaultphotoprofile);
         RoundedBitmapDrawable roundedImagen = RoundedBitmapDrawableFactory.create(getResources(), foto);
         roundedImagen.setCornerRadius(200);
         imagenPerfil.setImageDrawable(roundedImagen);
+        estableceFotoPerfil();
+
+
 
         botonAjustes = view.findViewById(R.id.perfilBotonAjustes);
         botonAjustes.setBackgroundResource(R.drawable.botonajusteslayout);
@@ -114,10 +136,43 @@ public class PerfilFragment extends Fragment {
         botonEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(view.getContext(), Ajustes.class);
+                Intent i = new Intent(view.getContext(), Editar.class);
                 startActivity(i);
             }
         });
     }
+
+    private void estableceFotoPerfil() {
+        mStorage = FirebaseStorage.getInstance();
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference(Utilidades.creaClave(usuario.getEmail()));
+
+        mDBListener = mDatabaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    Imagen img = postSnapshot.getValue(Imagen.class);
+                    img.setKey(postSnapshot.getKey());
+                    final int radius = 5;
+                    final int margin = 5;
+
+                    Picasso.with(getContext())
+                            .load(img.getUri())
+                            .placeholder(R.drawable.defaultphotoprofile)
+                            .fit()
+                            .centerCrop()
+                            .transform(new RoundedCornerTransformation())
+                            .into(imagenPerfil);
+                }
+            }
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+        });
+    }
+
 
 }

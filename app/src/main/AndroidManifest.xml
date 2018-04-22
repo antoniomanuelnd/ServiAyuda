@@ -33,6 +33,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".Actividades.Ajustes"
             android:screenOrientation="portrait"/>
+        <activity android:name=".Actividades.Editar"
+            android:screenOrientation="portrait"/>
         <activity android:name=".Actividades.AnuncioAmpliado"
             android:screenOrientation="portrait"/>
         <activity android:name=".Actividades.VisitarPerfil"
