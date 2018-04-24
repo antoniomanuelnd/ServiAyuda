@@ -10,10 +10,21 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.serviayuda.pc.serviayuda.BBDD.DatabaseHelper;
+import com.serviayuda.pc.serviayuda.Objetos.Imagen;
+import com.serviayuda.pc.serviayuda.Objetos.RoundedCornerTransformation;
 import com.serviayuda.pc.serviayuda.Objetos.Usuario;
+import com.serviayuda.pc.serviayuda.Objetos.Utilidades;
 import com.serviayuda.pc.serviayuda.R;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by PC on 07/03/2018.
@@ -34,7 +45,9 @@ public class VisitarPerfil extends AppCompatActivity{
     DatabaseHelper databaseHelper;
     Usuario usuario = new Usuario();
 
-
+    private FirebaseStorage mStorage;
+    private DatabaseReference mDatabaseRef;
+    private ValueEventListener mDBListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +79,7 @@ public class VisitarPerfil extends AppCompatActivity{
         RoundedBitmapDrawable roundedImagen = RoundedBitmapDrawableFactory.create(getResources(), foto);
         roundedImagen.setCornerRadius(200);
         imagenPerfil.setImageDrawable(roundedImagen);
+        estableceFotoPerfil();
 
         GradientDrawable gd = new GradientDrawable();
         gd.setShape(GradientDrawable.RECTANGLE);
@@ -74,5 +88,36 @@ public class VisitarPerfil extends AppCompatActivity{
         campoProfesion.setBackground(gd);
         campoProfesion.setText(usuario.getTipoServicio());
 
+    }
+    private void estableceFotoPerfil() {
+        mStorage = FirebaseStorage.getInstance();
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference(Utilidades.creaClave(usuario.getEmail()));
+
+        mDBListener = mDatabaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    Imagen img = postSnapshot.getValue(Imagen.class);
+                    img.setKey(postSnapshot.getKey());
+                    final int radius = 5;
+                    final int margin = 5;
+
+                    Picasso.with(VisitarPerfil.this)
+                            .load(img.getUri())
+                            .placeholder(R.drawable.defaultphotoprofile)
+                            .fit()
+                            .centerCrop()
+                            .transform(new RoundedCornerTransformation())
+                            .into(imagenPerfil);
+                }
+            }
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(VisitarPerfil.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+        });
     }
 }

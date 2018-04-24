@@ -27,8 +27,7 @@
             android:id="@+id/editarImagenPerfil"
             android:layout_width="130dp"
             android:layout_height="130dp"
-            android:layout_marginRight="@dimen/_5sdp"
-            android:background="@color/blanco" />
+            android:layout_marginRight="@dimen/_5sdp" />
 
     </LinearLayout>
     <LinearLayout
