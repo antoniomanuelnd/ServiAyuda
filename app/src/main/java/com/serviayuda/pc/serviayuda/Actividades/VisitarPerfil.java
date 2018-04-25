@@ -38,7 +38,8 @@ public class VisitarPerfil extends AppCompatActivity{
     TextView campoNombre;
     TextView campoProfesion;
     TextView campoDescripcion;
-    TextView campoUbicacion;
+    TextView campoCiudad;
+    TextView campoLocalidad;
     TextView campoExperiencia;
     TextView campoHorario;
 
@@ -65,14 +66,16 @@ public class VisitarPerfil extends AppCompatActivity{
         campoProfesion = findViewById(R.id.visitarPerfilProfesion);
         campoDescripcion = findViewById(R.id.visitarPerfilDescripcion);
         campoExperiencia = findViewById(R.id.visitarPerfilExperiencia);
-        campoUbicacion = findViewById(R.id.visitarPerfilUbicacion);
+        campoCiudad = findViewById(R.id.visitarPerfilCiudad);
         campoHorario = findViewById(R.id.visitarPerfilHorario);
+        campoLocalidad = findViewById(R.id.visitarPerfilLocalidad);
 
         campoNombre.setText(usuario.getNombre() + " " + usuario.getApellidos());
         campoDescripcion.setText(usuario.getDescripcion());
         campoExperiencia.setText(usuario.getExperiencia());
-        campoUbicacion.setText(usuario.getUbicacion());
+        campoCiudad.setText(usuario.getCiudad());
         campoHorario.setText(usuario.getHorario());
+        campoLocalidad.setText(usuario.getLocalidad());
 
         //Estilo foto de perfil
         Bitmap foto = BitmapFactory.decodeResource(getResources(), R.drawable.defaultphotoprofile);

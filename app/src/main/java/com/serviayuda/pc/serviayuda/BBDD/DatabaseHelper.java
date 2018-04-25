@@ -32,9 +32,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_USUARIO_NOMBRE = "nombre";
     private static final String COLUMN_USUARIO_APELLIDOS = "apellidos";
     private static final String COLUMN_USUARIO_EMAIL = "email";
+    private static final String COLUMN_USUARIO_VERIFICADO = "verificado";
     private static final String COLUMN_USUARIO_TIPOPERFIL = "tipo_perfil";
     private static final String COLUMN_USUARIO_TIPOSERVICIO = "tipo_servicio";
-    private static final String COLUMN_USUARIO_UBICACION = "ubicacion";
+    private static final String COLUMN_USUARIO_CIUDAD = "ciudad";
+    private static final String COLUMN_USUARIO_LOCALIDAD = "localidad";
+    private static final String COLUMN_USUARIO_DIRECCION = "direccion";
     private static final String COLUMN_USUARIO_CODIGOPOSTAL = "codigo_postal";
     private static final String COLUMN_USUARIO_DESCRIPCION = "descripcion";
     private static final String COLUMN_USUARIO_EXPERIENCIA = "experiencia";
@@ -65,10 +68,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COLUMN_ANUNCIO_ESTADO + " TEXT" + " )";
     //Creación de la tabla usuario
     private String CREATE_USUARIO_TABLE = "CREATE TABLE " + TABLE_USUARIO + " ( " + COLUMN_USUARIO_NOMBRE + " TEXT, "
-            + COLUMN_USUARIO_APELLIDOS + " TEXT, " + COLUMN_USUARIO_EMAIL + " TEXT PRIMARY KEY, " + COLUMN_USUARIO_TIPOPERFIL
-            + " TEXT, " + COLUMN_USUARIO_TIPOSERVICIO + " TEXT, " + COLUMN_USUARIO_UBICACION + " TEXT, " + COLUMN_USUARIO_CODIGOPOSTAL
-            + " TEXT, " + COLUMN_USUARIO_DESCRIPCION + " TEXT, " + COLUMN_USUARIO_EXPERIENCIA + " TEXT, " + COLUMN_USUARIO_HORARIO +
-            " TEXT, " + COLUMN_USUARIO_EDAD + " TEXT" + " )";
+            + COLUMN_USUARIO_APELLIDOS + " TEXT, " + COLUMN_USUARIO_EMAIL + " TEXT PRIMARY KEY, " + COLUMN_USUARIO_VERIFICADO + " TEXT, "
+            + COLUMN_USUARIO_TIPOPERFIL + " TEXT, " + COLUMN_USUARIO_TIPOSERVICIO + " TEXT, " + COLUMN_USUARIO_CIUDAD + " TEXT, "
+            + COLUMN_USUARIO_LOCALIDAD + " TEXT, " + COLUMN_USUARIO_DIRECCION + " TEXT, " + COLUMN_USUARIO_CODIGOPOSTAL + " TEXT, "
+            + COLUMN_USUARIO_DESCRIPCION + " TEXT, " + COLUMN_USUARIO_EXPERIENCIA + " TEXT, " + COLUMN_USUARIO_HORARIO + " TEXT, "
+            + COLUMN_USUARIO_EDAD + " TEXT" + " )";
 
     //Creación de la tabla solicitudes
     private String CREATE_SOLICITUDES_TABLE = "CREATE TABLE " + TABLE_SOLICITUDES + " ( " + COLUMN_SOLICITUDES_EMAILSOLICITANTE + " TEXT, "
@@ -377,9 +381,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_USUARIO_NOMBRE, usuario.getNombre());
         values.put(COLUMN_USUARIO_APELLIDOS, usuario.getApellidos());
         values.put(COLUMN_USUARIO_EMAIL, usuario.getEmail());
+        values.put(COLUMN_USUARIO_VERIFICADO, usuario.getVerificado());
         values.put(COLUMN_USUARIO_TIPOPERFIL, usuario.getTipoPerfil());
         values.put(COLUMN_USUARIO_TIPOSERVICIO, usuario.getTipoServicio());
-        values.put(COLUMN_USUARIO_UBICACION, usuario.getUbicacion());
+        values.put(COLUMN_USUARIO_CIUDAD, usuario.getCiudad());
+        values.put(COLUMN_USUARIO_LOCALIDAD, usuario.getLocalidad());
+        values.put(COLUMN_USUARIO_DIRECCION, usuario.getDireccion());
         values.put(COLUMN_USUARIO_CODIGOPOSTAL, usuario.getCodigoPostal());
         values.put(COLUMN_USUARIO_DESCRIPCION, usuario.getDescripcion());
         values.put(COLUMN_USUARIO_EXPERIENCIA, usuario.getExperiencia());
@@ -404,10 +411,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String[] columns = {COLUMN_USUARIO_NOMBRE,
                 COLUMN_USUARIO_APELLIDOS,
+                COLUMN_USUARIO_EDAD,
+                COLUMN_USUARIO_VERIFICADO,
                 COLUMN_USUARIO_TIPOSERVICIO,
+                COLUMN_USUARIO_TIPOPERFIL,
                 COLUMN_USUARIO_EXPERIENCIA,
                 COLUMN_USUARIO_DESCRIPCION,
-                COLUMN_USUARIO_UBICACION,
+                COLUMN_USUARIO_CIUDAD,
+                COLUMN_USUARIO_LOCALIDAD,
+                COLUMN_USUARIO_DIRECCION,
+                COLUMN_USUARIO_CODIGOPOSTAL,
                 COLUMN_USUARIO_HORARIO};
         String selection = COLUMN_USUARIO_EMAIL + " = ?";
         String[] selectionArgs = {email};
@@ -427,11 +440,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             us.setEmail(email);
             us.setNombre(cursor.getString(0));
             us.setApellidos(cursor.getString(1));
-            us.setTipoServicio(cursor.getString(2));
-            us.setExperiencia(cursor.getString(3));
-            us.setDescripcion(cursor.getString(4));
-            us.setUbicacion(cursor.getString(5));
-            us.setHorario(cursor.getString(6));
+            us.setEdad(cursor.getString(2));
+            us.setVerificado(cursor.getString(3));
+            us.setTipoServicio(cursor.getString(4));
+            us.setTipoPerfil(cursor.getString(5));
+            us.setExperiencia(cursor.getString(6));
+            us.setDescripcion(cursor.getString(7));
+            us.setCiudad(cursor.getString(8));
+            us.setLocalidad(cursor.getString(9));
+            us.setDireccion(cursor.getString(10));
+            us.setCodigoPostal(cursor.getString(11));
+            us.setHorario(cursor.getString(12));
         }
         cursor.close();
         db.close();

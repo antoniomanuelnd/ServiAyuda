@@ -1,13 +1,13 @@
 package com.serviayuda.pc.serviayuda.Fragments;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
@@ -15,8 +15,10 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +39,6 @@ import com.serviayuda.pc.serviayuda.Preferencias.ManejadorPreferencias;
 import com.serviayuda.pc.serviayuda.R;
 import com.serviayuda.pc.serviayuda.Objetos.Usuario;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Transformation;
 
 
 public class PerfilFragment extends Fragment {
@@ -47,9 +48,10 @@ public class PerfilFragment extends Fragment {
     private TextView campoNombre;
     private TextView campoProfesion;
     private TextView campoDescripcion;
-    private TextView campoUbicacion;
+    private TextView campoCiudad;
+    private TextView campoLocalidad;
     private TextView campoExperiencia;
-    private TextView campoHorario;
+    private Button botonVerHorarios;
     //Fin
     private ImageView botonAjustes;
     private ImageView botonEditar;
@@ -57,6 +59,7 @@ public class PerfilFragment extends Fragment {
     private DatabaseHelper databaseHelper;
     private Usuario usuario = new Usuario();
     private View view;
+    private LinearLayout horarioProveedor;
 
     private FirebaseStorage mStorage;
     private DatabaseReference mDatabaseRef;
@@ -87,9 +90,10 @@ public class PerfilFragment extends Fragment {
         campoProfesion = view.findViewById(R.id.perfilProfesion);
         campoDescripcion = view.findViewById(R.id.perfilDescripcion);
         campoExperiencia = view.findViewById(R.id.perfilExperiencia);
-        campoUbicacion = view.findViewById(R.id.perfilUbicacion);
-        campoHorario = view.findViewById(R.id.perfilHorario);
-
+        campoCiudad = view.findViewById(R.id.perfilCiudad);
+        campoLocalidad = view.findViewById(R.id.perfilLocalidad);
+        botonVerHorarios = view.findViewById(R.id.perfilHorario);
+        horarioProveedor = view.findViewById(R.id.horarioProveedor);
         databaseHelper = new DatabaseHelper(getActivity());
         usuario = databaseHelper.getUsuario(mp.cargarPreferencias("KEY_EMAIL"));
         mp.guardarPreferencias("KEY_NOMBRE", usuario.getNombre());
@@ -110,8 +114,6 @@ public class PerfilFragment extends Fragment {
         imagenPerfil.setImageDrawable(roundedImagen);
         estableceFotoPerfil();
 
-
-
         botonAjustes = view.findViewById(R.id.perfilBotonAjustes);
         botonAjustes.setBackgroundResource(R.drawable.botonajusteslayout);
         botonEditar = view.findViewById(R.id.perfilBotonEditar);
@@ -120,8 +122,22 @@ public class PerfilFragment extends Fragment {
         campoNombre.setText(usuario.getNombre() + " " + usuario.getApellidos());
         campoDescripcion.setText(usuario.getDescripcion());
         campoExperiencia.setText(usuario.getExperiencia());
-        campoUbicacion.setText(usuario.getUbicacion());
-        campoHorario.setText(usuario.getHorario());
+        campoCiudad.setText(usuario.getCiudad());
+        campoLocalidad.setText(usuario.getLocalidad());
+
+        if(usuario.getTipoPerfil().compareTo("Solicitante")==0){
+            horarioProveedor.setVisibility(View.GONE);
+        }else{
+            botonVerHorarios.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Dialog dialog = new Dialog(getContext());
+                    dialog.setTitle("Horarios");
+                    dialog.setContentView(R.layout.horarios_dialog);
+                    dialog.show();
+                }
+            });
+        }
     }
 
     private void iniciarListeners() {
@@ -140,6 +156,7 @@ public class PerfilFragment extends Fragment {
                 startActivity(i);
             }
         });
+
     }
 
     private void estableceFotoPerfil() {
@@ -164,8 +181,6 @@ public class PerfilFragment extends Fragment {
                             .into(imagenPerfil);
                 }
             }
-
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Toast.makeText(getContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();

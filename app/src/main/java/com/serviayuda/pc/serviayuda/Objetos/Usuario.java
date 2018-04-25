@@ -9,9 +9,12 @@ public class Usuario {
     private String nombre;
     private String apellidos;
     private String email;
+    private String verificado;
     private String tipo_perfil;
     private String tipo_servicio;
-    private String ubicacion;
+    private String ciudad;
+    private String localidad;
+    private String direccion;
     private String codigo_postal;
     private String descripcion;
     private String experiencia;
@@ -36,6 +39,12 @@ public class Usuario {
     public void setEmail(String email){
         this.email = email;
     }
+    public String getVerificado(){
+        return verificado;
+    }
+    public void setVerificado(String verificado){
+        this.verificado = verificado;
+    }
     public String getTipoPerfil(){
         return  tipo_perfil;
     }
@@ -48,11 +57,23 @@ public class Usuario {
     public void setTipoServicio(String tipo_servicio){
         this.tipo_servicio = tipo_servicio;
     }
-    public String getUbicacion(){
-        return ubicacion;
+    public String getCiudad(){
+        return ciudad;
     }
-    public void setUbicacion(String ubicacion){
-        this.ubicacion = ubicacion;
+    public void setCiudad(String ciudad){
+        this.ciudad = ciudad;
+    }
+    public String getLocalidad(){
+        return localidad;
+    }
+    public void setLocalidad(String localidad){
+        this.localidad = localidad;
+    }
+    public String getDireccion(){
+        return direccion;
+    }
+    public void setDireccion(String direccion){
+        this.direccion = direccion;
     }
     public String getCodigoPostal(){
         return codigo_postal;

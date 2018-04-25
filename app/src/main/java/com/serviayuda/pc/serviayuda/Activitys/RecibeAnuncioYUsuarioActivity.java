@@ -44,7 +44,7 @@ public class RecibeAnuncioYUsuarioActivity extends AsyncTask {
         //Método POST
         try {
             //Generamos el link
-            String link = "https://apptfg.000webhostapp.com/recibeUsuarioYAnuncio.php";
+            String link = "https://apptfg.000webhostapp.com/recibeAnuncioYUsuario.php";
             String data = URLEncoder.encode("emailUsuario", "UTF-8") + "=" +
                     URLEncoder.encode(emailUsuario, "UTF-8");
             data += "&" + URLEncoder.encode("emailAnuncio", "UTF-8") + "=" +
@@ -85,22 +85,25 @@ public class RecibeAnuncioYUsuarioActivity extends AsyncTask {
             usuario.setNombre(respuesta[0]);
             usuario.setApellidos(respuesta[1]);
             usuario.setEmail(respuesta[2]);
-            usuario.setTipoPerfil(respuesta[3]);
-            usuario.setTipoServicio(respuesta[4]);
-            usuario.setUbicacion(respuesta[5]);
-            usuario.setCodigoPostal(respuesta[6]);
-            usuario.setDescripcion(respuesta[7]);
-            usuario.setExperiencia(respuesta[8]);
-            usuario.setHorario(respuesta[9]);
-            usuario.setEdad(respuesta[10]);
+            usuario.setVerificado(respuesta[3]);
+            usuario.setTipoPerfil(respuesta[4]);
+            usuario.setTipoServicio(respuesta[5]);
+            usuario.setCiudad(respuesta[6]);
+            usuario.setLocalidad(respuesta[7]);
+            usuario.setDireccion(respuesta[8]);
+            usuario.setCodigoPostal(respuesta[9]);
+            usuario.setDescripcion(respuesta[10]);
+            usuario.setExperiencia(respuesta[11]);
+            usuario.setHorario(respuesta[12]);
+            usuario.setEdad(respuesta[13]);
 
-            anuncio.setEmail(respuesta[11]);
-            anuncio.setNombre(respuesta[12]);
-            anuncio.setTipoAnuncio(respuesta[13]);
-            anuncio.setHoras(respuesta[14]);
-            anuncio.setHoraDeseada(respuesta[15]);
-            anuncio.setDescripcion(respuesta[16]);
-            anuncio.setEstado(respuesta[17]);
+            anuncio.setEmail(respuesta[14]);
+            anuncio.setNombre(respuesta[15]);
+            anuncio.setTipoAnuncio(respuesta[16]);
+            anuncio.setHoras(respuesta[17]);
+            anuncio.setHoraDeseada(respuesta[18]);
+            anuncio.setDescripcion(respuesta[19]);
+            anuncio.setEstado(respuesta[20]);
 
             databaseHelper.addUsuario(usuario);
             databaseHelper.addAnuncio(anuncio);

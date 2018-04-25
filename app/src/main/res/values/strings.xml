@@ -20,9 +20,11 @@
     <string name="iniciosesion_6">Entrar</string>
 
     <string name="perfil_1">Descripción</string>
-    <string name="perfil_2">Ubicación</string>
-    <string name="perfil_3">Experiencia</string>
-    <string name="perfil_4">Horario</string>
+    <string name="perfil_2">Ciudad</string>
+    <string name="perfil_3">Localidad</string>
+    <string name="perfil_4">Dirección</string>
+    <string name="perfil_5">Experiencia</string>
+    <string name="perfil_6">Horario</string>
 
     <string name="envioanuncio_1">Tipo:</string>
     <string name="envioanuncio_2">Hora deseada:</string>

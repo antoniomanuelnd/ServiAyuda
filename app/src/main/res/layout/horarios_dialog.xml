@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/azulLogo"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="@dimen/_300sdp"
+        android:layout_height="@dimen/_300sdp"
+        android:padding="@dimen/_15sdp"
+        android:text="Estos son los horarios"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/_30sdp" />
+</LinearLayout>

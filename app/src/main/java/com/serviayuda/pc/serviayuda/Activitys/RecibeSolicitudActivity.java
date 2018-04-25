@@ -79,7 +79,7 @@ public class RecibeSolicitudActivity extends AsyncTask {
             Solicitud solicitud = new Solicitud();
             ArrayList<Solicitud> list = new ArrayList<>();
             Usuario usuario = new Usuario();
-            for (int i = 0; i < respuesta.length; i = i + 14) {
+            for (int i = 0; i < respuesta.length; i = i + 17) {
 
                 solicitud.setEmailSolicitante(respuesta[i]);
                 solicitud.setEmailProveedor(respuesta[i + 1]);
@@ -89,14 +89,17 @@ public class RecibeSolicitudActivity extends AsyncTask {
                 usuario.setNombre(respuesta[i + 4]);
                 usuario.setApellidos(respuesta[i + 5]);
                 usuario.setEmail(respuesta[i + 1]);
-                usuario.setTipoPerfil(respuesta[i + 6]);
-                usuario.setTipoServicio(respuesta[i + 7]);
-                usuario.setUbicacion(respuesta[i + 8]);
-                usuario.setCodigoPostal(respuesta[i + 9]);
-                usuario.setDescripcion(respuesta[i + 10]);
-                usuario.setExperiencia(respuesta[i + 11]);
-                usuario.setHorario(respuesta[i + 12]);
-                usuario.setEdad(respuesta[i + 13]);
+                usuario.setVerificado(respuesta[i + 6]);
+                usuario.setTipoPerfil(respuesta[i + 7]);
+                usuario.setTipoServicio(respuesta[i + 8]);
+                usuario.setCiudad(respuesta[i + 9]);
+                usuario.setLocalidad(respuesta[i + 10]);
+                usuario.setDireccion(respuesta[i + 11]);
+                usuario.setCodigoPostal(respuesta[i + 12]);
+                usuario.setDescripcion(respuesta[i + 13]);
+                usuario.setExperiencia(respuesta[i + 14]);
+                usuario.setHorario(respuesta[i + 15]);
+                usuario.setEdad(respuesta[i + 16]);
                 databaseHelper.addUsuario(usuario);
                 list.add(solicitud);
             }

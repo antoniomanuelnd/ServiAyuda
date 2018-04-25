@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.serviayuda.pc.serviayuda.Activitys.EnviaSolicitudActivity;
+import com.serviayuda.pc.serviayuda.BBDD.DatabaseHelper;
+import com.serviayuda.pc.serviayuda.Objetos.Usuario;
 import com.serviayuda.pc.serviayuda.Preferencias.ManejadorPreferencias;
 import com.serviayuda.pc.serviayuda.Objetos.Anuncio;
 import com.serviayuda.pc.serviayuda.R;
@@ -23,19 +25,18 @@ import com.serviayuda.pc.serviayuda.R;
 
 public class AnuncioAmpliado extends AppCompatActivity {
 
-    TextView campoNombre, campoTipo, campoHoraDeseada, campoHoras, campoUbicacion, campoDescripcion;
+    TextView campoNombre, campoTipo, campoHoraDeseada, campoHoras, campoCiudad, campoDescripcion, campoLocalidad;
     Button botonVisitarPerfil, botonVolver, botonSolicitar;
     String emailProveedor;
     LinearLayout linearLayout;
     Anuncio anuncio = new Anuncio();
     ManejadorPreferencias mp;
-
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.anuncio_ampliado);
-        Intent i = getIntent();
         anuncio = getIntent().getExtras().getParcelable("anuncio");
         iniciarVistas();
         iniciarListeners();
@@ -43,10 +44,14 @@ public class AnuncioAmpliado extends AppCompatActivity {
 
     private void iniciarVistas(){
 
+        databaseHelper = new DatabaseHelper(this);
+
+        Usuario usuario = databaseHelper.getUsuario(anuncio.getEmail());
         //Inicialización de vistas
         campoNombre = findViewById(R.id.anuncioAmpliadoNombre);
         campoTipo = findViewById(R.id.anuncioAmpliadoTipo);
-        campoUbicacion = findViewById(R.id.anuncioAmpliadoUbicacion);
+        campoCiudad = findViewById(R.id.anuncioAmpliadoCiudad);
+        campoLocalidad = findViewById(R.id.anuncioAmpliadoLocalidad);
         campoHoraDeseada = findViewById(R.id.anuncioAmpliadoHoraDeseada);
         campoHoras = findViewById(R.id.anuncioAmpliadoHoras);
         campoDescripcion = findViewById(R.id.anuncioAmpliadoDescripcion);
@@ -54,7 +59,9 @@ public class AnuncioAmpliado extends AppCompatActivity {
 
         campoNombre.setText(anuncio.getNombre());
         campoTipo.setText(anuncio.getTipoAnuncio());
-        campoUbicacion.setText("Sevilla");
+        campoCiudad.setText(usuario.getCiudad());
+        campoLocalidad.setText(usuario.getLocalidad());
+
         campoHoraDeseada.setText(anuncio.getHoraDeseada());
         campoHoras.setText(anuncio.getHoras());
         String descripcion = anuncio.getDescripcion();

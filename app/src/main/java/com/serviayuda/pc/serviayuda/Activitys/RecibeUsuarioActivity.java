@@ -86,14 +86,17 @@ public class RecibeUsuarioActivity extends AsyncTask {
             usuario.setNombre(res[0]);
             usuario.setApellidos(res[1]);
             usuario.setEmail(res[2]);
-            usuario.setTipoPerfil(res[3]);
-            usuario.setTipoServicio(res[4]);
-            usuario.setUbicacion(res[5]);
-            usuario.setCodigoPostal(res[6]);
-            usuario.setDescripcion(res[7]);
-            usuario.setExperiencia(res[8]);
-            usuario.setHorario(res[9]);
-            usuario.setEdad((res[10]));
+            usuario.setVerificado(res[3]);
+            usuario.setTipoPerfil(res[4]);
+            usuario.setTipoServicio(res[5]);
+            usuario.setCiudad(res[6]);
+            usuario.setLocalidad(res[7]);
+            usuario.setDireccion(res[8]);
+            usuario.setCodigoPostal(res[9]);
+            usuario.setDescripcion(res[10]);
+            usuario.setExperiencia(res[11]);
+            usuario.setHorario(res[12]);
+            usuario.setEdad((res[13]));
 
             databaseHelper.addUsuario(usuario);
 

@@ -106,10 +106,10 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/perfilDescripcion"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:id="@+id/perfilDescripcion" />
+                                android:layout_marginLeft="15dp" />
                         </LinearLayout>
 
 
@@ -133,10 +133,10 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/perfilCiudad"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:id="@+id/perfilUbicacion"/>
+                            android:layout_marginLeft="15dp" />
                     </LinearLayout>
 
                     <View
@@ -157,10 +157,10 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/perfilLocalidad"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:id="@+id/perfilExperiencia" />
+                            android:layout_marginLeft="15dp" />
                     </LinearLayout>
 
                     <View
@@ -177,20 +177,40 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:text="@string/perfil_4"
+                            android:text="@string/perfil_5"
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/perfilExperiencia"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:id="@+id/perfilHorario" />
+                            android:layout_marginLeft="15dp" />
                     </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/dividercolor" />
+
+                    <LinearLayout
+                        android:id="@+id/horarioProveedor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/perfilHorario"
+                            android:background="@color/azulLogo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Ver horarios"/>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/dividercolor" />
+                    </LinearLayout>
+
+
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
