@@ -1,5 +1,6 @@
 package com.serviayuda.pc.serviayuda.Actividades;
 
+import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -8,7 +9,10 @@ import android.os.Bundle;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +46,8 @@ public class VisitarPerfil extends AppCompatActivity{
     TextView campoLocalidad;
     TextView campoExperiencia;
     TextView campoHorario;
-
+    LinearLayout horarioProveedor;
+    Button botonVerHorario;
     DatabaseHelper databaseHelper;
     Usuario usuario = new Usuario();
 
@@ -69,12 +74,13 @@ public class VisitarPerfil extends AppCompatActivity{
         campoCiudad = findViewById(R.id.visitarPerfilCiudad);
         campoHorario = findViewById(R.id.visitarPerfilHorario);
         campoLocalidad = findViewById(R.id.visitarPerfilLocalidad);
+        horarioProveedor = findViewById(R.id.visitarPerfilHorarioProveedor);
+        botonVerHorario = findViewById(R.id.visitarPerfilHorario);
 
         campoNombre.setText(usuario.getNombre() + " " + usuario.getApellidos());
         campoDescripcion.setText(usuario.getDescripcion());
         campoExperiencia.setText(usuario.getExperiencia());
         campoCiudad.setText(usuario.getCiudad());
-        campoHorario.setText(usuario.getHorario());
         campoLocalidad.setText(usuario.getLocalidad());
 
         //Estilo foto de perfil
@@ -90,6 +96,20 @@ public class VisitarPerfil extends AppCompatActivity{
         gd.setCornerRadius(15.0f);
         campoProfesion.setBackground(gd);
         campoProfesion.setText(usuario.getTipoServicio());
+
+        if(usuario.getTipoPerfil().compareTo("Solicitante")==0){
+            horarioProveedor.setVisibility(View.GONE);
+        }else{
+            botonVerHorario.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Dialog dialog = new Dialog(VisitarPerfil.this);
+                    dialog.setTitle("Horarios");
+                    dialog.setContentView(R.layout.horarios_dialog);
+                    dialog.show();
+                }
+            });
+        }
 
     }
     private void estableceFotoPerfil() {

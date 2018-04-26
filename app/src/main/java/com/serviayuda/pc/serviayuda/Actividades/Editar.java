@@ -17,6 +17,7 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -41,7 +42,7 @@ import com.squareup.picasso.Picasso;
 
 public class Editar extends AppCompatActivity {
 
-    private Button elegirFoto, subir;
+    private Button elegirFoto, subir, addViewHora;
     private ImageView fotoPerfil;
     private ProgressBar barraProgreso;
     private Uri fotoUri;
@@ -65,6 +66,7 @@ public class Editar extends AppCompatActivity {
         subir = findViewById(R.id.subirImagen);
         fotoPerfil = findViewById(R.id.editarImagenPerfil);
         barraProgreso = findViewById(R.id.progresoSubida);
+        addViewHora = findViewById(R.id.addViewHora);
 
         SharedPreferences preferences = this.getSharedPreferences("SESION", Activity.MODE_PRIVATE);
         mp = new ManejadorPreferencias(preferences);
@@ -100,6 +102,16 @@ public class Editar extends AppCompatActivity {
                 }else {
                     subirImagen();
                 }
+            }
+        });
+
+        addViewHora.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LinearLayout ll = findViewById(R.id.horariosLunes);
+                View zona = getLayoutInflater().inflate(R.layout.zona_horario, null);
+                ll.addView(zona);
+                addViewHora.setVisibility(View.GONE);
             }
         });
     }

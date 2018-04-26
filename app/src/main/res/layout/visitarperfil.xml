@@ -176,28 +176,22 @@
                         android:background="@color/dividercolor" />
 
                     <LinearLayout
+                        android:id="@+id/visitarPerfilHorarioProveedor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <TextView
+                        <Button
+                            android:id="@+id/visitarPerfilHorario"
+                            android:background="@color/azulLogo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:text="@string/perfil_6"
-                            android:textStyle="bold" />
-
-                        <TextView
+                            android:text="Ver horarios"/>
+                        <View
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:id="@+id/visitarPerfilHorario" />
+                            android:layout_height="1dp"
+                            android:background="@color/dividercolor" />
                     </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/dividercolor" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

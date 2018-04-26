@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/_5sdp"
+
+    android:orientation="horizontal"
+    android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:text="Desde"
+            android:textColor="@color/blanco" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/envioanuncioedittext"
+            android:gravity="center"
+            android:hint="00:00"
+            android:inputType="time"
+            android:padding="@dimen/_8sdp"
+            android:textColor="@color/blanco"
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:text="hasta"
+            android:textColor="@color/blanco" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/envioanuncioedittext"
+            android:gravity="center"
+            android:hint="00:00"
+            android:inputType="time"
+            android:padding="@dimen/_8sdp"
+            android:textColor="@color/blanco"
+            android:textSize="15dp" />
+</LinearLayout>

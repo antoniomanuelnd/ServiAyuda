@@ -51,7 +51,7 @@ public class PerfilFragment extends Fragment {
     private TextView campoCiudad;
     private TextView campoLocalidad;
     private TextView campoExperiencia;
-    private Button botonVerHorarios;
+    private Button botonVerHorario;
     //Fin
     private ImageView botonAjustes;
     private ImageView botonEditar;
@@ -92,7 +92,7 @@ public class PerfilFragment extends Fragment {
         campoExperiencia = view.findViewById(R.id.perfilExperiencia);
         campoCiudad = view.findViewById(R.id.perfilCiudad);
         campoLocalidad = view.findViewById(R.id.perfilLocalidad);
-        botonVerHorarios = view.findViewById(R.id.perfilHorario);
+        botonVerHorario = view.findViewById(R.id.perfilHorario);
         horarioProveedor = view.findViewById(R.id.horarioProveedor);
         databaseHelper = new DatabaseHelper(getActivity());
         usuario = databaseHelper.getUsuario(mp.cargarPreferencias("KEY_EMAIL"));
@@ -128,7 +128,7 @@ public class PerfilFragment extends Fragment {
         if(usuario.getTipoPerfil().compareTo("Solicitante")==0){
             horarioProveedor.setVisibility(View.GONE);
         }else{
-            botonVerHorarios.setOnClickListener(new View.OnClickListener() {
+            botonVerHorario.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Dialog dialog = new Dialog(getContext());
