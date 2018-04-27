@@ -25,6 +25,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.serviayuda.pc.serviayuda.BBDD.DatabaseHelper;
 import com.serviayuda.pc.serviayuda.Objetos.Imagen;
 import com.serviayuda.pc.serviayuda.Objetos.RoundedCornerTransformation;
+import com.serviayuda.pc.serviayuda.Objetos.Solicitud;
 import com.serviayuda.pc.serviayuda.Objetos.Usuario;
 import com.serviayuda.pc.serviayuda.Objetos.Utilidades;
 import com.serviayuda.pc.serviayuda.R;
@@ -45,9 +46,9 @@ public class VisitarPerfil extends AppCompatActivity{
     TextView campoCiudad;
     TextView campoLocalidad;
     TextView campoExperiencia;
-    TextView campoHorario;
-    LinearLayout horarioProveedor;
-    Button botonVerHorario;
+    TextView campoDireccion;
+    TextView campoEdad;
+    LinearLayout perfilExperiencia, perfilDireccion;
     DatabaseHelper databaseHelper;
     Usuario usuario = new Usuario();
 
@@ -72,16 +73,35 @@ public class VisitarPerfil extends AppCompatActivity{
         campoDescripcion = findViewById(R.id.visitarPerfilDescripcion);
         campoExperiencia = findViewById(R.id.visitarPerfilExperiencia);
         campoCiudad = findViewById(R.id.visitarPerfilCiudad);
-        campoHorario = findViewById(R.id.visitarPerfilHorario);
         campoLocalidad = findViewById(R.id.visitarPerfilLocalidad);
-        horarioProveedor = findViewById(R.id.visitarPerfilHorarioProveedor);
-        botonVerHorario = findViewById(R.id.visitarPerfilHorario);
+        campoDireccion = findViewById(R.id.visitarPerfilDireccion);
+        campoEdad = findViewById(R.id.visitarPerfilEdad);
+        perfilExperiencia = findViewById(R.id.visitarPerfilExperienciaLayout);
+        perfilDireccion = findViewById(R.id.visitarPerfilDireccionLayout);
 
         campoNombre.setText(usuario.getNombre() + " " + usuario.getApellidos());
         campoDescripcion.setText(usuario.getDescripcion());
-        campoExperiencia.setText(usuario.getExperiencia());
+        if(usuario.getTipoPerfil().compareTo("Solicitante")==0){
+            perfilExperiencia.setVisibility(View.GONE);
+        }else{
+            campoExperiencia.setText(usuario.getExperiencia());
+        }
+
         campoCiudad.setText(usuario.getCiudad());
         campoLocalidad.setText(usuario.getLocalidad());
+
+        Solicitud solicitud = databaseHelper.getSolicitud(email);
+        if (solicitud.getEstado() == null){
+            perfilDireccion.setVisibility(View.GONE);
+        }else if (solicitud.getEstado().compareTo("En curso") == 0 && usuario.getTipoPerfil().compareTo("Solicitante")==0) {
+            campoDireccion.setText(usuario.getDireccion());
+        }
+
+        if (usuario.getTipoPerfil().compareTo("Proveedor")==0){
+            perfilDireccion.setVisibility(View.GONE);
+        }
+        campoDireccion.setText(usuario.getDireccion());
+        campoEdad.setText(usuario.getEdad());
 
         //Estilo foto de perfil
         Bitmap foto = BitmapFactory.decodeResource(getResources(), R.drawable.defaultphotoprofile);
@@ -97,19 +117,7 @@ public class VisitarPerfil extends AppCompatActivity{
         campoProfesion.setBackground(gd);
         campoProfesion.setText(usuario.getTipoServicio());
 
-        if(usuario.getTipoPerfil().compareTo("Solicitante")==0){
-            horarioProveedor.setVisibility(View.GONE);
-        }else{
-            botonVerHorario.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Dialog dialog = new Dialog(VisitarPerfil.this);
-                    dialog.setTitle("Horarios");
-                    dialog.setContentView(R.layout.horarios_dialog);
-                    dialog.show();
-                }
-            });
-        }
+
 
     }
     private void estableceFotoPerfil() {

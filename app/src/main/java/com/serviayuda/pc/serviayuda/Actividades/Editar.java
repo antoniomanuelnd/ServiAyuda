@@ -66,7 +66,6 @@ public class Editar extends AppCompatActivity {
         subir = findViewById(R.id.subirImagen);
         fotoPerfil = findViewById(R.id.editarImagenPerfil);
         barraProgreso = findViewById(R.id.progresoSubida);
-        addViewHora = findViewById(R.id.addViewHora);
 
         SharedPreferences preferences = this.getSharedPreferences("SESION", Activity.MODE_PRIVATE);
         mp = new ManejadorPreferencias(preferences);
@@ -105,15 +104,7 @@ public class Editar extends AppCompatActivity {
             }
         });
 
-        addViewHora.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                LinearLayout ll = findViewById(R.id.horariosLunes);
-                View zona = getLayoutInflater().inflate(R.layout.zona_horario, null);
-                ll.addView(zona);
-                addViewHora.setVisibility(View.GONE);
-            }
-        });
+
     }
 
     @Override

@@ -110,15 +110,41 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="15dp" />
-                        </LinearLayout>
 
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/dividercolor" />
+                        </LinearLayout>
 
                     </RelativeLayout>
 
-                    <View
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/dividercolor" />
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/perfilExperienciaLayout">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="@string/perfil_5"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/perfilExperiencia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/dividercolor" />
+                    </LinearLayout>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -137,12 +163,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/dividercolor" />
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/dividercolor" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -161,12 +188,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/dividercolor" />
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/dividercolor" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -177,33 +205,40 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:text="@string/perfil_5"
+                            android:text="@string/perfil_4"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/perfilExperiencia"
+                            android:id="@+id/perfilDireccion"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/dividercolor" />
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/dividercolor" />
 
                     <LinearLayout
-                        android:id="@+id/horarioProveedor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <Button
-                            android:id="@+id/perfilHorario"
-                            android:background="@color/azulLogo"
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Ver horarios"/>
+                            android:layout_marginLeft="10dp"
+                            android:text="@string/perfil_6"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/perfilEdad"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp" />
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"

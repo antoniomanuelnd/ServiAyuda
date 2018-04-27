@@ -51,7 +51,8 @@ public class PerfilFragment extends Fragment {
     private TextView campoCiudad;
     private TextView campoLocalidad;
     private TextView campoExperiencia;
-    private Button botonVerHorario;
+    private TextView campoDireccion;
+    private TextView campoEdad;
     //Fin
     private ImageView botonAjustes;
     private ImageView botonEditar;
@@ -59,7 +60,7 @@ public class PerfilFragment extends Fragment {
     private DatabaseHelper databaseHelper;
     private Usuario usuario = new Usuario();
     private View view;
-    private LinearLayout horarioProveedor;
+    private LinearLayout perfilExperiencia;
 
     private FirebaseStorage mStorage;
     private DatabaseReference mDatabaseRef;
@@ -84,20 +85,31 @@ public class PerfilFragment extends Fragment {
 
         //Actualización de campos del perfil
 
-        SharedPreferences preferences = getActivity().getSharedPreferences("SESION", Activity.MODE_PRIVATE);
-        mp = new ManejadorPreferencias(preferences);
+
         campoNombre = view.findViewById(R.id.perfilNombre);
         campoProfesion = view.findViewById(R.id.perfilProfesion);
         campoDescripcion = view.findViewById(R.id.perfilDescripcion);
         campoExperiencia = view.findViewById(R.id.perfilExperiencia);
         campoCiudad = view.findViewById(R.id.perfilCiudad);
         campoLocalidad = view.findViewById(R.id.perfilLocalidad);
-        botonVerHorario = view.findViewById(R.id.perfilHorario);
-        horarioProveedor = view.findViewById(R.id.horarioProveedor);
+        campoDireccion = view.findViewById(R.id.perfilDireccion);
+        campoEdad = view.findViewById(R.id.perfilEdad);
+        perfilExperiencia = view.findViewById(R.id.perfilExperienciaLayout);
+
+        //Botones
+        botonAjustes = view.findViewById(R.id.perfilBotonAjustes);
+        botonAjustes.setBackgroundResource(R.drawable.botonajusteslayout);
+        botonEditar = view.findViewById(R.id.perfilBotonEditar);
+        botonEditar.setBackgroundResource(R.drawable.botoneditarlayout);
+
+        //Base de datos y preferencias
+        SharedPreferences preferences = getActivity().getSharedPreferences("SESION", Activity.MODE_PRIVATE);
+        mp = new ManejadorPreferencias(preferences);
         databaseHelper = new DatabaseHelper(getActivity());
         usuario = databaseHelper.getUsuario(mp.cargarPreferencias("KEY_EMAIL"));
         mp.guardarPreferencias("KEY_NOMBRE", usuario.getNombre());
 
+        //Campo profesion
         GradientDrawable gd = new GradientDrawable();
         gd.setShape(GradientDrawable.RECTANGLE);
         gd.setColor(Color.parseColor("#1D7196"));
@@ -107,37 +119,28 @@ public class PerfilFragment extends Fragment {
 
         //Imagen de perfil
         imagenPerfil = view.findViewById(R.id.perfilImagen);
-
         Bitmap foto = BitmapFactory.decodeResource(getResources(), R.drawable.defaultphotoprofile);
         RoundedBitmapDrawable roundedImagen = RoundedBitmapDrawableFactory.create(getResources(), foto);
         roundedImagen.setCornerRadius(200);
         imagenPerfil.setImageDrawable(roundedImagen);
         estableceFotoPerfil();
 
-        botonAjustes = view.findViewById(R.id.perfilBotonAjustes);
-        botonAjustes.setBackgroundResource(R.drawable.botonajusteslayout);
-        botonEditar = view.findViewById(R.id.perfilBotonEditar);
-        botonEditar.setBackgroundResource(R.drawable.botoneditarlayout);
-
+        //Rellena campos del perfil
         campoNombre.setText(usuario.getNombre() + " " + usuario.getApellidos());
         campoDescripcion.setText(usuario.getDescripcion());
-        campoExperiencia.setText(usuario.getExperiencia());
-        campoCiudad.setText(usuario.getCiudad());
-        campoLocalidad.setText(usuario.getLocalidad());
 
         if(usuario.getTipoPerfil().compareTo("Solicitante")==0){
-            horarioProveedor.setVisibility(View.GONE);
+            perfilExperiencia.setVisibility(View.GONE);
         }else{
-            botonVerHorario.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Dialog dialog = new Dialog(getContext());
-                    dialog.setTitle("Horarios");
-                    dialog.setContentView(R.layout.horarios_dialog);
-                    dialog.show();
-                }
-            });
+            campoExperiencia.setText(usuario.getExperiencia());
         }
+
+        campoCiudad.setText(usuario.getCiudad());
+        campoLocalidad.setText(usuario.getLocalidad());
+        campoDireccion.setText(usuario.getDireccion());
+        campoEdad.setText(usuario.getEdad());
+
+
     }
 
     private void iniciarListeners() {
