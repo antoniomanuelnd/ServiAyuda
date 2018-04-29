@@ -42,7 +42,7 @@ import com.squareup.picasso.Picasso;
 
 public class Editar extends AppCompatActivity {
 
-    private Button elegirFoto, subir, addViewHora;
+    private Button elegirFoto, subir;
     private ImageView fotoPerfil;
     private ProgressBar barraProgreso;
     private Uri fotoUri;
@@ -121,8 +121,6 @@ public class Editar extends AppCompatActivity {
 
     private void subirImagen(){
 
-
-
         if(fotoUri != null){
             StorageReference fileReference = StorageRef.child(System.currentTimeMillis()
                     + "." + getExtension(fotoUri));
@@ -159,7 +157,6 @@ public class Editar extends AppCompatActivity {
             Toast.makeText(this, "No se ha seleccionado ningún archivo", Toast.LENGTH_LONG).show();
         }
     }
-
 
     private String getExtension(Uri uri) {
         ContentResolver cR = getContentResolver();

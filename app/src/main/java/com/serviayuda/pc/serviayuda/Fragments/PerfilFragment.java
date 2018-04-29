@@ -172,8 +172,6 @@ public class PerfilFragment extends Fragment {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Imagen img = postSnapshot.getValue(Imagen.class);
                     img.setKey(postSnapshot.getKey());
-                    final int radius = 5;
-                    final int margin = 5;
 
                     Picasso.with(getContext())
                             .load(img.getUri())
