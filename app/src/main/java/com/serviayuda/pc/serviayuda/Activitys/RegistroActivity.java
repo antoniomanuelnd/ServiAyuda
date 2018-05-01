@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.serviayuda.pc.serviayuda.Actividades.InicioSesion;
+import com.serviayuda.pc.serviayuda.Objetos.Usuario;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -23,11 +25,13 @@ import java.net.URLEncoder;
 public class RegistroActivity extends AsyncTask {
 
     private Context context;
-    private TextView res;
+    private TextView campoResultado;
+    private Usuario usuario;
 
-    public RegistroActivity(Context context, TextView res){
+    public RegistroActivity(Context context, TextView campoResultado, Usuario usuario){
         this.context = context;
-        this.res = res;
+        this.campoResultado = campoResultado;
+        this.usuario = usuario;
     }
 
     protected void onPreExecute(){
@@ -36,19 +40,53 @@ public class RegistroActivity extends AsyncTask {
     protected Object doInBackground(Object[] arg0){
         //Método POST
         try{
-            //Obtenemos los elementos a insertar en la BBDD
-            String nombre = (String) arg0[0];
-            String email = (String) arg0[1];
-            String password = (String) arg0[2];
-            //Generamos el link
-            String link="https://apptfg.000webhostapp.com/registro.php";
-            String data  = URLEncoder.encode("nombre", "UTF-8") + "=" +
-                    URLEncoder.encode(nombre, "UTF-8");
-            data += "&" + URLEncoder.encode("email", "UTF-8") + "=" +
-                    URLEncoder.encode(email, "UTF-8");
-            data += "&" + URLEncoder.encode("password", "UTF-8") + "=" +
-                    URLEncoder.encode(password, "UTF-8");
-
+            String link;
+            String data;
+            if(usuario.getTipoPerfil().compareTo("Proveedor")==0){
+                //Generamos el link
+                link = "https://apptfg.000webhostapp.com/registroProveedor.php";
+                data  = URLEncoder.encode("nombre", "UTF-8") + "=" +
+                        URLEncoder.encode(usuario.getNombre(), "UTF-8");
+                data += "&" + URLEncoder.encode("apellidos", "UTF-8") + "=" +
+                        URLEncoder.encode(usuario.getApellidos(), "UTF-8");
+                data += "&" + URLEncoder.encode("edad", "UTF-8") + "=" +
+                        URLEncoder.encode(usuario.getEdad(), "UTF-8");
+                data += "&" + URLEncoder.encode("email", "UTF-8") + "=" +
+                        URLEncoder.encode(usuario.getEmail(), "UTF-8");
+                data += "&" + URLEncoder.encode("password", "UTF-8") + "=" +
+                        URLEncoder.encode((String) arg0[0], "UTF-8");
+                data += "&" + URLEncoder.encode("tipoperfil", "UTF-8") + "=" +
+                        URLEncoder.encode(usuario.getTipoPerfil(), "UTF-8");
+                data += "&" + URLEncoder.encode("tiposervicio", "UTF-8") + "=" +
+                        URLEncoder.encode(usuario.getTipoServicio(), "UTF-8");
+                data += "&" + URLEncoder.encode("ciudad", "UTF-8") + "=" +
+                        URLEncoder.encode(usuario.getCiudad(), "UTF-8");
+                data += "&" + URLEncoder.encode("localidad", "UTF-8") + "=" +
+                        URLEncoder.encode(usuario.getLocalidad(), "UTF-8");
+            }else{
+                //Generamos el link
+                link = "https://apptfg.000webhostapp.com/registroSolicitante.php";
+                data  = URLEncoder.encode("nombre", "UTF-8") + "=" +
+                        URLEncoder.encode(usuario.getNombre(), "UTF-8");
+                data += "&" + URLEncoder.encode("apellidos", "UTF-8") + "=" +
+                        URLEncoder.encode(usuario.getApellidos(), "UTF-8");
+                data += "&" + URLEncoder.encode("edad", "UTF-8") + "=" +
+                        URLEncoder.encode(usuario.getEdad(), "UTF-8");
+                data += "&" + URLEncoder.encode("email", "UTF-8") + "=" +
+                        URLEncoder.encode(usuario.getEmail(), "UTF-8");
+                data += "&" + URLEncoder.encode("password", "UTF-8") + "=" +
+                        URLEncoder.encode((String) arg0[0], "UTF-8");
+                data += "&" + URLEncoder.encode("tipoperfil", "UTF-8") + "=" +
+                        URLEncoder.encode(usuario.getTipoPerfil(), "UTF-8");
+                data += "&" + URLEncoder.encode("ciudad", "UTF-8") + "=" +
+                        URLEncoder.encode(usuario.getCiudad(), "UTF-8");
+                data += "&" + URLEncoder.encode("localidad", "UTF-8") + "=" +
+                        URLEncoder.encode(usuario.getLocalidad(), "UTF-8");
+                data += "&" + URLEncoder.encode("direccion", "UTF-8") + "=" +
+                        URLEncoder.encode(usuario.getDireccion(), "UTF-8");
+                data += "&" + URLEncoder.encode("codigopostal", "UTF-8") + "=" +
+                        URLEncoder.encode(usuario.getCodigoPostal(), "UTF-8");
+            }
 
             URL url = new URL(link);
             URLConnection conn = url.openConnection();
@@ -77,13 +115,17 @@ public class RegistroActivity extends AsyncTask {
     protected void onPostExecute(Object resultado){
         String respuesta = resultado.toString();
         if(respuesta.compareTo("Correcto")==0){
+            this.campoResultado.setVisibility(View.VISIBLE);
+            this.campoResultado.setTextColor(Color.GREEN);
+            this.campoResultado.setText("Usuario creado con éxito");
             Toast.makeText(context.getApplicationContext(), "Usuario creado con éxito", Toast.LENGTH_LONG).show();
             //Aquí puede ir tanto a la actividad InicioSesion, como a la actividad Perfil
             Intent i = new Intent(context, InicioSesion.class);
             context.startActivity(i);
         }else {
-            this.res.setTextColor(Color.parseColor("#CF000F"));
-            this.res.setText("El usuario no ha podido ser registrado");
+            this.campoResultado.setVisibility(View.VISIBLE);
+            this.campoResultado.setTextColor(Color.RED);
+            this.campoResultado.setText("El usuario no ha podido ser registrado");
         }
     }
 

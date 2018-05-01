@@ -39,6 +39,7 @@ import com.google.firebase.storage.UploadTask;
 import com.serviayuda.pc.serviayuda.Activitys.RegistroActivity;
 import com.serviayuda.pc.serviayuda.Objetos.Imagen;
 import com.serviayuda.pc.serviayuda.Objetos.RoundedCornerTransformation;
+import com.serviayuda.pc.serviayuda.Objetos.Usuario;
 import com.serviayuda.pc.serviayuda.Objetos.Utilidades;
 import com.serviayuda.pc.serviayuda.R;
 import com.squareup.picasso.Picasso;
@@ -155,14 +156,6 @@ public class Registro extends AppCompatActivity {
         spinnerTipos.setAdapter(adapterTipos);
         spinnerTipos.setOnItemSelectedListener(spinnerListenerTipos);
 
-
-        if(!campoEmail.getText().toString().isEmpty()){
-            referencia = Utilidades.creaClave(campoEmail.getText().toString());
-            StorageRef = FirebaseStorage.getInstance().getReference(referencia);
-            DatabaseRef = FirebaseDatabase.getInstance().getReference(referencia);
-        }
-
-
     }
 
     private void iniciarListeners() {
@@ -214,8 +207,10 @@ public class Registro extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         };
 
         //TextWatchers
@@ -252,9 +247,16 @@ public class Registro extends AppCompatActivity {
                     .into(imagenPerfil);
         }
     }
-    private void subirImagen(){
 
-        if(fotoUri != null){
+    private void subirImagen() {
+
+        if (!campoEmail.getText().toString().isEmpty()) {
+            referencia = Utilidades.creaClave(campoEmail.getText().toString());
+            StorageRef = FirebaseStorage.getInstance().getReference(referencia);
+            DatabaseRef = FirebaseDatabase.getInstance().getReference(referencia);
+        }
+
+        if (fotoUri != null) {
             StorageReference fileReference = StorageRef.child(System.currentTimeMillis()
                     + "." + getExtension(fotoUri));
 
@@ -262,7 +264,6 @@ public class Registro extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(Registro.this, "Subida exitosa", Toast.LENGTH_LONG).show();
                             Imagen img = new Imagen(referencia, taskSnapshot.getDownloadUrl().toString());
                             String imgid = DatabaseRef.push().getKey();
                             DatabaseRef.child(imgid).setValue(img);
@@ -273,8 +274,6 @@ public class Registro extends AppCompatActivity {
                             Toast.makeText(Registro.this, "No se ha podido subir", Toast.LENGTH_SHORT).show();
                         }
                     });
-        }else {
-            Toast.makeText(this, "No se ha seleccionado ningún archivo", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -481,7 +480,7 @@ public class Registro extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             String ciudad = campoCiudad.getText().toString();
-            if(ciudad.isEmpty()){
+            if (ciudad.isEmpty()) {
                 avisoCiudad.setText("Este campo no puede quedar vacío");
                 avisoCiudad.setTextColor(Color.RED);
                 avisoCiudad.setVisibility(View.VISIBLE);
@@ -507,7 +506,7 @@ public class Registro extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             String localidad = campoLocalidad.getText().toString();
-            if(localidad.isEmpty()){
+            if (localidad.isEmpty()) {
                 avisoLocalidad.setText("Este campo no puede quedar vacío");
                 avisoLocalidad.setTextColor(Color.RED);
                 avisoLocalidad.setVisibility(View.VISIBLE);
@@ -538,7 +537,7 @@ public class Registro extends AppCompatActivity {
                 avisoCodigoPostal.setTextColor(Color.RED);
                 avisoCodigoPostal.setVisibility(View.VISIBLE);
                 tickCodigoPostal.setImageResource(0);
-            } else if(codigoPostal.length() == 5){
+            } else if (codigoPostal.length() == 5) {
                 avisoCodigoPostal.setText("");
                 avisoCodigoPostal.setVisibility(View.GONE);
                 tickCodigoPostal.setImageDrawable(imagenTick);
@@ -559,10 +558,10 @@ public class Registro extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             String calle = campoCalle.getText().toString();
-            if(!calle.isEmpty()){
+            if (!calle.isEmpty()) {
                 tickCalle.setVisibility(View.VISIBLE);
                 tickCalle.setImageDrawable(imagenTick);
-            }else{
+            } else {
                 tickCalle.setVisibility(View.INVISIBLE);
             }
         }
@@ -581,10 +580,10 @@ public class Registro extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             String numero = campoNumero.getText().toString();
-            if(!numero.isEmpty()){
+            if (!numero.isEmpty()) {
                 tickNumero.setVisibility(View.VISIBLE);
                 tickNumero.setImageDrawable(imagenTick);
-            }else{
+            } else {
                 tickNumero.setVisibility(View.INVISIBLE);
             }
         }
@@ -603,10 +602,10 @@ public class Registro extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             String bloque = campoBloque.getText().toString();
-            if(!bloque.isEmpty()){
+            if (!bloque.isEmpty()) {
                 tickBloque.setVisibility(View.VISIBLE);
                 tickBloque.setImageDrawable(imagenTick);
-            }else{
+            } else {
                 tickBloque.setVisibility(View.INVISIBLE);
             }
         }
@@ -625,10 +624,10 @@ public class Registro extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             String piso = campoPiso.getText().toString();
-            if(!piso.isEmpty()){
+            if (!piso.isEmpty()) {
                 tickPiso.setVisibility(View.VISIBLE);
                 tickPiso.setImageDrawable(imagenTick);
-            }else{
+            } else {
                 tickPiso.setVisibility(View.INVISIBLE);
             }
         }
@@ -638,7 +637,6 @@ public class Registro extends AppCompatActivity {
 
         }
     };
-
 
 
     private void finalizar() {
@@ -656,27 +654,63 @@ public class Registro extends AppCompatActivity {
         String codigoPostal = campoCodigoPostal.getText().toString();
         String tipoServicio = spinnerTipos.getSelectedItem().toString();
 
-        if(bProveedor){
-            if(nombre.isEmpty() || apellidos.isEmpty() || edad.isEmpty() || email.isEmpty() || password.isEmpty() || ciudad.isEmpty() || localidad.isEmpty() || tipoServicio.compareTo("-- Seleccione un servicio --")==0){
+        if (bProveedor) {
+            if (nombre.isEmpty() || apellidos.isEmpty() || edad.isEmpty() || email.isEmpty() || password.isEmpty() || ciudad.isEmpty() || localidad.isEmpty() || tipoServicio.compareTo("-- Seleccione un servicio --") == 0) {
                 campoResultado.setVisibility(View.VISIBLE);
                 campoResultado.setText("Hay algún campo incompleto");
                 campoResultado.setTextColor(Color.RED);
-            }else{
+            } else {
                 //Activity que envía los datos del proveedor
-                campoResultado.setVisibility(View.GONE);
+                Usuario uProveedor = new Usuario();
+                uProveedor.setNombre(nombre);
+                uProveedor.setApellidos(apellidos);
+                uProveedor.setEdad(edad);
+                uProveedor.setEmail(email);
+                uProveedor.setTipoPerfil("Proveedor");
+                uProveedor.setTipoServicio(tipoServicio);
+                uProveedor.setCiudad(ciudad);
+                uProveedor.setLocalidad(localidad);
+                new RegistroActivity(this, campoResultado, uProveedor).execute(password);
+                if(subidaTask != null && subidaTask.isInProgress()){
+                    Toast.makeText(Registro.this, "Ya se está creando un usuario, espere", Toast.LENGTH_LONG).show();
+                }else {
+                    subirImagen();
+                }
             }
-        }else if(bSolicitante){
-            if(nombre.isEmpty() || apellidos.isEmpty() || edad.isEmpty() || email.isEmpty() || password.isEmpty() || ciudad.isEmpty() || localidad.isEmpty() || calle.isEmpty()
-                    || numero.isEmpty() || bloque.isEmpty() || piso.isEmpty() || codigoPostal.isEmpty()){
+        } else if (bSolicitante) {
+            if (nombre.isEmpty() || apellidos.isEmpty() || edad.isEmpty() || email.isEmpty() || password.isEmpty() || ciudad.isEmpty() || localidad.isEmpty() || calle.isEmpty()
+                    || numero.isEmpty() || codigoPostal.isEmpty()) {
                 campoResultado.setVisibility(View.VISIBLE);
                 campoResultado.setText("Hay algún campo incompleto");
                 campoResultado.setTextColor(Color.RED);
-            }else{
+            } else {
                 //Activity que envía los datos del solicitante
-                campoResultado.setVisibility(View.GONE);
+                Usuario uSolicitante = new Usuario();
+                uSolicitante.setNombre(nombre);
+                uSolicitante.setApellidos(apellidos);
+                uSolicitante.setEdad(edad);
+                uSolicitante.setEmail(email);
+                uSolicitante.setTipoPerfil("Solicitante");
+                uSolicitante.setCiudad(ciudad);
+                uSolicitante.setLocalidad(localidad);
+                if (bloque.isEmpty() && piso.isEmpty()) {
+                    uSolicitante.setDireccion("Calle " + calle + " nº " + numero);
+                }else if(bloque.isEmpty()) {
+                    uSolicitante.setDireccion("Calle " + calle + " nº " + numero + ", Piso " + piso);
+                }else if(piso.isEmpty()){
+                    uSolicitante.setDireccion("Calle " + calle + " nº " + numero + ", Bloque " + bloque);
+                }else{
+                    uSolicitante.setDireccion("Calle " + calle + " nº " + numero + ", Bloque " + bloque + ", Piso " + piso);
+                }
+                uSolicitante.setCodigoPostal(codigoPostal);
+                new RegistroActivity(this, campoResultado, uSolicitante).execute(password);
+                if(subidaTask != null && subidaTask.isInProgress()){
+                    Toast.makeText(Registro.this, "Ya se está creando un usuario, espere", Toast.LENGTH_LONG).show();
+                }else {
+                    subirImagen();
+                }
             }
         }
-        //new RegistroActivity(this, campoResultado).execute(nombre, email, password);
     }
 
     //Método que comprueba si una cadena es de tipo numérico

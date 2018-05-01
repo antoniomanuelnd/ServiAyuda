@@ -26,78 +26,883 @@
             android:layout_height="1dp"
             android:background="@color/dividercolor" />
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_7sdp"
-                android:text="Foto de perfil"
-                android:textColor="@color/blanco" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/dividercolor" />
-
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_7sdp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/elegirFotoPerfil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:background="@drawable/button"
-                    android:text="Elegir imagen"
-                    android:textColor="@color/azulLogo" />
-
-                <ImageView
-                    android:id="@+id/editarImagenPerfil"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:layout_marginRight="@dimen/_5sdp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_7sdp"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <ProgressBar
-                    android:id="@+id/progresoSubida"
-                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_15sdp" />
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/subirImagen"
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_7sdp"
+                        android:text="Foto de perfil"
+                        android:textColor="@color/blanco" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dividercolor" />
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/elegirFotoPerfil"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:background="@drawable/button"
+                            android:text="Elegir imagen"
+                            android:textColor="@color/azulLogo" />
+
+                        <ImageView
+                            android:id="@+id/editarImagenPerfil"
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:layout_marginRight="@dimen/_5sdp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_7sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:orientation="vertical">
+
+                        <ProgressBar
+                            android:id="@+id/progresoSubida"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_15sdp" />
+
+                        <Button
+                            android:id="@+id/subirImagen"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button"
+                            android:gravity="center"
+                            android:text="Subir"
+                            android:textColor="@color/azulLogo" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dividercolor" />
+
+                <LinearLayout
+                    android:id="@+id/editarNombreLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_7sdp"
+                        android:text="Nombre"
+                        android:textColor="@color/blanco" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dividercolor" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_7sdp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/editarNombreTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="@color/blanco" />
+
+                        <EditText
+                            android:id="@+id/editarNombreEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/envioanuncioedittext"
+                            android:gravity="center"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:maxLength="30"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_60sdp"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:textColor="@color/blanco"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/editarNombreCont"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginEnd="9dp"
+                            android:layout_marginTop="6dp"
+                            android:gravity="center"
+                            android:textColor="@color/blanco"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/editarNombreGuardar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Guardar"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/editarNombreEditar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Editar" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dividercolor" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                android:id="@+id/editarApellidosLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button"
-                    android:gravity="center"
-                    android:text="Subir"
-                    android:textColor="@color/azulLogo" />
-            </LinearLayout>
-        </LinearLayout>
+                    android:layout_margin="@dimen/_7sdp"
+                    android:text="Apellidos"
+                    android:textColor="@color/blanco" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/dividercolor" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dividercolor" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_margin="@dimen/_7sdp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/editarApellidosTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textColor="@color/blanco" />
+
+                    <EditText
+                        android:id="@+id/editarApellidosEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/envioanuncioedittext"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:maxLength="30"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:paddingRight="@dimen/_60sdp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:textColor="@color/blanco"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/editarApellidosCont"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginEnd="9dp"
+                        android:layout_marginTop="6dp"
+                        android:gravity="center"
+                        android:textColor="@color/blanco"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/editarApellidosGuardar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Guardar"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/editarApellidosEditar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Editar" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dividercolor" />
+
+            </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/editarEdadLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_7sdp"
+                        android:text="Edad"
+                        android:textColor="@color/blanco" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dividercolor" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_7sdp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/editarEdadTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="@color/blanco" />
+
+                        <EditText
+                            android:id="@+id/editarEdadEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/envioanuncioedittext"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:maxLength="3"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_60sdp"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:textColor="@color/blanco"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/editarEdadCont"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginEnd="9dp"
+                            android:layout_marginTop="6dp"
+                            android:gravity="center"
+                            android:textColor="@color/blanco"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/editarEdadGuardar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Guardar"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/editarEdadEditar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Editar" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dividercolor" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/editarDescripcionLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_7sdp"
+                        android:text="Descripción"
+                        android:textColor="@color/blanco" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dividercolor" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_margin="@dimen/_7sdp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/editarDescripcionTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="@color/blanco" />
+
+                        <EditText
+                            android:id="@+id/editarDescripcionEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/envioanuncioedittext"
+                            android:gravity="center"
+                            android:inputType="textMultiLine"
+                            android:maxLines="5"
+                            android:maxLength="300"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_15sdp"
+                            android:paddingTop="@dimen/_15sdp"
+                            android:textColor="@color/blanco"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/editarDescripcionCont"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginEnd="9dp"
+                            android:layout_marginTop="6dp"
+                            android:gravity="center"
+                            android:textColor="@color/blanco"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/editarDescripcionGuardar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Guardar"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/editarDescripcionEditar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Editar" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dividercolor" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/editarExperienciaLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_7sdp"
+                        android:text="Experiencia"
+                        android:textColor="@color/blanco" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dividercolor" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_margin="@dimen/_7sdp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/editarExperienciaTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="@color/blanco" />
+
+                        <EditText
+                            android:id="@+id/editarExperienciaEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/envioanuncioedittext"
+                            android:gravity="center"
+                            android:inputType="textMultiLine"
+                            android:maxLength="300"
+                            android:maxLines="5"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_15sdp"
+                            android:paddingTop="@dimen/_15sdp"
+                            android:textColor="@color/blanco"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/editarExperienciaCont"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginEnd="9dp"
+                            android:layout_marginTop="6dp"
+                            android:gravity="center"
+                            android:textColor="@color/blanco"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/editarExperienciaGuardar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Guardar"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/editarExperienciaEditar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Editar" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dividercolor" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/editarCiudadLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_7sdp"
+                        android:text="Ciudad"
+                        android:textColor="@color/blanco" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dividercolor" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_7sdp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/editarCiudadTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="@color/blanco" />
+
+                        <EditText
+                            android:id="@+id/editarCiudadEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/envioanuncioedittext"
+                            android:gravity="center"
+                            android:inputType="textMultiLine"
+                            android:maxLines="1"
+                            android:maxLength="50"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_60sdp"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:textColor="@color/blanco"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/editarCiudadCont"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginEnd="9dp"
+                            android:layout_marginTop="6dp"
+                            android:gravity="center"
+                            android:textColor="@color/blanco"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/editarCiudadGuardar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Guardar"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/editarCiudadEditar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Editar" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dividercolor" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/editarLocalidadLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_7sdp"
+                        android:text="Localidad"
+                        android:textColor="@color/blanco" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dividercolor" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_7sdp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/editarLocalidadTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="@color/blanco" />
+
+                        <EditText
+                            android:id="@+id/editarLocalidadEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/envioanuncioedittext"
+                            android:gravity="center"
+                            android:inputType="textMultiLine"
+                            android:maxLines="1"
+                            android:maxLength="50"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_60sdp"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:textColor="@color/blanco"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/editarLocalidadCont"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginEnd="9dp"
+                            android:layout_marginTop="6dp"
+                            android:gravity="center"
+                            android:textColor="@color/blanco"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/editarLocalidadGuardar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Guardar"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/editarLocalidadEditar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Editar" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dividercolor" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/editarDireccionLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_7sdp"
+                        android:text="Dirección"
+                        android:textColor="@color/blanco" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dividercolor" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_7sdp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/editarDireccionTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="@color/blanco" />
+
+                        <EditText
+                            android:id="@+id/editarDireccionEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/envioanuncioedittext"
+                            android:gravity="center"
+                            android:inputType="textMultiLine"
+                            android:maxLines="1"
+                            android:maxLength="100"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_60sdp"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:textColor="@color/blanco"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/editarDireccionCont"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginEnd="9dp"
+                            android:layout_marginTop="6dp"
+                            android:gravity="center"
+                            android:textColor="@color/blanco"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/editarDireccionGuardar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Guardar"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/editarDireccionEditar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Editar" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dividercolor" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/editarCPLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_7sdp"
+                        android:text="Código postal"
+                        android:textColor="@color/blanco" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dividercolor" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_7sdp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/editarCPTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="@color/blanco" />
+
+                        <EditText
+                            android:id="@+id/editarCPEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/envioanuncioedittext"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:maxLength="5"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_60sdp"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:textColor="@color/blanco"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/editarCPCont"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginEnd="9dp"
+                            android:layout_marginTop="6dp"
+                            android:gravity="center"
+                            android:textColor="@color/blanco"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/editarCPGuardar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Guardar"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/editarCPEditar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Editar" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dividercolor" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
 
     </LinearLayout>
 </RelativeLayout>

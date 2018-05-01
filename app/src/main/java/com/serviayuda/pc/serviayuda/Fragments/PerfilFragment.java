@@ -60,7 +60,7 @@ public class PerfilFragment extends Fragment {
     private DatabaseHelper databaseHelper;
     private Usuario usuario = new Usuario();
     private View view;
-    private LinearLayout perfilExperiencia;
+    private LinearLayout perfilExperiencia, perfilDireccion;
 
     private FirebaseStorage mStorage;
     private DatabaseReference mDatabaseRef;
@@ -95,6 +95,7 @@ public class PerfilFragment extends Fragment {
         campoDireccion = view.findViewById(R.id.perfilDireccion);
         campoEdad = view.findViewById(R.id.perfilEdad);
         perfilExperiencia = view.findViewById(R.id.perfilExperienciaLayout);
+        perfilDireccion = view.findViewById(R.id.perfilDireccionLayout);
 
         //Botones
         botonAjustes = view.findViewById(R.id.perfilBotonAjustes);
@@ -133,14 +134,13 @@ public class PerfilFragment extends Fragment {
             perfilExperiencia.setVisibility(View.GONE);
         }else{
             campoExperiencia.setText(usuario.getExperiencia());
+            perfilDireccion.setVisibility(View.GONE);
         }
 
         campoCiudad.setText(usuario.getCiudad());
         campoLocalidad.setText(usuario.getLocalidad());
         campoDireccion.setText(usuario.getDireccion());
         campoEdad.setText(usuario.getEdad());
-
-
     }
 
     private void iniciarListeners() {
