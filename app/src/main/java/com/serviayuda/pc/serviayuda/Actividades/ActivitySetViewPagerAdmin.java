@@ -25,7 +25,7 @@ public class ActivitySetViewPagerAdmin extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.viewpagerlayout);
-        tabLayout = findViewById(R.id.tablayout_id);
+        tabLayout = findViewById(R.id.viewpager_adapt);
         viewPager = findViewById(R.id.viewpager_id);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.AddFragment(new PerfilFragment(), "Perfil");

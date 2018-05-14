@@ -27,13 +27,18 @@ public class ActivitySetViewPagerSolicitante extends AppCompatActivity {
         tabLayout = findViewById(R.id.tablayout_id);
         viewPager = findViewById(R.id.viewpager_id);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.AddFragment(new PerfilFragment(), "Perfil");
-        adapter.AddFragment(new EnviarAnuncioFragment(), "Enviar anuncio");
-        adapter.AddFragment(new VerSolicitudesFragment(), "Solicitudes");
-        adapter.AddFragment(new ServicioEnCursoFragment(), "En curso");
+        adapter.AddFragment(new PerfilFragment(), "");
+        adapter.AddFragment(new EnviarAnuncioFragment(), "");
+        adapter.AddFragment(new VerSolicitudesFragment(), "");
+        adapter.AddFragment(new ServicioEnCursoFragment(), "");
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_account_circle_white_24dp);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_chat_white_24dp);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_assignment_late_white24dp);
+        tabLayout.getTabAt(3).setIcon(R.drawable.ic_group_white_24dp);
 
     }
 }

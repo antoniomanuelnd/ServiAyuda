@@ -43,6 +43,7 @@ import com.serviayuda.pc.serviayuda.Objetos.Utilidades;
 import com.serviayuda.pc.serviayuda.Preferencias.ManejadorPreferencias;
 import com.serviayuda.pc.serviayuda.R;
 import com.squareup.picasso.Picasso;
+import com.tapadoo.alerter.Alerter;
 
 /**
  * Created by PC on 22/04/2018.
@@ -52,13 +53,13 @@ public class Editar extends AppCompatActivity {
 
     private Button elegirFoto, subir, descripcionEditar, descripcionGuardar, experienciaEditar, experienciaGuardar,
             ciudadEditar, ciudadGuardar, localidadEditar, localidadGuardar, direccionEditar, direccionGuardar, cpEditar, cpGuardar, nombreEditar, nombreGuardar,
-    apellidosEditar, apellidosGuardar, edadEditar, edadGuardar;
+            apellidosEditar, apellidosGuardar, edadEditar, edadGuardar;
     private ImageView fotoPerfil;
     private ProgressBar barraProgreso;
     private Uri fotoUri;
-    private LinearLayout descripcionLayout, experienciaLayout, ciudadLayout, localidadLayout, direccionLayout, cpLayout, nombreLayout, apellidosLayout, edadLayout;
+    private LinearLayout experienciaLayout, direccionLayout, cpLayout;
     private TextView descripcionTv, descripcionCont, experienciaTv, experienciaCont, ciudadTv, ciudadCont, localidadTv, localidadCont, direccionTv, direccionCont, cpTv, cpCont,
-    nombreTv, nombreCont, apellidosTv, apellidosCont, edadTv, edadCont;
+            nombreTv, nombreCont, apellidosTv, apellidosCont, edadTv, edadCont;
     private EditText descripcionEt, experienciaEt, ciudadEt, localidadEt, direccionEt, cpEt, nombreEt, apellidosEt, edadEt;
     Usuario usuario;
 
@@ -77,7 +78,8 @@ public class Editar extends AppCompatActivity {
         iniciarVistas();
         iniciarListeners();
     }
-    private void iniciarVistas(){
+
+    private void iniciarVistas() {
 
         //Botones
         elegirFoto = findViewById(R.id.elegirFotoPerfil);
@@ -108,7 +110,6 @@ public class Editar extends AppCompatActivity {
         barraProgreso = findViewById(R.id.progresoSubida);
 
         //Layouts
-        descripcionLayout = findViewById(R.id.editarDescripcionLayout);
         descripcionTv = findViewById(R.id.editarDescripcionTextView);
         descripcionEt = findViewById(R.id.editarDescripcionEditText);
         descripcionCont = findViewById(R.id.editarDescripcionCont);
@@ -118,12 +119,10 @@ public class Editar extends AppCompatActivity {
         experienciaEt = findViewById(R.id.editarExperienciaEditText);
         experienciaCont = findViewById(R.id.editarExperienciaCont);
 
-        ciudadLayout = findViewById(R.id.editarCiudadLayout);
         ciudadTv = findViewById(R.id.editarCiudadTextView);
         ciudadEt = findViewById(R.id.editarCiudadEditText);
         ciudadCont = findViewById(R.id.editarCiudadCont);
 
-        localidadLayout = findViewById(R.id.editarLocalidadLayout);
         localidadTv = findViewById(R.id.editarLocalidadTextView);
         localidadEt = findViewById(R.id.editarLocalidadEditText);
         localidadCont = findViewById(R.id.editarLocalidadCont);
@@ -138,17 +137,14 @@ public class Editar extends AppCompatActivity {
         cpEt = findViewById(R.id.editarCPEditText);
         cpCont = findViewById(R.id.editarCPCont);
 
-        nombreLayout = findViewById(R.id.editarNombreLayout);
         nombreTv = findViewById(R.id.editarNombreTextView);
         nombreEt = findViewById(R.id.editarNombreEditText);
         nombreCont = findViewById(R.id.editarNombreCont);
 
-        apellidosLayout = findViewById(R.id.editarApellidosLayout);
         apellidosTv = findViewById(R.id.editarApellidosTextView);
         apellidosEt = findViewById(R.id.editarApellidosEditText);
         apellidosCont = findViewById(R.id.editarApellidosCont);
 
-        edadLayout = findViewById(R.id.editarEdadLayout);
         edadTv = findViewById(R.id.editarEdadTextView);
         edadEt = findViewById(R.id.editarEdadEditText);
         edadCont = findViewById(R.id.editarEdadCont);
@@ -185,7 +181,7 @@ public class Editar extends AppCompatActivity {
 
     }
 
-    private void iniciarListeners(){
+    private void iniciarListeners() {
 
         elegirFoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,9 +196,9 @@ public class Editar extends AppCompatActivity {
         subir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(subidaTask != null && subidaTask.isInProgress()){
+                if (subidaTask != null && subidaTask.isInProgress()) {
                     Toast.makeText(Editar.this, "Ya se está subiendo una foto", Toast.LENGTH_LONG).show();
-                }else {
+                } else {
                     subirImagen();
                 }
             }
@@ -225,14 +221,27 @@ public class Editar extends AppCompatActivity {
         nombreGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new EditarCampoActivity(Editar.this, usuario).execute("nombre", nombreEt.getText().toString());
-                nombreEt.setVisibility(View.GONE);
-                nombreGuardar.setVisibility(View.GONE);
-                nombreEditar.setVisibility(View.VISIBLE);
-                nombreCont.setVisibility(View.GONE);
-                nombreTv.setVisibility(View.VISIBLE);
-                nombreTv.setText(nombreEt.getText().toString());
-
+                if (!nombreEt.getText().toString().isEmpty()) {
+                    if (nombreEt.getText().toString().compareTo(nombreTv.getText().toString()) != 0) {
+                        new EditarCampoActivity(Editar.this, usuario).execute("nombre", nombreEt.getText().toString());
+                        nombreEt.setVisibility(View.GONE);
+                        nombreGuardar.setVisibility(View.GONE);
+                        nombreEditar.setVisibility(View.VISIBLE);
+                        nombreCont.setVisibility(View.GONE);
+                        nombreTv.setVisibility(View.VISIBLE);
+                        nombreTv.setText(nombreEt.getText().toString());
+                        Alerter.create(Editar.this)
+                                .setTitle("Editado")
+                                .setText("Editado con éxito")
+                                .show();
+                    } else {
+                        nombreEt.setVisibility(View.GONE);
+                        nombreGuardar.setVisibility(View.GONE);
+                        nombreEditar.setVisibility(View.VISIBLE);
+                        nombreCont.setVisibility(View.GONE);
+                        nombreTv.setVisibility(View.VISIBLE);
+                    }
+                }
             }
         });
 
@@ -253,13 +262,23 @@ public class Editar extends AppCompatActivity {
         apellidosGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                apellidosEt.setVisibility(View.GONE);
-                apellidosGuardar.setVisibility(View.GONE);
-                apellidosEditar.setVisibility(View.VISIBLE);
-                apellidosCont.setVisibility(View.GONE);
-                apellidosTv.setVisibility(View.VISIBLE);
-                apellidosTv.setText(usuario.getApellidos());
-                //Guardar en SQLite y en el servidor
+                if (!apellidosEt.getText().toString().isEmpty()) {
+                    if (apellidosEt.getText().toString().compareTo(apellidosTv.getText().toString()) != 0) {
+                        new EditarCampoActivity(Editar.this, usuario).execute("apellidos", apellidosEt.getText().toString());
+                        apellidosEt.setVisibility(View.GONE);
+                        apellidosGuardar.setVisibility(View.GONE);
+                        apellidosEditar.setVisibility(View.VISIBLE);
+                        apellidosCont.setVisibility(View.GONE);
+                        apellidosTv.setVisibility(View.VISIBLE);
+                        apellidosTv.setText(apellidosEt.getText().toString());
+                    } else {
+                        apellidosEt.setVisibility(View.GONE);
+                        apellidosGuardar.setVisibility(View.GONE);
+                        apellidosEditar.setVisibility(View.VISIBLE);
+                        apellidosCont.setVisibility(View.GONE);
+                        apellidosTv.setVisibility(View.VISIBLE);
+                    }
+                }
             }
         });
 
@@ -281,20 +300,28 @@ public class Editar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String edad = edadEt.getText().toString();
-                if(!edad.isEmpty()){
+                if (!edad.isEmpty()) {
                     Integer iedad = Integer.parseInt(edad);
-                    if(iedad < 120 && iedad >= 18){
-                        edadEt.setVisibility(View.GONE);
-                        edadGuardar.setVisibility(View.GONE);
-                        edadEditar.setVisibility(View.VISIBLE);
-                        edadCont.setVisibility(View.GONE);
-                        edadTv.setVisibility(View.VISIBLE);
-                        edadTv.setText(usuario.getEdad());
-                        //Guardar en SQLite y en el servidor
-                    }else{
+                    if (iedad < 120 && iedad >= 18) {
+                        if (edadEt.getText().toString().compareTo(edadTv.getText().toString()) != 0) {
+                            new EditarCampoActivity(Editar.this, usuario).execute("edad", edadEt.getText().toString());
+                            edadEt.setVisibility(View.GONE);
+                            edadGuardar.setVisibility(View.GONE);
+                            edadEditar.setVisibility(View.VISIBLE);
+                            edadCont.setVisibility(View.GONE);
+                            edadTv.setVisibility(View.VISIBLE);
+                            edadTv.setText(edadEt.getText().toString());
+                        } else {
+                            edadEt.setVisibility(View.GONE);
+                            edadGuardar.setVisibility(View.GONE);
+                            edadEditar.setVisibility(View.VISIBLE);
+                            edadCont.setVisibility(View.GONE);
+                            edadTv.setVisibility(View.VISIBLE);
+                        }
+                    } else {
                         Toast.makeText(Editar.this, "La edad es incorrecta", Toast.LENGTH_SHORT).show();
                     }
-                }else{
+                } else {
                     Toast.makeText(Editar.this, "La edad no puede quedar vacía", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -317,18 +344,26 @@ public class Editar extends AppCompatActivity {
         descripcionGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                descripcionEt.setVisibility(View.GONE);
-                descripcionGuardar.setVisibility(View.GONE);
-                descripcionEditar.setVisibility(View.VISIBLE);
-                descripcionCont.setVisibility(View.GONE);
-                descripcionTv.setVisibility(View.VISIBLE);
-                descripcionTv.setText(usuario.getDescripcion());
-                //Guardar en SQLite y en el servidor
+                if (descripcionEt.getText().toString().compareTo(descripcionTv.getText().toString()) != 0) {
+                    new EditarCampoActivity(Editar.this, usuario).execute("descripcion", descripcionEt.getText().toString());
+                    descripcionEt.setVisibility(View.GONE);
+                    descripcionGuardar.setVisibility(View.GONE);
+                    descripcionEditar.setVisibility(View.VISIBLE);
+                    descripcionCont.setVisibility(View.GONE);
+                    descripcionTv.setVisibility(View.VISIBLE);
+                    descripcionTv.setText(descripcionEt.getText().toString());
+                } else {
+                    descripcionEt.setVisibility(View.GONE);
+                    descripcionGuardar.setVisibility(View.GONE);
+                    descripcionEditar.setVisibility(View.VISIBLE);
+                    descripcionCont.setVisibility(View.GONE);
+                    descripcionTv.setVisibility(View.VISIBLE);
+                }
             }
         });
 
         //Experiencia
-        if(usuario.getTipoPerfil().compareTo("Proveedor")==0) {
+        if (usuario.getTipoPerfil().compareTo("Proveedor") == 0) {
             experienciaEditar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -345,16 +380,24 @@ public class Editar extends AppCompatActivity {
             experienciaGuardar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    experienciaEt.setVisibility(View.GONE);
-                    experienciaGuardar.setVisibility(View.GONE);
-                    experienciaEditar.setVisibility(View.VISIBLE);
-                    experienciaCont.setVisibility(View.GONE);
-                    experienciaTv.setVisibility(View.VISIBLE);
-                    experienciaTv.setText(usuario.getExperiencia());
-                    //Guardar en SQLite y en el servidor
+                    if (experienciaEt.getText().toString().compareTo(experienciaTv.getText().toString()) != 0) {
+                        new EditarCampoActivity(Editar.this, usuario).execute("experiencia", experienciaEt.getText().toString());
+                        experienciaEt.setVisibility(View.GONE);
+                        experienciaGuardar.setVisibility(View.GONE);
+                        experienciaEditar.setVisibility(View.VISIBLE);
+                        experienciaCont.setVisibility(View.GONE);
+                        experienciaTv.setVisibility(View.VISIBLE);
+                        experienciaTv.setText(experienciaEt.getText().toString());
+                    } else {
+                        experienciaEt.setVisibility(View.GONE);
+                        experienciaGuardar.setVisibility(View.GONE);
+                        experienciaEditar.setVisibility(View.VISIBLE);
+                        experienciaCont.setVisibility(View.GONE);
+                        experienciaTv.setVisibility(View.VISIBLE);
+                    }
                 }
             });
-        }else{
+        } else {
             experienciaLayout.setVisibility(View.GONE);
         }
         //Ciudad
@@ -374,13 +417,23 @@ public class Editar extends AppCompatActivity {
         ciudadGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ciudadEt.setVisibility(View.GONE);
-                ciudadGuardar.setVisibility(View.GONE);
-                ciudadEditar.setVisibility(View.VISIBLE);
-                ciudadCont.setVisibility(View.GONE);
-                ciudadTv.setVisibility(View.VISIBLE);
-                ciudadTv.setText(usuario.getCiudad());
-                //Guardar en SQLite y en el servidor
+                if (!ciudadEt.getText().toString().isEmpty()) {
+                    if (ciudadEt.getText().toString().compareTo(ciudadTv.getText().toString()) != 0) {
+                        new EditarCampoActivity(Editar.this, usuario).execute("ciudad", ciudadEt.getText().toString());
+                        ciudadEt.setVisibility(View.GONE);
+                        ciudadGuardar.setVisibility(View.GONE);
+                        ciudadEditar.setVisibility(View.VISIBLE);
+                        ciudadCont.setVisibility(View.GONE);
+                        ciudadTv.setVisibility(View.VISIBLE);
+                        ciudadTv.setText(ciudadEt.getText().toString());
+                    } else {
+                        ciudadEt.setVisibility(View.GONE);
+                        ciudadGuardar.setVisibility(View.GONE);
+                        ciudadEditar.setVisibility(View.VISIBLE);
+                        ciudadCont.setVisibility(View.GONE);
+                        ciudadTv.setVisibility(View.VISIBLE);
+                    }
+                }
             }
         });
 
@@ -401,18 +454,28 @@ public class Editar extends AppCompatActivity {
         localidadGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                localidadEt.setVisibility(View.GONE);
-                localidadGuardar.setVisibility(View.GONE);
-                localidadEditar.setVisibility(View.VISIBLE);
-                localidadCont.setVisibility(View.GONE);
-                localidadTv.setVisibility(View.VISIBLE);
-                localidadTv.setText(usuario.getLocalidad());
-                //Guardar en SQLite y en el servidor
+                if (!localidadEt.getText().toString().isEmpty()) {
+                    if (localidadEt.getText().toString().compareTo(localidadTv.getText().toString()) != 0) {
+                        new EditarCampoActivity(Editar.this, usuario).execute("localidad", localidadEt.getText().toString());
+                        localidadEt.setVisibility(View.GONE);
+                        localidadGuardar.setVisibility(View.GONE);
+                        localidadEditar.setVisibility(View.VISIBLE);
+                        localidadCont.setVisibility(View.GONE);
+                        localidadTv.setVisibility(View.VISIBLE);
+                        localidadTv.setText(localidadEt.getText().toString());
+                    } else {
+                        localidadEt.setVisibility(View.GONE);
+                        localidadGuardar.setVisibility(View.GONE);
+                        localidadEditar.setVisibility(View.VISIBLE);
+                        localidadCont.setVisibility(View.GONE);
+                        localidadTv.setVisibility(View.VISIBLE);
+                    }
+                }
             }
         });
 
         //Direccion
-        if(usuario.getTipoPerfil().compareTo("Solicitante")==0) {
+        if (usuario.getTipoPerfil().compareTo("Solicitante") == 0) {
             direccionEditar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -426,24 +489,34 @@ public class Editar extends AppCompatActivity {
                     direccionEt.addTextChangedListener(editarWatcherDireccion);
                 }
             });
-        }else{
+        } else {
             direccionLayout.setVisibility(View.GONE);
         }
         direccionGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                direccionEt.setVisibility(View.GONE);
-                direccionGuardar.setVisibility(View.GONE);
-                direccionEditar.setVisibility(View.VISIBLE);
-                direccionCont.setVisibility(View.GONE);
-                direccionTv.setVisibility(View.VISIBLE);
-                direccionTv.setText(usuario.getDireccion());
-                //Guardar en SQLite y en el servidor
+                if (!direccionEt.getText().toString().isEmpty()) {
+                    if (direccionEt.getText().toString().compareTo(direccionTv.getText().toString()) != 0) {
+                        new EditarCampoActivity(Editar.this, usuario).execute("direccion", direccionEt.getText().toString());
+                        direccionEt.setVisibility(View.GONE);
+                        direccionGuardar.setVisibility(View.GONE);
+                        direccionEditar.setVisibility(View.VISIBLE);
+                        direccionCont.setVisibility(View.GONE);
+                        direccionTv.setVisibility(View.VISIBLE);
+                        direccionTv.setText(direccionEt.getText().toString());
+                    } else {
+                        direccionEt.setVisibility(View.GONE);
+                        direccionGuardar.setVisibility(View.GONE);
+                        direccionEditar.setVisibility(View.VISIBLE);
+                        direccionCont.setVisibility(View.GONE);
+                        direccionTv.setVisibility(View.VISIBLE);
+                    }
+                }
             }
         });
 
         //Código postal
-        if(usuario.getTipoPerfil().compareTo("Solicitante")==0) {
+        if (usuario.getTipoPerfil().compareTo("Solicitante") == 0) {
             cpEditar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -457,19 +530,29 @@ public class Editar extends AppCompatActivity {
                     cpEt.addTextChangedListener(editarWatcherCP);
                 }
             });
-        }else{
+        } else {
             cpLayout.setVisibility(View.GONE);
         }
         cpGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cpEt.setVisibility(View.GONE);
-                cpGuardar.setVisibility(View.GONE);
-                cpEditar.setVisibility(View.VISIBLE);
-                cpCont.setVisibility(View.GONE);
-                cpTv.setVisibility(View.VISIBLE);
-                cpTv.setText(usuario.getCodigoPostal());
-                //Guardar en SQLite y en el servidor
+                if (!cpEt.getText().toString().isEmpty()) {
+                    if (cpEt.getText().toString().compareTo(cpTv.getText().toString()) != 0) {
+                        new EditarCampoActivity(Editar.this, usuario).execute("codigo_postal", cpEt.getText().toString());
+                        cpEt.setVisibility(View.GONE);
+                        cpGuardar.setVisibility(View.GONE);
+                        cpEditar.setVisibility(View.VISIBLE);
+                        cpCont.setVisibility(View.GONE);
+                        cpTv.setVisibility(View.VISIBLE);
+                        cpTv.setText(cpEt.getText().toString());
+                    } else {
+                        cpEt.setVisibility(View.GONE);
+                        cpGuardar.setVisibility(View.GONE);
+                        cpEditar.setVisibility(View.VISIBLE);
+                        cpCont.setVisibility(View.GONE);
+                        cpTv.setVisibility(View.VISIBLE);
+                    }
+                }
             }
         });
 
@@ -518,7 +601,7 @@ public class Editar extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             String edad = edadEt.getText().toString();
-                edadCont.setText("3/" + edad.length());
+            edadCont.setText("3/" + edad.length());
         }
 
         @Override
@@ -642,9 +725,9 @@ public class Editar extends AppCompatActivity {
         }
     }
 
-    private void subirImagen(){
+    private void subirImagen() {
 
-        if(fotoUri != null){
+        if (fotoUri != null) {
             StorageReference fileReference = StorageRef.child(System.currentTimeMillis()
                     + "." + getExtension(fotoUri));
 
@@ -676,7 +759,7 @@ public class Editar extends AppCompatActivity {
                             barraProgreso.setProgress((int) progreso);
                         }
                     });
-        }else {
+        } else {
             Toast.makeText(this, "No se ha seleccionado ningún archivo", Toast.LENGTH_LONG).show();
         }
     }
@@ -686,5 +769,13 @@ public class Editar extends AppCompatActivity {
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
+/*
+    public void showAlerter(View v){
 
+        Alerter.create(this)
+                .setTitle("Editado")
+                .setText("Editado con éxito")
+                .show();
+    }
+*/
 }

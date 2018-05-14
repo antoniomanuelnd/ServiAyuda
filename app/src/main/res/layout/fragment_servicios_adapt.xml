@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/frame_servicios_adapt"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/azul2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_75sdp"
+            android:background="@color/azulLogo"
+            android:gravity="center"
+            android:text="SERVICIOS"
+            android:textColor="@color/blanco"
+            android:textSize="@dimen/_50sdp"
+            android:textStyle="bold" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/_100sdp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@color/azulLogo"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/botonEmergencia"
+                        android:layout_width="@dimen/_230sdp"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="#ffcc00"
+                        android:text="EMERGENCIA"
+                        android:textColor="#000"
+                        android:textSize="@dimen/_30sdp" />
+
+                    <ImageButton
+                        android:id="@+id/botonEmergenciaSonido"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/ic_volume_up_white_24dp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@color/azulLogo"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/botonPeluqueria"
+                        android:layout_width="@dimen/_230sdp"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@color/azul2"
+                        android:text="PELUQUERÍA"
+                        android:textSize="@dimen/_30sdp" />
+
+                    <ImageButton
+                        android:id="@+id/botonPeluqueriaSonido"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/ic_volume_up_white_24dp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@color/azulLogo"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/botonAsistencia"
+                        android:layout_width="@dimen/_230sdp"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@color/azul2"
+                        android:text="ASISTENCIA"
+                        android:textSize="@dimen/_30sdp" />
+
+                    <ImageButton
+                        android:id="@+id/botonAsistenciaSonido"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/ic_volume_up_white_24dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@color/azulLogo"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/botonFisioterapia"
+                        android:layout_width="@dimen/_230sdp"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@color/azul2"
+                        android:text="FISIOTERAPIA"
+                        android:textSize="@dimen/_30sdp" />
+
+                    <ImageButton
+                        android:id="@+id/botonFisioterapiaSonido"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/ic_volume_up_white_24dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@color/azulLogo"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/botonLimpieza"
+                        android:layout_width="@dimen/_230sdp"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@color/azul2"
+                        android:text="LIMPIEZA"
+                        android:textSize="@dimen/_30sdp" />
+
+                    <ImageButton
+                        android:id="@+id/botonLimpiezaSonido"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/ic_volume_up_white_24dp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@color/azulLogo"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</FrameLayout>

@@ -1,11 +1,15 @@
 package com.serviayuda.pc.serviayuda.Activitys;
 
+        import android.app.Activity;
         import android.content.Context;
         import android.os.AsyncTask;
         import android.widget.Toast;
 
         import com.serviayuda.pc.serviayuda.BBDD.DatabaseHelper;
         import com.serviayuda.pc.serviayuda.Objetos.Usuario;
+        import com.tapadoo.alerter.Alert;
+        import com.tapadoo.alerter.Alerter;
+
         import java.io.BufferedReader;
         import java.io.InputStreamReader;
         import java.io.OutputStreamWriter;
@@ -84,8 +88,33 @@ public class EditarCampoActivity extends AsyncTask {
                 case "nombre":
                     usuario.setNombre(whatSQLite);
                     break;
+                case "apellidos":
+                    usuario.setApellidos(whatSQLite);
+                    break;
+                case "edad":
+                    usuario.setEdad(whatSQLite);
+                    break;
+                case "descripcion":
+                    usuario.setDescripcion(whatSQLite);
+                    break;
+                case "experiencia":
+                    usuario.setExperiencia(whatSQLite);
+                    break;
+                case "ciudad":
+                    usuario.setCiudad(whatSQLite);
+                    break;
+                case "localidad":
+                    usuario.setLocalidad(whatSQLite);
+                    break;
+                case "direccion":
+                    usuario.setDireccion(whatSQLite);
+                    break;
+                case "codigo_postal":
+                    usuario.setCodigoPostal(whatSQLite);
+                    break;
             }
             databaseHelper.addUsuario(usuario);
+
             Toast.makeText(context.getApplicationContext(), "Editado con éxito", Toast.LENGTH_LONG).show();
             //Aquí puede ir tanto a la actividad InicioSesion, como a la actividad Perfil
 
