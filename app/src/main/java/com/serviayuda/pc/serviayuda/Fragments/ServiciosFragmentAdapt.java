@@ -2,15 +2,12 @@ package com.serviayuda.pc.serviayuda.Fragments;
 
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -23,7 +20,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.serviayuda.pc.serviayuda.Manifest;
 import com.serviayuda.pc.serviayuda.R;
 
 import java.util.Locale;
@@ -37,7 +33,7 @@ public class ServiciosFragmentAdapt extends Fragment {
     private View view;
     private TextToSpeech speaker;
     ImageButton sonidoEmergencia, sonidoAsistencia, sonidoPeluqueria, sonidoFisioterapia, sonidoLimpieza;
-    Button botonEmergencia;
+    Button botonEmergencia, botonAsistencia, botonPeluqeria, botonFisioterapia, botonLimpieza;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,6 +56,10 @@ public class ServiciosFragmentAdapt extends Fragment {
         sonidoLimpieza = view.findViewById(R.id.botonLimpiezaSonido);
 
         botonEmergencia = view.findViewById(R.id.botonEmergencia);
+        botonAsistencia = view.findViewById(R.id.botonAsistencia);
+        botonPeluqeria = view.findViewById(R.id.botonPeluqueria);
+        botonFisioterapia = view.findViewById(R.id.botonFisioterapia);
+        botonLimpieza = view.findViewById(R.id.botonLimpieza);
     }
 
     private void iniciarListeners() {
@@ -116,7 +116,7 @@ public class ServiciosFragmentAdapt extends Fragment {
             @Override
             public void onClick(View v) {
                 final AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
-                View view = getLayoutInflater().inflate(R.layout.confirmacion_emergencia, null);
+                View view = getLayoutInflater().inflate(R.layout.dialog_emergencia, null);
 
                 Button si, no;
                 si = view.findViewById(R.id.emergenciaSi);
@@ -142,6 +142,128 @@ public class ServiciosFragmentAdapt extends Fragment {
                 dialog.show();
             }
         });
+
+        botonAsistencia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+                View view = getLayoutInflater().inflate(R.layout.dialog_asistencia, null);
+
+                Button si, no;
+                si = view.findViewById(R.id.asistenciaSi);
+                no = view.findViewById(R.id.asistenciaNo);
+
+                speak("¿DESEA SOLICITAR UN SERVICIO DE ASISTENCIA?");
+
+                mBuilder.setView(view);
+                final AlertDialog dialog = mBuilder.create();
+                si.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
+
+        botonPeluqeria.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+                View view = getLayoutInflater().inflate(R.layout.dialog_peluqueria, null);
+
+                Button si, no;
+                si = view.findViewById(R.id.peluqueriaSi);
+                no = view.findViewById(R.id.peluqueriaNo);
+
+                speak("¿DESEA SOLICITAR UN SERVICIO DE PELUQUERÍA?");
+
+                mBuilder.setView(view);
+                final AlertDialog dialog = mBuilder.create();
+                si.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
+
+        botonLimpieza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+                View view = getLayoutInflater().inflate(R.layout.dialog_limpieza, null);
+
+                Button si, no;
+                si = view.findViewById(R.id.limpiezaSi);
+                no = view.findViewById(R.id.limpiezaNo);
+
+                speak("¿DESEA SOLICITAR UN SERVICIO DE LIMPIEZA?");
+
+                mBuilder.setView(view);
+                final AlertDialog dialog = mBuilder.create();
+                si.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
+
+        botonFisioterapia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+                View view = getLayoutInflater().inflate(R.layout.dialog_fisioterapia, null);
+
+                Button si, no;
+                si = view.findViewById(R.id.fisioterapiaSi);
+                no = view.findViewById(R.id.fisioterapiaNo);
+
+                speak("¿DESEA SOLICITAR UN SERVICIO DE FISIOTERAPIA?");
+
+                mBuilder.setView(view);
+                final AlertDialog dialog = mBuilder.create();
+                si.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
+
+
     }
 
     private void llamar(){

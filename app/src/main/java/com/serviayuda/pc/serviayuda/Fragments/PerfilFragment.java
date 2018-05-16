@@ -43,6 +43,7 @@ import com.squareup.picasso.Picasso;
 
 public class PerfilFragment extends Fragment {
 
+
     private ImageView imagenPerfil;
     //Campos de datos del usuario
     private TextView campoNombre;

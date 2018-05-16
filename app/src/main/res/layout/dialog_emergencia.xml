@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffcc00"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="@dimen/_300sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:gravity="center"
+        android:padding="@dimen/_15sdp"
+        android:text="¿DESEA REALIZAR UNA LLAMADA DE EMERGENCIA?"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:textSize="@dimen/_30sdp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:paddingBottom="@dimen/_30sdp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/emergenciaSi"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:background="#000"
+            android:text="SI"
+            android:textColor="#ffcc00"
+            android:textSize="@dimen/_60sdp" />
+
+        <Button
+            android:id="@+id/emergenciaNo"
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:background="#000"
+            android:text="NO"
+            android:textColor="#ffcc00"
+            android:textSize="@dimen/_60sdp" />
+    </LinearLayout>
+</LinearLayout>

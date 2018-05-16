@@ -155,8 +155,6 @@
                     android:background="@color/azulLogo"
                     android:gravity="center"
                     android:orientation="horizontal">
-
-
                 </LinearLayout>
 
             </LinearLayout>

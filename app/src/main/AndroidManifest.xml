@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/icono_app"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".Actividades.MenuInterfazAdaptada"
+        <activity android:name=".Actividades.Inicio"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -31,6 +31,8 @@
         <activity android:name=".Actividades.ActivitySetViewPagerProveedor"
             android:screenOrientation="portrait"/>
         <activity android:name=".Actividades.ActivitySetViewPagerSolicitante"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Actividades.MenuInterfazAdaptada"
             android:screenOrientation="portrait"/>
         <activity android:name=".Actividades.Ajustes"
             android:screenOrientation="portrait"/>

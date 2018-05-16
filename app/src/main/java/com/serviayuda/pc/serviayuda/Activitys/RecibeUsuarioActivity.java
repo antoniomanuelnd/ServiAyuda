@@ -1,15 +1,19 @@
 package com.serviayuda.pc.serviayuda.Activitys;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 
 import com.serviayuda.pc.serviayuda.Actividades.ActivitySetViewPagerAdmin;
 import com.serviayuda.pc.serviayuda.Actividades.ActivitySetViewPagerProveedor;
 import com.serviayuda.pc.serviayuda.Actividades.ActivitySetViewPagerSolicitante;
+import com.serviayuda.pc.serviayuda.Actividades.MenuInterfazAdaptada;
 import com.serviayuda.pc.serviayuda.BBDD.DatabaseHelper;
 import com.serviayuda.pc.serviayuda.Objetos.Usuario;
+import com.serviayuda.pc.serviayuda.Preferencias.ManejadorPreferencias;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -28,12 +32,16 @@ public class RecibeUsuarioActivity extends AsyncTask {
     private DatabaseHelper databaseHelper;
     private Usuario usuario;
     private String tipo;
+    private ManejadorPreferencias mp;
 
     public RecibeUsuarioActivity(Context context, AppCompatActivity activity, Usuario usuario) {
         this.context = context;
         this.activity = activity;
         this.databaseHelper = new DatabaseHelper(activity);
         this.usuario = usuario;
+
+        SharedPreferences preferences = activity.getSharedPreferences("SESION", Activity.MODE_PRIVATE);
+        mp = new ManejadorPreferencias(preferences);
     }
 
     protected void onPreExecute() {
@@ -98,10 +106,18 @@ public class RecibeUsuarioActivity extends AsyncTask {
             usuario.setHorario(res[12]);
             usuario.setEdad((res[13]));
 
+            String interfaz = res[14];
+            mp.guardarPreferencias("KEY_INTERFAZ", interfaz);
+
             databaseHelper.addUsuario(usuario);
 
             if (tipo.compareTo("Solicitante") == 0) {
-                Intent i = new Intent(context, ActivitySetViewPagerSolicitante.class);
+                Intent i;
+                if(interfaz.compareTo("No")==0){
+                    i = new Intent(context, ActivitySetViewPagerSolicitante.class);
+                }else{
+                    i = new Intent(context, MenuInterfazAdaptada.class);
+                }
                 context.startActivity(i);
             } else if (tipo.compareTo("Proveedor") == 0) {
                 Intent i = new Intent(context, ActivitySetViewPagerProveedor.class);
