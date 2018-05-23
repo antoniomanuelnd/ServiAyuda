@@ -91,7 +91,11 @@ public class ServicioEnCursoFragment extends Fragment {
                 verPerfil = lay.findViewById(R.id.servicioSolicitanteEnCursoPerfil);
                 verPerfil.setBackgroundResource(R.drawable.botonperfil);
 
-                info.setText("El usuario " + usuario.getNombre() + " le va a prestar un servicio de " + anuncio.getTipoAnuncio().toLowerCase() + " a partir de " + determinaPronombre(anuncio.getHoraDeseada()) + anuncio.getHoraDeseada() + " durante " + anuncio.getHoras() + ".");
+                if(anuncio.getHoraDeseada().compareTo("Hoy lo antes posible")==0) {
+                    info.setText("El usuario " + usuario.getNombre() + " le va a prestar un servicio de " + anuncio.getTipoAnuncio().toLowerCase() + " hoy lo antes posible durante " + anuncio.getHoras() + ".");
+                }else{
+                    info.setText("El usuario " + usuario.getNombre() + " le va a prestar un servicio de " + anuncio.getTipoAnuncio().toLowerCase() + " a partir de " + determinaPronombre(anuncio.getHoraDeseada()) + anuncio.getHoraDeseada() + " durante " + anuncio.getHoras() + ".");
+                }
                 verPerfilDe.setText("Ver perfil de " + usuario.getNombre());
                 ayuda.setText("Podrás pulsar el botón FINALIZAR cuando el servicio haya sido cumplido. Posteriormente se le pedirá que puntúe a la persona que le ha ofrecido el servicio e inmediatamente podrá solicitar un nuevo servicio. En caso de que el servicio no haya podido ser realizado, por favor, finalice el servicio, puntúe negativamente y solicite de nuevo el servicio.");
 
@@ -141,7 +145,12 @@ public class ServicioEnCursoFragment extends Fragment {
                 verPerfil = lay.findViewById(R.id.servicioProveedorEnCursoPerfil);
                 verPerfil.setBackgroundResource(R.drawable.botonperfil);
 
-                info.setText("Tienes que ofrecer un servicio de " + anuncio.getTipoAnuncio().toLowerCase() + " a " + usuario.getNombre() + " a partir de " + determinaPronombre(anuncio.getHoraDeseada()) + anuncio.getHoraDeseada() + " durante " + anuncio.getHoras() + ".");
+                if(anuncio.getHoraDeseada().compareTo("Hoy lo antes posible")==0){
+                    info.setText("Tienes que ofrecer un servicio de " + anuncio.getTipoAnuncio().toLowerCase() + " a " + usuario.getNombre() + " hoy lo antes posible durante " + anuncio.getHoras() + ".");
+                }else{
+                    info.setText("Tienes que ofrecer un servicio de " + anuncio.getTipoAnuncio().toLowerCase() + " a " + usuario.getNombre() + " a partir de " + determinaPronombre(anuncio.getHoraDeseada()) + anuncio.getHoraDeseada() + " durante " + anuncio.getHoras() + ".");
+                }
+
                 verPerfilDe.setText("Ver perfil de " + usuario.getNombre());
                 ayuda.setText("Podrás pulsar el botón FINALIZAR cuando el servicio haya sido cumplido. Posteriormente se le pedirá que puntúe a la persona a la que has ofrecido el servicio e inmediatamente podrás satisfacer nuevos servicios. En caso de que el servicio no haya podido ser realizado, por favor, finalice el servicio y puntúe negativamente.");
 
@@ -195,12 +204,14 @@ public class ServicioEnCursoFragment extends Fragment {
 }
 
     public String determinaPronombre(String hora) {
-        Integer primeraParte = Integer.parseInt(hora.substring(0, 2));
-        if ((primeraParte >= 10) || (primeraParte == 0)) {
-            return "las ";
-        } else {
-            return "la ";
-        }
+
+            Integer primeraParte = Integer.parseInt(hora.substring(0, 2));
+            if ((primeraParte >= 10) || (primeraParte == 0)) {
+                return "las ";
+            } else {
+                return "la ";
+            }
+
     }
 
     public void ratingCliente(LinearLayout lay, final Solicitud sol){

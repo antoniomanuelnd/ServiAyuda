@@ -1,8 +1,10 @@
 package com.serviayuda.pc.serviayuda.Fragments;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +22,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.serviayuda.pc.serviayuda.Activitys.EnviaAnuncioActivity;
+import com.serviayuda.pc.serviayuda.Activitys.EnviaAnuncioAdaptActivity;
+import com.serviayuda.pc.serviayuda.Objetos.Anuncio;
+import com.serviayuda.pc.serviayuda.Preferencias.ManejadorPreferencias;
 import com.serviayuda.pc.serviayuda.R;
 
 import java.util.Locale;
@@ -34,6 +40,7 @@ public class ServiciosFragmentAdapt extends Fragment {
     private TextToSpeech speaker;
     ImageButton sonidoEmergencia, sonidoAsistencia, sonidoPeluqueria, sonidoFisioterapia, sonidoLimpieza;
     Button botonEmergencia, botonAsistencia, botonPeluqeria, botonFisioterapia, botonLimpieza;
+    ManejadorPreferencias mp;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,6 +67,9 @@ public class ServiciosFragmentAdapt extends Fragment {
         botonPeluqeria = view.findViewById(R.id.botonPeluqueria);
         botonFisioterapia = view.findViewById(R.id.botonFisioterapia);
         botonLimpieza = view.findViewById(R.id.botonLimpieza);
+
+        SharedPreferences preferences = getActivity().getSharedPreferences("SESION", Activity.MODE_PRIVATE);
+        mp = new ManejadorPreferencias(preferences);
     }
 
     private void iniciarListeners() {
@@ -160,7 +170,12 @@ public class ServiciosFragmentAdapt extends Fragment {
                 si.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        Anuncio anuncio = new Anuncio();
+                        anuncio.setEmail(mp.cargarPreferencias("KEY_EMAIL"));
+                        anuncio.setNombre(mp.cargarPreferencias("KEY_NOMBRE"));
+                        anuncio.setTipoAnuncio("Asistencia");
+                        enviaAnuncio(anuncio);
+                        dialog.dismiss();
                     }
                 });
                 no.setOnClickListener(new View.OnClickListener() {
@@ -190,7 +205,12 @@ public class ServiciosFragmentAdapt extends Fragment {
                 si.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        Anuncio anuncio = new Anuncio();
+                        anuncio.setEmail(mp.cargarPreferencias("KEY_EMAIL"));
+                        anuncio.setNombre(mp.cargarPreferencias("KEY_NOMBRE"));
+                        anuncio.setTipoAnuncio("Peluquería");
+                        enviaAnuncio(anuncio);
+                        dialog.dismiss();
                     }
                 });
                 no.setOnClickListener(new View.OnClickListener() {
@@ -220,7 +240,12 @@ public class ServiciosFragmentAdapt extends Fragment {
                 si.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        Anuncio anuncio = new Anuncio();
+                        anuncio.setEmail(mp.cargarPreferencias("KEY_EMAIL"));
+                        anuncio.setNombre(mp.cargarPreferencias("KEY_NOMBRE"));
+                        anuncio.setTipoAnuncio("Limpieza");
+                        enviaAnuncio(anuncio);
+                        dialog.dismiss();
                     }
                 });
                 no.setOnClickListener(new View.OnClickListener() {
@@ -250,7 +275,12 @@ public class ServiciosFragmentAdapt extends Fragment {
                 si.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        Anuncio anuncio = new Anuncio();
+                        anuncio.setEmail(mp.cargarPreferencias("KEY_EMAIL"));
+                        anuncio.setNombre(mp.cargarPreferencias("KEY_NOMBRE"));
+                        anuncio.setTipoAnuncio("Fisioterapia");
+                        enviaAnuncio(anuncio);
+                        dialog.dismiss();
                     }
                 });
                 no.setOnClickListener(new View.OnClickListener() {
@@ -301,5 +331,10 @@ public class ServiciosFragmentAdapt extends Fragment {
             speaker.shutdown();
         }
         super.onDestroy();
+    }
+
+    //Método que inserta/actualiza un anuncio en la base de datos
+    private void enviaAnuncio(Anuncio anuncio){
+        new EnviaAnuncioAdaptActivity(getContext(), getActivity(), anuncio).execute();
     }
 }

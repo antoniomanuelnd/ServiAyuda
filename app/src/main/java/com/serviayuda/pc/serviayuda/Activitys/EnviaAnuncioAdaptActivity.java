@@ -1,10 +1,14 @@
 package com.serviayuda.pc.serviayuda.Activitys;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.serviayuda.pc.serviayuda.Fragments.ServiciosFragmentAdapt;
 import com.serviayuda.pc.serviayuda.Objetos.Anuncio;
+import com.tapadoo.alerter.Alerter;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -21,10 +25,12 @@ public class EnviaAnuncioAdaptActivity extends AsyncTask {
 
     private Context context;
     private Anuncio anuncio;
+    private Activity activity;
 
-    public EnviaAnuncioAdaptActivity(Context context, Anuncio anuncio){
+    public EnviaAnuncioAdaptActivity(Context context, Activity activity, Anuncio anuncio){
         this.context = context;
         this.anuncio = anuncio;
+        this.activity = activity;
     }
 
     protected void onPreExecute() {
@@ -39,16 +45,8 @@ public class EnviaAnuncioAdaptActivity extends AsyncTask {
                     URLEncoder.encode(anuncio.getEmail(), "UTF-8");
             data += "&" + URLEncoder.encode("nombre", "UTF-8") + "=" +
                     URLEncoder.encode(anuncio.getNombre(), "UTF-8");
-            data += "&" + URLEncoder.encode("descripcion", "UTF-8") + "=" +
-                    URLEncoder.encode(anuncio.getDescripcion(), "UTF-8");
             data += "&" + URLEncoder.encode("tipo_anuncio", "UTF-8") + "=" +
                     URLEncoder.encode(anuncio.getTipoAnuncio(), "UTF-8");
-            data += "&" + URLEncoder.encode("horas", "UTF-8") + "=" +
-                    URLEncoder.encode(anuncio.getHoras(), "UTF-8");
-            data += "&" + URLEncoder.encode("hora_deseada", "UTF-8") + "=" +
-                    URLEncoder.encode(anuncio.getHoraDeseada(), "UTF-8");
-            data += "&" + URLEncoder.encode("estado", "UTF-8") + "=" +
-                    URLEncoder.encode("Pendiente", "UTF-8");
 
             URL url = new URL(link);
             URLConnection conn = url.openConnection();
@@ -78,11 +76,29 @@ public class EnviaAnuncioAdaptActivity extends AsyncTask {
         String respuesta = res.toString();
 
         if (respuesta.compareTo("ACTUALIZADO") == 0) {
-            Toast.makeText(context.getApplicationContext(), "Anuncio actualizado", Toast.LENGTH_LONG).show();
+            Alerter.create(activity)
+                    .setTitle("ANUNCIO ENVIADO")
+                    .setText("El anuncio ha sido enviado")
+                    .setBackgroundColorInt(Color.BLACK)
+                    .setDuration(10000)
+                    .enableSwipeToDismiss()
+                    .show();
         }else if (respuesta.compareTo("INSERTADO") == 0){
-            Toast.makeText(context.getApplicationContext(), "Nuevo anuncio enviado", Toast.LENGTH_LONG).show();
+            Alerter.create(activity)
+                    .setTitle("ANUNCIO ENVIADO")
+                    .setText("El anuncio ha sido enviado")
+                    .setBackgroundColorInt(Color.BLACK)
+                    .setDuration(10000)
+                    .enableSwipeToDismiss()
+                    .show();
         }else {
-            Toast.makeText(context.getApplicationContext(), "El anuncio no ha podido ser enviado", Toast.LENGTH_LONG).show();
+            Alerter.create(activity)
+                    .setTitle("ANUNCIO NO ENVIADO")
+                    .setText("El anuncio no ha podido ser enviado")
+                    .setBackgroundColorInt(Color.BLACK)
+                    .setDuration(10000)
+                    .enableSwipeToDismiss()
+                    .show();
         }
     }
 

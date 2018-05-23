@@ -181,14 +181,20 @@
                             android:gravity="center"
                             android:text="Guardar"
                             android:onClick="showAlerter"
-                            android:visibility="gone" />
+                            android:visibility="gone"
+                            android:backgroundTint="@color/blanco"
+                            android:textColor="@color/azulLogo"
+                            android:textStyle="bold"/>
 
                         <Button
                             android:id="@+id/editarNombreEditar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Editar" />
+                            android:text="Editar"
+                            android:backgroundTint="@color/blanco"
+                            android:textColor="@color/azulLogo"
+                            android:textStyle="bold"/>
                     </LinearLayout>
 
                     <View
@@ -269,14 +275,20 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Guardar"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        android:backgroundTint="@color/blanco"
+                        android:textColor="@color/azulLogo"
+                        android:textStyle="bold"/>
 
                     <Button
                         android:id="@+id/editarApellidosEditar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Editar" />
+                        android:text="Editar"
+                        android:backgroundTint="@color/blanco"
+                        android:textColor="@color/azulLogo"
+                        android:textStyle="bold"/>
                 </LinearLayout>
 
                 <View
@@ -357,14 +369,20 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Guardar"
-                            android:visibility="gone" />
+                            android:visibility="gone"
+                            android:backgroundTint="@color/blanco"
+                            android:textColor="@color/azulLogo"
+                            android:textStyle="bold"/>
 
                         <Button
                             android:id="@+id/editarEdadEditar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Editar" />
+                            android:text="Editar"
+                            android:backgroundTint="@color/blanco"
+                            android:textColor="@color/azulLogo"
+                            android:textStyle="bold"/>
                     </LinearLayout>
 
                     <View
@@ -444,14 +462,20 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Guardar"
-                            android:visibility="gone" />
+                            android:visibility="gone"
+                            android:backgroundTint="@color/blanco"
+                            android:textColor="@color/azulLogo"
+                            android:textStyle="bold"/>
 
                         <Button
                             android:id="@+id/editarDescripcionEditar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Editar" />
+                            android:text="Editar"
+                            android:backgroundTint="@color/blanco"
+                            android:textColor="@color/azulLogo"
+                            android:textStyle="bold"/>
                     </LinearLayout>
 
                     <View
@@ -531,14 +555,20 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Guardar"
-                            android:visibility="gone" />
+                            android:visibility="gone"
+                            android:backgroundTint="@color/blanco"
+                            android:textColor="@color/azulLogo"
+                            android:textStyle="bold"/>
 
                         <Button
                             android:id="@+id/editarExperienciaEditar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Editar" />
+                            android:text="Editar"
+                            android:backgroundTint="@color/blanco"
+                            android:textColor="@color/azulLogo"
+                            android:textStyle="bold"/>
                     </LinearLayout>
 
                     <View
@@ -619,14 +649,20 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Guardar"
-                            android:visibility="gone" />
+                            android:visibility="gone"
+                            android:backgroundTint="@color/blanco"
+                            android:textColor="@color/azulLogo"
+                            android:textStyle="bold"/>
 
                         <Button
                             android:id="@+id/editarCiudadEditar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Editar" />
+                            android:text="Editar"
+                            android:backgroundTint="@color/blanco"
+                            android:textColor="@color/azulLogo"
+                            android:textStyle="bold"/>
                     </LinearLayout>
 
                     <View
@@ -707,14 +743,20 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Guardar"
-                            android:visibility="gone" />
+                            android:visibility="gone"
+                            android:backgroundTint="@color/blanco"
+                            android:textColor="@color/azulLogo"
+                            android:textStyle="bold"/>
 
                         <Button
                             android:id="@+id/editarLocalidadEditar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Editar" />
+                            android:text="Editar"
+                            android:backgroundTint="@color/blanco"
+                            android:textColor="@color/azulLogo"
+                            android:textStyle="bold"/>
                     </LinearLayout>
 
                     <View
@@ -795,14 +837,20 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Guardar"
-                            android:visibility="gone" />
+                            android:visibility="gone"
+                            android:backgroundTint="@color/blanco"
+                            android:textColor="@color/azulLogo"
+                            android:textStyle="bold"/>
 
                         <Button
                             android:id="@+id/editarDireccionEditar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Editar" />
+                            android:text="Editar"
+                            android:backgroundTint="@color/blanco"
+                            android:textColor="@color/azulLogo"
+                            android:textStyle="bold"/>
                     </LinearLayout>
 
                     <View
@@ -883,14 +931,20 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Guardar"
-                            android:visibility="gone" />
+                            android:visibility="gone"
+                            android:backgroundTint="@color/blanco"
+                            android:textColor="@color/azulLogo"
+                            android:textStyle="bold"/>
 
                         <Button
                             android:id="@+id/editarCPEditar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Editar" />
+                            android:text="Editar"
+                            android:backgroundTint="@color/blanco"
+                            android:textColor="@color/azulLogo"
+                            android:textStyle="bold"/>
                     </LinearLayout>
 
                     <View

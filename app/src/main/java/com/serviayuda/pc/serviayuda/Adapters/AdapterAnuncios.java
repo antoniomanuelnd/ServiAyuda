@@ -104,7 +104,13 @@ public class AdapterAnuncios extends RecyclerView.Adapter<AdapterAnuncios.VistaA
         public void asignarAnuncio(Anuncio a){
             nombre.setText(a.getNombre());
             tipo_anuncio.setText(a.getTipoAnuncio());
-            descripcion.setText(a.getDescripcion());
+
+            if(a.getDescripcion().isEmpty()){
+                descripcion.setText("El usuario no ha indicado más detalles");
+            }else{
+                descripcion.setText(a.getDescripcion());
+            }
+
 
         }
     }

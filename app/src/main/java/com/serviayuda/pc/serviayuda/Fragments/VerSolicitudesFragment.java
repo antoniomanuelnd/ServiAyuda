@@ -44,13 +44,7 @@ public class VerSolicitudesFragment extends Fragment {
         FrameLayout fr = view.findViewById(R.id.fragment1);
 
         iniciarVistas();
-
-        actualizar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mostrarSolicitudes();
-            }
-        });
+        iniciarListeners();
 
         new RecibeSolicitudActivity(getContext(), getActivity(), email).execute();
         return view;
@@ -65,7 +59,16 @@ public class VerSolicitudesFragment extends Fragment {
         recycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         actualizar = view.findViewById(R.id.actualizar);
         databaseHelper = new DatabaseHelper(getActivity());
-        new RecibeSolicitudEnCursoActivity(getContext(), getActivity(), mp.cargarPreferencias("KEY_EMAIL")).execute();
+        new RecibeSolicitudEnCursoActivity(getContext(), getActivity(), email).execute();
+    }
+
+    private void iniciarListeners() {
+        actualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mostrarSolicitudes();
+            }
+        });
     }
 
     private void mostrarSolicitudes() {

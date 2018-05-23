@@ -21,6 +21,10 @@ public class Usuario {
     private String horario;
     private String edad;
 
+    public Usuario(){
+
+    }
+
     public String getNombre(){
         return nombre;
     }

@@ -1,14 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/frame_solicitudes_adapt"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/azul2">
+    android:background="@color/azul2"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/verSolicitudesAdapt"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Solicitudes"
-        android:textSize="@dimen/_50sdp"
-        android:textColor="@color/blanco"/>
-</FrameLayout>
+        android:background="@color/azulLogo"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_75sdp"
+            android:background="@color/azulLogo"
+            android:gravity="center"
+            android:text="SOLICITUDES"
+            android:textColor="@color/blanco"
+            android:textSize="@dimen/_45sdp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:background="@color/azul2"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/actualizarAdapt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/blanco"
+            android:text="Actualizar"
+            android:textColor="#000"
+            android:textSize="@dimen/_30sdp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_5sdp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerSolicitudesAdapt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+</LinearLayout>

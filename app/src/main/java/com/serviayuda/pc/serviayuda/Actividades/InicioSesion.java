@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -22,7 +23,9 @@ public class InicioSesion extends AppCompatActivity {
     EditText campoEmail;
     EditText campoPassword;
     TextView campoResultado;
+    CheckBox sesion;
     ManejadorPreferencias mp;
+    String sSesion;
     private final AppCompatActivity activity = InicioSesion.this;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,16 @@ public class InicioSesion extends AppCompatActivity {
         campoPassword = findViewById(R.id.inicioSesionPassword);
         botonIniciarSesion = findViewById(R.id.inicioSesionEntrar);
         campoResultado = findViewById(R.id.inicioSesionResultado);
+        sesion = findViewById(R.id.checkbox1Sesion);
         mp = new ManejadorPreferencias((getSharedPreferences("SESION", Activity.MODE_PRIVATE)));
+        sSesion = mp.cargarPreferencias("KEY_SESION");
+
+        if(sSesion.compareTo("No")==0 || sSesion.compareTo("No existe la información") == 0){
+            sesion.setChecked(false);
+        }else{
+            sesion.setChecked(true);
+        }
+
     }
 
     private void iniciarListeners() {
@@ -47,12 +59,22 @@ public class InicioSesion extends AppCompatActivity {
                 iniciarSesion();
             }
         });
+
+        sesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(sesion.isChecked()){
+                    sSesion = "Si";
+                }else{
+                    sSesion = "No";
+                }
+            }
+        });
     }
 
     private void iniciarSesion() {
         String email = campoEmail.getText().toString();
         String password = campoPassword.getText().toString();
-        mp.guardarPreferencias("KEY_EMAIL", email);
-        new InicioSesionActivity(this, campoResultado, activity).execute(email, password);
+        new InicioSesionActivity(this, campoResultado, activity, mp, sSesion).execute(email, password);
     }
 }

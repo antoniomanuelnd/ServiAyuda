@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.serviayuda.pc.serviayuda.Adapters.FragmentAdapter;
 import com.serviayuda.pc.serviayuda.Fragments.PerfilFragmentAdapt;
+import com.serviayuda.pc.serviayuda.Fragments.ServicioEnCursoFragmentAdapt;
 import com.serviayuda.pc.serviayuda.Fragments.ServiciosFragmentAdapt;
 import com.serviayuda.pc.serviayuda.Fragments.SolicitudesFragmentAdapt;
 import com.serviayuda.pc.serviayuda.R;
@@ -30,10 +31,12 @@ public class MenuInterfazAdaptada extends AppCompatActivity {
         adapter.AddFragment(new PerfilFragmentAdapt(), "PERFIL");
         adapter.AddFragment(new ServiciosFragmentAdapt(), "SERVICIOS");
         adapter.AddFragment(new SolicitudesFragmentAdapt(), "SOLICITUDES");
+        adapter.AddFragment(new ServicioEnCursoFragmentAdapt(), "SERVICIO");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_account_circle_white_24dp);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_format_align_justify_white_24dp);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_assignment_late_white24dp);
+        tabLayout.getTabAt(3).setIcon(R.drawable.ic_group_white_24dp);
     }
 }

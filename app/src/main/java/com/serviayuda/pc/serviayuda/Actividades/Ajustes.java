@@ -31,7 +31,7 @@ public class Ajustes extends AppCompatActivity {
     Switch switchInterfaz, switchSesion;
     Button cerrarSesion;
     TextView snInterfaz, snSesion, textInterfaz;
-    String estadoInterfaz;
+    String estadoInterfaz, sSesion;
     private ManejadorPreferencias mp;
     private DatabaseHelper databaseHelper;
     Usuario usuario;
@@ -51,6 +51,11 @@ public class Ajustes extends AppCompatActivity {
         snInterfaz = findViewById(R.id.SNInterfaz);
         textInterfaz = findViewById(R.id.textInterfaz);
 
+        switchSesion = findViewById(R.id.switchSesion);
+        snSesion = findViewById(R.id.SNSesion);
+
+        cerrarSesion = findViewById(R.id.cerrarSesion);
+
         estadoPrevioSwitch = switchInterfaz.isChecked();
         SharedPreferences preferences = this.getSharedPreferences("SESION", Activity.MODE_PRIVATE);
         mp = new ManejadorPreferencias(preferences);
@@ -59,7 +64,7 @@ public class Ajustes extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(Ajustes.this);
         usuario = databaseHelper.getUsuario(mp.cargarPreferencias("KEY_EMAIL"));
 
-        if(usuario.getTipoPerfil().compareTo("Solicitante")==0){
+        if (usuario.getTipoPerfil().compareTo("Solicitante") == 0) {
             switchInterfaz.setVisibility(View.VISIBLE);
             snInterfaz.setVisibility(View.VISIBLE);
             textInterfaz.setVisibility(View.VISIBLE);
@@ -70,10 +75,20 @@ public class Ajustes extends AppCompatActivity {
                 switchInterfaz.setChecked(true);
                 snInterfaz.setText("Si");
             }
-        }else{
+        } else {
             switchInterfaz.setVisibility(View.GONE);
             snInterfaz.setVisibility(View.GONE);
             textInterfaz.setVisibility(View.GONE);
+        }
+
+        sSesion = mp.cargarPreferencias("KEY_SESION");
+
+        if (sSesion.compareTo("No") == 0 || sSesion.compareTo("No existe la información") == 0) {
+            snSesion.setText("No");
+            switchSesion.setChecked(false);
+        } else {
+            snSesion.setText("Si");
+            switchSesion.setChecked(true);
         }
 
     }
@@ -94,6 +109,30 @@ public class Ajustes extends AppCompatActivity {
                 }
             }
         });
+
+        switchSesion.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    snSesion.setText("Si");
+                    mp.guardarPreferencias("KEY_SESION", "Si");
+                } else {
+                    snSesion.setText("No");
+                    mp.guardarPreferencias("KEY_SESION", "No");
+                }
+            }
+        });
+
+        cerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                snSesion.setText("No");
+                mp.guardarPreferencias("KEY_SESION", "No");
+                Intent i = new Intent(Ajustes.this, Inicio.class);
+                finishAffinity();
+                startActivity(i);
+            }
+        });
     }
 
     @Nullable
@@ -109,7 +148,7 @@ public class Ajustes extends AppCompatActivity {
         if (switchInterfaz.isChecked()) {
             i = new Intent(this, MenuInterfazAdaptada.class);
             finishAffinity();
-        }else{
+        } else {
             i = new Intent(this, ActivitySetViewPagerSolicitante.class);
             finishAffinity();
         }

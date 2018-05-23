@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.serviayuda.pc.serviayuda.Objetos.Usuario;
+import com.serviayuda.pc.serviayuda.Preferencias.ManejadorPreferencias;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -26,12 +27,16 @@ public class InicioSesionActivity extends AsyncTask {
     private Context context;
     private TextView res;
     private final AppCompatActivity activity;
+    private ManejadorPreferencias mp;
+    private String sSesion;
     private Usuario usuario = new Usuario();
 
-    public InicioSesionActivity(Context context, TextView res, AppCompatActivity activity) {
+    public InicioSesionActivity(Context context, TextView res, AppCompatActivity activity, ManejadorPreferencias mp, String sSesion) {
         this.context = context;
         this.res = res;
         this.activity = activity;
+        this.mp = mp;
+        this.sSesion = sSesion;
     }
 
     protected void onPreExecute() {
@@ -83,9 +88,13 @@ public class InicioSesionActivity extends AsyncTask {
 
         if (respuesta.compareTo("Solicitante") == 0) {
             Toast.makeText(context.getApplicationContext(), "Iniciando sesión", Toast.LENGTH_LONG).show();
+            mp.guardarPreferencias("KEY_SESION", sSesion);
+            mp.guardarPreferencias("KEY_EMAIL", usuario.getEmail());
             new RecibeUsuarioActivity(context, activity, usuario).execute(usuario.getEmail(), "Solicitante");
         } else if (respuesta.compareTo("Proveedor") == 0) {
             Toast.makeText(context.getApplicationContext(), "Iniciando sesión", Toast.LENGTH_LONG).show();
+            mp.guardarPreferencias("KEY_SESION", sSesion);
+            mp.guardarPreferencias("KEY_EMAIL", usuario.getEmail());
             new RecibeUsuarioActivity(context, activity, usuario).execute(usuario.getEmail(), "Proveedor");
         }else if (respuesta.compareTo("Administrador") == 0){
             Toast.makeText(context.getApplicationContext(), "Iniciando sesión", Toast.LENGTH_LONG).show();
