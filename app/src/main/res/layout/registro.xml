@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_25sdp"
                     android:layout_marginTop="15dp"
-                    android:text="Apellidos"
+                    android:text="@string/registro_7"
                     android:textColor="@color/blanco" />
 
 
@@ -93,7 +93,7 @@
                         android:id="@+id/registroApellidos"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:hint="Apellidos"
+                        android:hint="@string/registro_7"
                         android:maxLength="30"
                         android:textSize="10dp" />
 
@@ -119,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_25sdp"
                     android:layout_marginTop="15dp"
-                    android:text="Edad"
+                    android:text="@string/registro_8"
                     android:textColor="@color/blanco" />
 
 
@@ -131,7 +131,7 @@
                         android:id="@+id/registroEdad"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:hint="18"
+                        android:hint="@string/registro_9"
                         android:inputType="number"
                         android:maxLength="3"
                         android:textSize="10dp" />
@@ -233,7 +233,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_25sdp"
                     android:layout_marginTop="15dp"
-                    android:text="Repite la contraseña"
+                    android:text="@string/registro_10"
                     android:textColor="@color/blanco" />
 
                 <LinearLayout
@@ -270,7 +270,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_25sdp"
                     android:layout_marginTop="15dp"
-                    android:text="¿Vas a prestar servicios o vas a solicitar servicios?"
+                    android:text="@string/registro_11"
                     android:textColor="@color/blanco" />
 
                 <LinearLayout
@@ -282,7 +282,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Prestar servicios"
+                        android:text="@string/registro_12"
                         android:textColor="@color/blanco" />
 
                     <CheckBox
@@ -294,7 +294,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Solicitar servicios"
+                        android:text="@string/registro_13"
                         android:textColor="@color/blanco" />
 
                     <CheckBox
@@ -314,7 +314,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="¿Qué servicio vas a prestar?"
+                        android:text="@string/registro_14"
                         android:textColor="@color/blanco" />
 
                     <android.support.v7.widget.AppCompatSpinner
@@ -331,7 +331,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_25sdp"
                     android:layout_marginTop="15dp"
-                    android:text="Ciudad"
+                    android:text="@string/registro_15"
                     android:textColor="@color/blanco" />
 
                 <LinearLayout
@@ -342,7 +342,7 @@
                         android:id="@+id/registroCiudad"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:hint="Ciudad"
+                        android:hint="@string/registro_15"
                         android:maxLength="50"
                         android:textSize="10dp" />
 
@@ -366,7 +366,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_25sdp"
                     android:layout_marginTop="15dp"
-                    android:text="Localidad"
+                    android:text="@string/registro_16"
                     android:textColor="@color/blanco" />
 
 
@@ -378,7 +378,7 @@
                         android:id="@+id/registroLocalidad"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:hint="Localidad (Introduzca la ciudad si vive en ella)"
+                        android:hint="@string/registro_17"
                         android:maxLength="50"
                         android:textSize="10dp" />
 
@@ -409,7 +409,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_25sdp"
                         android:layout_marginTop="15dp"
-                        android:text="Dirección"
+                        android:text="@string/registro_18"
                         android:textColor="@color/blanco" />
 
                     <LinearLayout
@@ -420,14 +420,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Calle"
+                            android:text="@string/registro_19"
                             android:textColor="@color/blanco" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_140sdp"
-                            android:text="Número"
+                            android:text="@string/registro_20"
                             android:textColor="@color/blanco" />
                     </LinearLayout>
 
@@ -440,7 +440,7 @@
                             android:id="@+id/registroCalle"
                             android:layout_width="@dimen/_130sdp"
                             android:layout_height="wrap_content"
-                            android:hint="Calle"
+                            android:hint="@string/registro_19"
                             android:maxLength="50"
                             android:textSize="10dp" />
 
@@ -455,7 +455,7 @@
                             android:layout_width="@dimen/_40sdp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_10sdp"
-                            android:hint="Número"
+                            android:hint="@string/registro_20"
                             android:inputType="number"
                             android:maxLength="5"
                             android:textSize="10dp" />
@@ -475,14 +475,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Bloque"
+                            android:text="@string/registro_21"
                             android:textColor="@color/blanco" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_95sdp"
-                            android:text="Piso"
+                            android:text="@string/registro_22"
                             android:textColor="@color/blanco" />
                     </LinearLayout>
 
@@ -495,7 +495,7 @@
                             android:id="@+id/registroBloque"
                             android:layout_width="@dimen/_95sdp"
                             android:layout_height="wrap_content"
-                            android:hint="Bloque"
+                            android:hint="@string/registro_21"
                             android:maxLength="10"
                             android:textSize="10dp" />
 
@@ -510,7 +510,7 @@
                             android:layout_width="@dimen/_90sdp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_10sdp"
-                            android:hint="Piso"
+                            android:hint="@string/registro_22"
                             android:maxLength="5"
                             android:textSize="10dp" />
 
@@ -535,7 +535,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_25sdp"
                         android:layout_marginTop="15dp"
-                        android:text="Código postal"
+                        android:text="@string/registro_23"
                         android:textColor="@color/blanco" />
 
                     <LinearLayout
@@ -547,7 +547,7 @@
                             android:id="@+id/registroCodigoPostal"
                             android:layout_width="300dp"
                             android:layout_height="wrap_content"
-                            android:hint="12345"
+                            android:hint="@string/registro_24"
                             android:inputType="number"
                             android:maxLength="5"
                             android:textSize="10dp" />
@@ -582,7 +582,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_25sdp"
                     android:layout_marginTop="15dp"
-                    android:text="Subir foto de perfil (puedes subirla más tarde)"
+                    android:text="@string/registro_25"
                     android:textColor="@color/blanco" />
 
                 <LinearLayout
@@ -608,7 +608,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_margin="@dimen/_5sdp"
                                 android:background="@drawable/button"
-                                android:text="Elegir imagen"
+                                android:text="@string/registro_26"
                                 android:textColor="@color/azulLogo" />
 
                             <ImageView

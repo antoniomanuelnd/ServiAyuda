@@ -77,13 +77,11 @@ public class ServiciosFragmentAdapt extends Fragment {
             @Override
             public void onInit(int status) {
                 if (status == TextToSpeech.SUCCESS) {
-                    Locale locSpanish = new Locale("spa", "MEX");
+                    Locale locSpanish = new Locale("spa", "ESP");
                     int res = speaker.setLanguage(locSpanish);
 
                     if (res == TextToSpeech.LANG_MISSING_DATA || res == TextToSpeech.LANG_NOT_SUPPORTED) {
                         Log.e("TTS", "Lenguaje no soportado");
-                    } else {
-                        sonidoEmergencia.setEnabled(true);
                     }
                 } else {
                     Log.e("TTS", "Fallo al inicializar");

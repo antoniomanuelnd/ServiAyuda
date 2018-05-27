@@ -60,7 +60,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/button"
                 android:textColor="@color/azulLogo"
-                android:text="FINALIZAR"/>
+                android:textStyle="bold"
+                android:text="@string/finalizar"/>
         </LinearLayout>
 
     </LinearLayout>

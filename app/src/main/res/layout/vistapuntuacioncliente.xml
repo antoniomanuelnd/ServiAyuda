@@ -22,7 +22,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_5sdp"
                 android:gravity="center"
-                android:text="¿Cuál es su grado de satisfacción con el servicio?"/>
+                android:text="@string/vista_puntuacion_cliente_1"
+                android:textColor="@color/blanco"/>
             <RatingBar
                 android:id="@+id/clienteGradoSatisfaccion"
                 android:layout_width="wrap_content"
@@ -34,8 +35,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="¿Le ha tratado con respeto?"
+                android:text="@string/vista_puntuacion_cliente_2"
                 android:layout_marginBottom="@dimen/_5sdp"
+                android:textColor="@color/blanco"
                 android:gravity="center"/>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -45,7 +47,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sí"/>
+                    android:text="@string/si"
+                    android:textColor="@color/blanco"/>
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -54,7 +57,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No"/>
+                    android:text="@string/no"
+                    android:textColor="@color/blanco"/>
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -64,9 +68,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="¿Volverías a contratar su servicio?"
+                android:text="@string/vista_puntuacion_cliente_3"
                 android:layout_marginBottom="@dimen/_5sdp"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:textColor="@color/blanco"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -75,7 +80,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sí"/>
+                    android:text="@string/si"
+                    android:textColor="@color/blanco"/>
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -84,7 +90,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No"/>
+                    android:text="@string/no"
+                    android:textColor="@color/blanco"/>
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -93,9 +100,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="¿Recomendarías a los demás esta persona?"
+                android:text="@string/vista_puntuacion_cliente_4"
                 android:layout_marginBottom="@dimen/_5sdp"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:textColor="@color/blanco"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -104,7 +112,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sí"/>
+                    android:text="@string/si"
+                    android:textColor="@color/blanco"/>
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -113,7 +122,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No"/>
+                    android:text="@string/no"
+                    android:textColor="@color/blanco"/>
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -124,7 +134,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/button"
                 android:textColor="@color/azulLogo"
-                android:text="FINALIZAR"
+                android:textStyle="bold"
+                android:text="@string/finalizar"
                 android:id="@+id/clienteFinalizar"/>
 
         </LinearLayout>

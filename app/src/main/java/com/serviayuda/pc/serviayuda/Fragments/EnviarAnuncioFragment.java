@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.serviayuda.pc.serviayuda.Activitys.EnviaAnuncioActivity;
 import com.serviayuda.pc.serviayuda.Objetos.Anuncio;
+import com.serviayuda.pc.serviayuda.Objetos.Usuario;
 import com.serviayuda.pc.serviayuda.Preferencias.ManejadorPreferencias;
 import com.serviayuda.pc.serviayuda.R;
 

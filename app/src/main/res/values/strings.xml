@@ -1,30 +1,66 @@
 <resources>
+
+    <!-- Genericos  -->
+    <string name="si">Si</string>
+    <string name="no">No</string>
+    <string name="SI">SI</string>
+    <string name="NO">NO</string>
+    <string name="servicio_en_curso">Servicio en curso</string>
+    <string name="finalizar">FINALIZAR</string>
+    <string name="actualizar">Actualizar</string>
+
+    <!-- inicio.xml  -->
     <string name="nombre_app">ServiAyuda</string>
     <string name="inicio_1">¿Tienes una cuenta?</string>
     <string name="inicio_2">Iniciar sesión</string>
     <string name="inicio_3">¿Aún no tienes cuenta?</string>
     <string name="inicio_4">Crear cuenta</string>
 
+    <!-- registro.xml  -->
     <string name="registro_1">Registro</string>
     <string name="registro_2">Nombre</string>
     <string name="registro_3">Correo electrónico</string>
     <string name="registro_4">ejemplo@gmail.com</string>
     <string name="registro_5">Contraseña</string>
     <string name="registro_6">Finalizar</string>
+    <string name="registro_7">Apellidos</string>
+    <string name="registro_8">Edad</string>
+    <string name="registro_9">18</string>
+    <string name="registro_10">Repita la contraseña</string>
+    <string name="registro_11">¿Vas a prestar servicios o vas a solicitar servicios?</string>
+    <string name="registro_12">Prestar servicios</string>
+    <string name="registro_13">Solicitar servicios</string>
+    <string name="registro_14">¿Qué servicio vas a prestar?</string>
+    <string name="registro_15">Ciudad</string>
+    <string name="registro_16">Localidad</string>
+    <string name="registro_17">Localidad (Introduzca la ciudad si vive en ella)</string>
+    <string name="registro_18">Dirección</string>
+    <string name="registro_19">Calle</string>
+    <string name="registro_20">Número</string>
+    <string name="registro_21">Bloque</string>
+    <string name="registro_22">Piso</string>
+    <string name="registro_23">Código postal</string>
+    <string name="registro_24">12345</string>
+    <string name="registro_25">Subir foto de perfil (puedes subirla más tarde)</string>
+    <string name="registro_26">Elegir imagen</string>
 
+    <!-- iniciosesion.xml  -->
     <string name="iniciosesion_1">Iniciar sesión</string>
     <string name="iniciosesion_2">Introduzca su correo electrónico</string>
     <string name="iniciosesion_3">ejemplo@gmail.com</string>
     <string name="iniciosesion_4">Introduzca su contraseña:</string>
     <string name="iniciosesion_5">Contraseña</string>
     <string name="iniciosesion_6">Entrar</string>
+    <string name="iniciosesion_7">Mantener sesión iniciada</string>
 
+    <!-- fragment_perfil.xml  -->
     <string name="perfil_1">Descripción</string>
     <string name="perfil_2">Ciudad</string>
     <string name="perfil_3">Localidad</string>
     <string name="perfil_4">Dirección</string>
     <string name="perfil_5">Experiencia</string>
     <string name="perfil_6">Edad</string>
+
 
     <string name="envioanuncio_1">Tipo:</string>
     <string name="envioanuncio_2">Hora deseada:</string>
@@ -36,5 +72,107 @@
     <string name="vistaanuncio_1">Nombre: </string>
     <string name="vistaanuncio_2">Tipo: </string>
     <string name="vistaanuncio_3">Descripción: </string>
+
+    <!-- ajustes.xml  -->
+    <string name="ajustes_1">¿Interfaz adaptada?</string>
+    <string name="ajustes_2">¿Mantener sesión iniciada?</string>
+    <string name="ajustes_3">CERRAR SESIÓN</string>
+
+    <!-- anuncio_ampliado.xml  -->
+    <string name="anuncio_ampliado_1">Nombre: </string>
+    <string name="anuncio_ampliado_2">Tipo: </string>
+    <string name="anuncio_ampliado_3">Ciudad: </string>
+    <string name="anuncio_ampliado_4">Localidad: </string>
+    <string name="anuncio_ampliado_5">Hora deseada: </string>
+    <string name="anuncio_ampliado_6">Horas: </string>
+    <string name="anuncio_ampliado_7">Descripción: </string>
+    <string name="anuncio_ampliado_8">Ver perfil</string>
+    <string name="anuncio_ampliado_9">Volver</string>
+    <string name="anuncio_ampliado_10">Solicitar</string>
+
+    <!-- dialog_asistencia.xml  -->
+    <string name="dialog_asistencia_1">¿DESEA SOLICITAR UN SERVICIO DE ASISTENCIA?</string>
+
+    <!-- dialog_emergencia.xml  -->
+    <string name="dialog_emergencia_1">¿DESEA REALIZAR UNA LLAMADA DE EMERGENCIA?</string>
+
+    <!-- dialog_fisioterapia.xml  -->
+    <string name="dialog_fisioterapia_1">¿DESEA SOLICITAR UN SERVICIO DE FISIOTERAPIA?</string>
+
+    <!-- dialog_limpieza.xml  -->
+    <string name="dialog_limpieza_1">¿DESEA SOLICITAR UN SERVICIO DE LIMPIEZA?</string>
+
+    <!-- dialog_peluqueria.xml  -->
+    <string name="dialog_peluqueria_1">¿DESEA SOLICITAR UN SERVICIO DE PELUQUERÍA?</string>
+
+    <!-- editar.xml  -->
+    <string name="editar_1">EDITAR</string>
+    <string name="editar_2">Foto de perfil</string>
+    <string name="editar_3">Elegir imagen</string>
+    <string name="editar_4">Subir</string>
+    <string name="editar_5">Nombre</string>
+    <string name="guardar">Guardar</string>
+    <string name="editar_6">Apellidos</string>
+    <string name="editar_7">Edad</string>
+    <string name="editar_8">Descripción</string>
+    <string name="editar_9">Experiencia</string>
+    <string name="edietar_10">Ciudad</string>
+    <string name="editar_11">Localidad</string>
+    <string name="editar_12">Dirección</string>
+    <string name="editar_13">Código postal</string>
+
+    <!-- fragment_servicioencurso_adapt.xml  -->
+    <string name="servicio_en_curso_1">Servicio en curso</string>
+
+    <!-- fragment_servicios_adapt.xml  -->
+    <string name="frag_servicios_adapt_1">SERVICIOS</string>
+    <string name="frag_servicios_adapt_2">EMERGENCIA</string>
+    <string name="frag_servicios_adapt_3">PELUQUERÍA</string>
+    <string name="frag_servicios_adapt_4">ASISTENCIA</string>
+    <string name="frag_servicios_adapt_5">FISIOTERAPIA</string>
+    <string name="frag_servicios_adapt_6">LIMPIEZA</string>
+
+    <!-- fragment_solicitudes_adapt.xml  -->
+    <string name="frag_solicitudes_adapt_1">SOLICITUDES</string>
+    <string name="frag_solicitudes_adapt_2">ACTUALIZAR</string>
+
+    <!-- vistapuntuacioncliente.xml  -->
+    <string name="vista_puntuacion_cliente_1">¿Cuál es su grado de satisfacción con el servicio?</string>
+    <string name="vista_puntuacion_cliente_2">¿Le ha tratado con respeto?</string>
+    <string name="vista_puntuacion_cliente_3">¿Volverías a contratar su servicio?</string>
+    <string name="vista_puntuacion_cliente_4">¿Recomendarías a los demás esta persona?</string>
+    <string name="vistapuntuacionclienteadapt_1">¿CUÁL ES SU GRADO DE SATISFACCIÓN CON EL SERVICIO?</string>
+    <string name="excelente">EXCELENTE</string>
+    <string name="genial">GENIAL</string>
+    <string name="bueno">BUENO</string>
+    <string name="regular">REGULAR</string>
+    <string name="mal">MAL</string>
+
+    <!-- vistapuntuacionclienteadapt.xml  -->
+    <string name="vistapuntuacionclienteadapt_2">¿LE HA TRATADO CON RESPETO?</string>
+    <string name="vistapuntuacionclienteadapt_3">¿VOLVERIAS A CONTRATAR SU SERVICIO?</string>
+    <string name="vistapuntuacionclienteadapt_4">¿RECOMENDARÍAS A LOS DEMÁS A ESTA PERSONA?</string>
+
+    <!-- vistapuntuacionproveedor
+    .xml  -->
+    <string name="vistapuntuacionproveedor_1">¿Cuál es su grado de satisfacción con el servicio?</string>
+    <string name="vistapuntuacionproveedor_2">¿Le ha tratado con respeto?</string>
+    <string name="vistapuntuacionproveedor_3">¿Volverías a prestar servicio a esta persona?</string>
+    <string name="vistapuntuacionproveedor_5">¿Recomendarías a los demás esta persona?</string>
+    <string name="no_hay_servicios_en_curso">No hay servicios en curso</string>
+    <string name="vistasolicitud_1">Nombre:</string>
+    <string name="vistasolicitudadapt_1">NOMBRE:</string>
+    <string name="vistasolicitudadapt_2">VER PERFIL</string>
+    <string name="vistasolicitudadapt_3">ACEPTAR</string>
+    <string name="vistasolicitudadapt_4">RECHAZAR</string>
+
+
+    <!-- dialog_asistencia.xml  -->
+    <!-- dialog_asistencia.xml  -->
+    <!-- dialog_asistencia.xml  -->
+    <!-- dialog_asistencia.xml  -->
+
+
+
 
 </resources>

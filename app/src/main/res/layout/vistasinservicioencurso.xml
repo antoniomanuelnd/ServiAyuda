@@ -15,7 +15,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No hay servicios en curso" />
+            android:text="@string/no_hay_servicios_en_curso"
+            android:textColor="@color/blanco"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 </LinearLayout>

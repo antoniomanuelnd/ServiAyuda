@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/_5sdp"
-                android:text="Nombre: " />
+                android:text="@string/anuncio_ampliado_1" />
 
             <TextView
                 android:id="@+id/anuncioAmpliadoNombre"
@@ -54,7 +54,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tipo: " />
+                android:text="@string/anuncio_ampliado_2" />
 
             <TextView
                 android:id="@+id/anuncioAmpliadoTipo"
@@ -77,7 +77,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ciudad: " />
+                android:text="@string/anuncio_ampliado_3" />
 
             <TextView
                 android:id="@+id/anuncioAmpliadoCiudad"
@@ -100,7 +100,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Localidad: " />
+                android:text="@string/anuncio_ampliado_4" />
 
             <TextView
                 android:id="@+id/anuncioAmpliadoLocalidad"
@@ -123,7 +123,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hora deseada: " />
+                android:text="@string/anuncio_ampliado_5" />
 
             <TextView
                 android:id="@+id/anuncioAmpliadoHoraDeseada"
@@ -146,7 +146,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Horas: " />
+                android:text="@string/anuncio_ampliado_6" />
 
             <TextView
                 android:id="@+id/anuncioAmpliadoHoras"
@@ -169,7 +169,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Descripción: " />
+                android:text="@string/anuncio_ampliado_7" />
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -217,7 +217,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="12dp"
                     android:background="@drawable/button"
-                    android:text="Ver perfil"
+                    android:text="@string/anuncio_ampliado_8"
                     android:textColor="@color/azulLogo" />
             </RelativeLayout>
 
@@ -239,7 +239,7 @@
                     android:layout_marginEnd="10dp"
                     android:layout_toStartOf="@+id/anuncioAmpliadoBotonSolicitar"
                     android:background="@drawable/buttondos"
-                    android:text="Volver"
+                    android:text="@string/anuncio_ampliado_9"
                     android:textColor="@color/azulLogo" />
 
                 <Button
@@ -249,7 +249,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
                     android:background="@drawable/buttondos"
-                    android:text="Solicitar"
+                    android:text="@string/anuncio_ampliado_10"
                     android:textColor="@color/azulLogo" />
 
             </RelativeLayout>

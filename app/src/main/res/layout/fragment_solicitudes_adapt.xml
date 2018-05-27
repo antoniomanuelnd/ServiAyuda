@@ -17,7 +17,7 @@
             android:layout_height="@dimen/_75sdp"
             android:background="@color/azulLogo"
             android:gravity="center"
-            android:text="SOLICITUDES"
+            android:text="@string/frag_solicitudes_adapt_1"
             android:textColor="@color/blanco"
             android:textSize="@dimen/_45sdp"
             android:textStyle="bold" />
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:backgroundTint="@color/blanco"
-            android:text="Actualizar"
+            android:text="@string/frag_solicitudes_adapt_2"
             android:textColor="#000"
             android:textSize="@dimen/_30sdp"
             android:textStyle="bold" />

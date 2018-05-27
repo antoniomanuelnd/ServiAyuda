@@ -91,13 +91,13 @@ public class ServicioEnCursoFragment extends Fragment {
                 verPerfil = lay.findViewById(R.id.servicioSolicitanteEnCursoPerfil);
                 verPerfil.setBackgroundResource(R.drawable.botonperfil);
 
-                if(anuncio.getHoraDeseada().compareTo("Hoy lo antes posible")==0) {
+                if (anuncio.getHoraDeseada().compareTo("Hoy lo antes posible") == 0) {
                     info.setText("El usuario " + usuario.getNombre() + " le va a prestar un servicio de " + anuncio.getTipoAnuncio().toLowerCase() + " hoy lo antes posible durante " + anuncio.getHoras() + ".");
-                }else{
+                } else {
                     info.setText("El usuario " + usuario.getNombre() + " le va a prestar un servicio de " + anuncio.getTipoAnuncio().toLowerCase() + " a partir de " + determinaPronombre(anuncio.getHoraDeseada()) + anuncio.getHoraDeseada() + " durante " + anuncio.getHoras() + ".");
                 }
                 verPerfilDe.setText("Ver perfil de " + usuario.getNombre());
-                ayuda.setText("Podrás pulsar el botón FINALIZAR cuando el servicio haya sido cumplido. Posteriormente se le pedirá que puntúe a la persona que le ha ofrecido el servicio e inmediatamente podrá solicitar un nuevo servicio. En caso de que el servicio no haya podido ser realizado, por favor, finalice el servicio, puntúe negativamente y solicite de nuevo el servicio.");
+                ayuda.setText("Podrás pulsar el botón FINALIZAR cuando el servicio haya sido cumplido. Posteriormente se le pedirá que puntúe a la persona que le ha ofrecido el servicio e inmediatamente podrá solicitar un nuevo servicio. En caso de que el servicio no haya podido ser realizado, por favor, finalice el servicio, puntúe negativamente y solicite un nuevo servicio si lo desea.");
 
                 //Botón ver perfil
                 verPerfil.setOnClickListener(new View.OnClickListener() {
@@ -145,9 +145,9 @@ public class ServicioEnCursoFragment extends Fragment {
                 verPerfil = lay.findViewById(R.id.servicioProveedorEnCursoPerfil);
                 verPerfil.setBackgroundResource(R.drawable.botonperfil);
 
-                if(anuncio.getHoraDeseada().compareTo("Hoy lo antes posible")==0){
+                if (anuncio.getHoraDeseada().compareTo("Hoy lo antes posible") == 0) {
                     info.setText("Tienes que ofrecer un servicio de " + anuncio.getTipoAnuncio().toLowerCase() + " a " + usuario.getNombre() + " hoy lo antes posible durante " + anuncio.getHoras() + ".");
-                }else{
+                } else {
                     info.setText("Tienes que ofrecer un servicio de " + anuncio.getTipoAnuncio().toLowerCase() + " a " + usuario.getNombre() + " a partir de " + determinaPronombre(anuncio.getHoraDeseada()) + anuncio.getHoraDeseada() + " durante " + anuncio.getHoras() + ".");
                 }
 
@@ -188,9 +188,9 @@ public class ServicioEnCursoFragment extends Fragment {
                 lay.setBackground(gd);
             }
         } else { //Si no hay solicitud en curso
-            if(sol.getEstado().compareTo("Pendiente")==0){
+            if (sol.getEstado().compareTo("Pendiente") == 0) {
                 lay = (LinearLayout) LayoutInflater.from(getContext()).inflate(R.layout.vistasinservicioencurso, null);
-            }else if (sol.getEmailSolicitante().compareTo(email) == 0) { //Vista de puntuación del cliente
+            } else if (sol.getEmailSolicitante().compareTo(email) == 0) { //Vista de puntuación del cliente
                 lay = (LinearLayout) LayoutInflater.from(getContext()).inflate(R.layout.vistapuntuacioncliente, null);
                 //Método rating del cliente
                 ratingCliente(lay, sol);
@@ -201,20 +201,20 @@ public class ServicioEnCursoFragment extends Fragment {
             }
         }
         serviciosLayout.addView(lay);
-}
+    }
 
     public String determinaPronombre(String hora) {
 
-            Integer primeraParte = Integer.parseInt(hora.substring(0, 2));
-            if ((primeraParte >= 10) || (primeraParte == 0)) {
-                return "las ";
-            } else {
-                return "la ";
-            }
+        Integer primeraParte = Integer.parseInt(hora.substring(0, 2));
+        if ((primeraParte >= 10) || (primeraParte == 0)) {
+            return "las ";
+        } else {
+            return "la ";
+        }
 
     }
 
-    public void ratingCliente(LinearLayout lay, final Solicitud sol){
+    public void ratingCliente(LinearLayout lay, final Solicitud sol) {
 
         ratingBar = lay.findViewById(R.id.clienteGradoSatisfaccion);
         finalizarRating = lay.findViewById(R.id.clienteFinalizar);
@@ -271,22 +271,22 @@ public class ServicioEnCursoFragment extends Fragment {
                 Integer votos_negativos = 0;
                 Float rating = ratingBar.getRating();
 
-                if((respetoSi.isChecked()==false && respetoNo.isChecked()==false) || (servicioSi.isChecked()==false && servicioNo.isChecked()==false) || (recomendarSi.isChecked()==false && recomendarNo.isChecked()==false)){
+                if ((respetoSi.isChecked() == false && respetoNo.isChecked() == false) || (servicioSi.isChecked() == false && servicioNo.isChecked() == false) || (recomendarSi.isChecked() == false && recomendarNo.isChecked() == false)) {
                     Toast.makeText(getContext(), "Existen preguntas sin puntuar", Toast.LENGTH_LONG).show();
-                }else{
-                    if(respetoSi.isChecked()){
+                } else {
+                    if (respetoSi.isChecked()) {
                         votos_positivos = votos_positivos + 1;
-                    }else if (respetoNo.isChecked()) {
+                    } else if (respetoNo.isChecked()) {
                         votos_negativos = votos_negativos + 1;
                     }
-                    if(servicioSi.isChecked()){
+                    if (servicioSi.isChecked()) {
                         votos_positivos = votos_positivos + 1;
-                    }else if (servicioNo.isChecked()) {
+                    } else if (servicioNo.isChecked()) {
                         votos_negativos = votos_negativos + 1;
                     }
-                    if(recomendarSi.isChecked()){
+                    if (recomendarSi.isChecked()) {
                         votos_positivos = votos_positivos + 1;
-                    }else if (recomendarNo.isChecked()) {
+                    } else if (recomendarNo.isChecked()) {
                         votos_negativos = votos_negativos + 1;
                     }
 
@@ -300,7 +300,8 @@ public class ServicioEnCursoFragment extends Fragment {
             }
         });
     }
-    public void ratingProveedor(LinearLayout lay, final Solicitud sol){
+
+    public void ratingProveedor(LinearLayout lay, final Solicitud sol) {
 
         ratingBar = lay.findViewById(R.id.proveedorGradoSatisfaccion);
         finalizarRating = lay.findViewById(R.id.proveedorFinalizar);
@@ -357,22 +358,22 @@ public class ServicioEnCursoFragment extends Fragment {
                 Integer votos_negativos = 0;
                 Float rating = ratingBar.getRating();
 
-                if((respetoSi.isChecked()==false && respetoNo.isChecked()==false) || (servicioSi.isChecked()==false && servicioNo.isChecked()==false) || (recomendarSi.isChecked()==false && recomendarNo.isChecked()==false)){
+                if ((respetoSi.isChecked() == false && respetoNo.isChecked() == false) || (servicioSi.isChecked() == false && servicioNo.isChecked() == false) || (recomendarSi.isChecked() == false && recomendarNo.isChecked() == false)) {
                     Toast.makeText(getContext(), "Existen preguntas sin puntuar", Toast.LENGTH_LONG).show();
-                }else{
-                    if(respetoSi.isChecked()){
+                } else {
+                    if (respetoSi.isChecked()) {
                         votos_positivos = votos_positivos + 1;
-                    }else if (respetoNo.isChecked()) {
+                    } else if (respetoNo.isChecked()) {
                         votos_negativos = votos_negativos + 1;
                     }
-                    if(servicioSi.isChecked()){
+                    if (servicioSi.isChecked()) {
                         votos_positivos = votos_positivos + 1;
-                    }else if (servicioNo.isChecked()) {
+                    } else if (servicioNo.isChecked()) {
                         votos_negativos = votos_negativos + 1;
                     }
-                    if(recomendarSi.isChecked()){
+                    if (recomendarSi.isChecked()) {
                         votos_positivos = votos_positivos + 1;
-                    }else if (recomendarNo.isChecked()) {
+                    } else if (recomendarNo.isChecked()) {
                         votos_negativos = votos_negativos + 1;
                     }
                     new EnviaPuntuacionActivity(getContext(), getActivity(), sol.getEmailSolicitante(), sol.getEmailProveedor(), rating, votos_positivos, votos_negativos).execute();

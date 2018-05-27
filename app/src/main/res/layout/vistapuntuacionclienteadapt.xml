@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/_25sdp"
+    android:background="@color/azulLogo"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_25sdp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:gravity="center"
+                android:text="@string/vistapuntuacionclienteadapt_1"
+                android:textColor="@color/blanco"
+                android:textSize="@dimen/_25sdp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/botonExcelente"
+                        android:layout_width="@dimen/_200sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:backgroundTint="@color/blanco"
+                        android:text="@string/excelente"
+                        android:textColor="@color/azulLogo"
+                        android:textSize="@dimen/_25sdp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/tickExcelente"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/tickverde"
+                        android:visibility="invisible" />
+
+                    <ImageView
+                        android:id="@+id/excelenteSonido"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:background="@drawable/ic_volume_up_white_24dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/botonGenial"
+                        android:layout_width="@dimen/_200sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:backgroundTint="@color/blanco"
+                        android:text="@string/genial"
+                        android:textColor="@color/azulLogo"
+                        android:textSize="@dimen/_25sdp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/tickGenial"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/tickverde"
+                        android:visibility="invisible" />
+
+                    <ImageView
+                        android:id="@+id/genialSonido"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:background="@drawable/ic_volume_up_white_24dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/botonBueno"
+                        android:layout_width="@dimen/_200sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:backgroundTint="@color/blanco"
+                        android:text="@string/bueno"
+                        android:textColor="@color/azulLogo"
+                        android:textSize="@dimen/_25sdp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/tickBueno"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/tickverde"
+                        android:visibility="invisible" />
+
+                    <ImageView
+                        android:id="@+id/buenoSonido"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:background="@drawable/ic_volume_up_white_24dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/botonRegular"
+                        android:layout_width="@dimen/_200sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:backgroundTint="@color/blanco"
+                        android:text="@string/regular"
+                        android:textColor="@color/azulLogo"
+                        android:textSize="@dimen/_25sdp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/tickRegular"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/tickverde"
+                        android:visibility="invisible" />
+
+                    <ImageView
+                        android:id="@+id/regularSonido"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:background="@drawable/ic_volume_up_white_24dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/botonMal"
+                        android:layout_width="@dimen/_200sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:backgroundTint="@color/blanco"
+                        android:text="@string/mal"
+                        android:textColor="@color/azulLogo"
+                        android:textSize="@dimen/_25sdp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/tickMal"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/tickverde"
+                        android:visibility="invisible" />
+
+                    <ImageView
+                        android:id="@+id/malSonido"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:background="@drawable/ic_volume_up_white_24dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@color/dividercolor" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:gravity="center"
+                android:text="@string/vistapuntuacionclienteadapt_2"
+                android:textColor="@color/blanco"
+                android:textSize="@dimen/_25sdp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/botonRespetoSi"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:backgroundTint="@color/blanco"
+                    android:text="@string/SI"
+                    android:textColor="@color/azulLogo"
+                    android:textSize="@dimen/_25sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/tickRespetoSi"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@drawable/tickverde"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/respetoSiSonido"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:background="@drawable/ic_volume_up_white_24dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/botonRespetoNo"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:backgroundTint="@color/blanco"
+                    android:text="@string/NO"
+                    android:textColor="@color/azulLogo"
+                    android:textSize="@dimen/_25sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/tickRespetoNo"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@drawable/tickverde"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/respetoNoSonido"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:background="@drawable/ic_volume_up_white_24dp" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@color/dividercolor" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:gravity="center"
+                android:text="@string/vistapuntuacionclienteadapt_3"
+                android:textColor="@color/blanco"
+                android:textSize="@dimen/_25sdp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/botonServicioSi"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:backgroundTint="@color/blanco"
+                    android:text="@string/SI"
+                    android:textColor="@color/azulLogo"
+                    android:textSize="@dimen/_25sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/tickServicioSi"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@drawable/tickverde"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/servicioSiSonido"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:background="@drawable/ic_volume_up_white_24dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/botonServicioNo"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:backgroundTint="@color/blanco"
+                    android:text="@string/NO"
+                    android:textColor="@color/azulLogo"
+                    android:textSize="@dimen/_25sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/tickServicioNo"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@drawable/tickverde"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/servicioNoSonido"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:background="@drawable/ic_volume_up_white_24dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@color/dividercolor" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:gravity="center"
+                android:text="@string/vistapuntuacionclienteadapt_4"
+                android:textColor="@color/blanco"
+                android:textSize="@dimen/_25sdp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/botonRecomendarSi"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:backgroundTint="@color/blanco"
+                    android:text="@string/SI"
+                    android:textColor="@color/azulLogo"
+                    android:textSize="@dimen/_25sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/tickRecomendarSi"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@drawable/tickverde"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/recomendarSiSonido"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:background="@drawable/ic_volume_up_white_24dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/botonRecomendarNo"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:backgroundTint="@color/blanco"
+                    android:text="@string/NO"
+                    android:textColor="@color/azulLogo"
+                    android:textSize="@dimen/_25sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/tickRecomendarNo"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@drawable/tickverde"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/recomendarNoSonido"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:background="@drawable/ic_volume_up_white_24dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@color/dividercolor" />
+
+            <Button
+                android:id="@+id/clienteFinalizar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button"
+                android:text="@string/finalizar"
+                android:textColor="@color/azulLogo"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

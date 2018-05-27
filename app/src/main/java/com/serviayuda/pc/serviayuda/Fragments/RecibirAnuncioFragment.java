@@ -19,6 +19,7 @@ import com.serviayuda.pc.serviayuda.Activitys.RecibirAnunciosActivity;
 import com.serviayuda.pc.serviayuda.Adapters.AdapterAnuncios;
 import com.serviayuda.pc.serviayuda.Objetos.Anuncio;
 import com.serviayuda.pc.serviayuda.BBDD.DatabaseHelper;
+import com.serviayuda.pc.serviayuda.Objetos.Usuario;
 import com.serviayuda.pc.serviayuda.Preferencias.ManejadorPreferencias;
 import com.serviayuda.pc.serviayuda.R;
 
@@ -28,11 +29,9 @@ import java.util.List;
 
 public class RecibirAnuncioFragment extends Fragment {
 
-    Spinner spinnerTipos;
     Button botonMostrarAnuncios;
-    AdapterView.OnItemSelectedListener spinnerListenerTipos;
     View view;
-
+    Usuario usuario;
     DatabaseHelper databaseHelper;
     RecyclerView recycler;
     AdapterAnuncios adapter;
@@ -52,11 +51,7 @@ public class RecibirAnuncioFragment extends Fragment {
     }
 
     private void iniciarVistas(){
-        spinnerTipos = view.findViewById(R.id.recibirAnunciosSpinnerTipo);
-        ArrayAdapter<CharSequence> adapterTipos = ArrayAdapter.createFromResource(view.getContext(), R.array.spinnerTipos, android.R.layout.simple_spinner_item);
-        adapterTipos.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        spinnerTipos.setAdapter(adapterTipos);
-        spinnerTipos.setOnItemSelectedListener(spinnerListenerTipos);
+
         botonMostrarAnuncios = view.findViewById(R.id.recibirAnunciosBotonMostrar);
         databaseHelper = new DatabaseHelper(getActivity());
 
@@ -64,17 +59,12 @@ public class RecibirAnuncioFragment extends Fragment {
         recycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         SharedPreferences preferences = getActivity().getSharedPreferences("SESION", Activity.MODE_PRIVATE);
         mp = new ManejadorPreferencias(preferences);
+        usuario = databaseHelper.getUsuario(mp.cargarPreferencias("KEY_EMAIL"));
+
     }
 
     private void iniciarListeners(){
-        spinnerListenerTipos = new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
-        };
+
         botonMostrarAnuncios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,7 +74,7 @@ public class RecibirAnuncioFragment extends Fragment {
     }
     private void mostrarAnuncios(){
 
-        new RecibirAnunciosActivity(getContext(), getActivity(), databaseHelper, recycler, spinnerTipos.getSelectedItem().toString(), adapter, this, mp.cargarPreferencias("KEY_EMAIL")).execute();
+        new RecibirAnunciosActivity(getContext(), getActivity(), databaseHelper, recycler, usuario.getTipoServicio(), usuario.getCiudad(), adapter, this, mp.cargarPreferencias("KEY_EMAIL")).execute();
 
     }
 }

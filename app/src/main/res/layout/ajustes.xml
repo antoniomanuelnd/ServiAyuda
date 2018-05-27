@@ -17,7 +17,7 @@
             android:layout_width="@dimen/_150sdp"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/_5sdp"
-            android:text="¿Interfaz adaptada?"
+            android:text="@string/ajustes_1"
             android:textStyle="bold" />
 
         <Switch
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/_8sdp"
             android:paddingRight="@dimen/_8sdp"
-            android:text="No"
+            android:text="@string/si"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -47,7 +47,7 @@
             android:layout_width="@dimen/_150sdp"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/_5sdp"
-            android:text="¿Mantener sesión iniciada?"
+            android:text="@string/ajustes_2"
             android:textStyle="bold" />
 
         <Switch
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/_8sdp"
             android:paddingRight="@dimen/_8sdp"
-            android:text="No"
+            android:text="@string/no"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -79,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button"
-            android:text="CERRAR SESIÓN"
+            android:text="@string/ajustes_3"
             android:textColor="@color/azulLogo"
             android:textStyle="bold" />
     </LinearLayout>

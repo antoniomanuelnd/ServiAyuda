@@ -15,7 +15,7 @@
             android:layout_height="@dimen/_75sdp"
             android:background="@color/azulLogo"
             android:gravity="center"
-            android:text="SERVICIOS"
+            android:text="@string/frag_servicios_adapt_1"
             android:textColor="@color/blanco"
             android:textSize="@dimen/_50sdp"
             android:textStyle="bold" />
@@ -43,7 +43,7 @@
                         android:layout_width="@dimen/_230sdp"
                         android:layout_height="match_parent"
                         android:backgroundTint="#ffcc00"
-                        android:text="EMERGENCIA"
+                        android:text="@string/frag_servicios_adapt_2"
                         android:textColor="#000"
                         android:textSize="@dimen/_30sdp" />
 
@@ -67,7 +67,7 @@
                         android:layout_width="@dimen/_230sdp"
                         android:layout_height="match_parent"
                         android:backgroundTint="@color/azul2"
-                        android:text="PELUQUERÍA"
+                        android:text="@string/frag_servicios_adapt_3"
                         android:textSize="@dimen/_30sdp" />
 
                     <ImageButton
@@ -90,7 +90,7 @@
                         android:layout_width="@dimen/_230sdp"
                         android:layout_height="match_parent"
                         android:backgroundTint="@color/azul2"
-                        android:text="ASISTENCIA"
+                        android:text="@string/frag_servicios_adapt_4"
                         android:textSize="@dimen/_30sdp" />
 
                     <ImageButton
@@ -114,7 +114,7 @@
                         android:layout_width="@dimen/_230sdp"
                         android:layout_height="match_parent"
                         android:backgroundTint="@color/azul2"
-                        android:text="FISIOTERAPIA"
+                        android:text="@string/frag_servicios_adapt_5"
                         android:textSize="@dimen/_30sdp" />
 
                     <ImageButton
@@ -138,7 +138,7 @@
                         android:layout_width="@dimen/_230sdp"
                         android:layout_height="match_parent"
                         android:backgroundTint="@color/azul2"
-                        android:text="LIMPIEZA"
+                        android:text="@string/frag_servicios_adapt_6"
                         android:textSize="@dimen/_30sdp" />
 
                     <ImageButton

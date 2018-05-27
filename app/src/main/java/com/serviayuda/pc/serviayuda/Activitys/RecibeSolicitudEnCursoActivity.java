@@ -85,11 +85,18 @@ public class RecibeSolicitudEnCursoActivity extends AsyncTask {
             solicitud.setEstado(respuesta[3]);
             solicitud.setClienteCheck(respuesta[4]);
             solicitud.setProveedorCheck(respuesta[5]);
-            databaseHelper.addSolicitud(solicitud);
+
+
 
             if (email.compareTo(respuesta[0]) == 0) { //Si estoy desde la cuenta del anunciante/solicitante
+                if(solicitud.getClienteCheck().compareTo("ok")!=0){
+                    databaseHelper.addSolicitud(solicitud);
+                }
                     new RecibeAnuncioYUsuarioActivity(context, activity, respuesta[1], email).execute(); //Pido el usuario proveedor
             } else { //Si estoy desde la cuenta del proveedor
+                if(solicitud.getProveedorCheck().compareTo("ok")!=0){
+                    databaseHelper.addSolicitud(solicitud);
+                }
                     new RecibeAnuncioYUsuarioActivity(context, activity, respuesta[0], respuesta[0]).execute(); //Pido el usuario anunciante
             }
         }

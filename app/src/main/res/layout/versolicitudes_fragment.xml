@@ -32,8 +32,9 @@
         <Button
             android:layout_width="@dimen/_190sdp"
             android:layout_height="wrap_content"
-            android:text="Actualizar"
+            android:text="@string/actualizar"
             android:textColor="@color/azulLogo"
+            android:textStyle="bold"
             android:id="@+id/actualizar"
             android:background="@drawable/button"/>
 

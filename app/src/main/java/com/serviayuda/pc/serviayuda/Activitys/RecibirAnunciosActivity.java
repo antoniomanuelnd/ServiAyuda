@@ -33,9 +33,9 @@ public class RecibirAnunciosActivity extends AsyncTask {
     private String tipo;
     private AdapterAnuncios adapter;
     private RecibirAnuncioFragment recibirAnuncioFragment;
-    private String email;
+    private String email, ciudad;
 
-    public RecibirAnunciosActivity(Context context, Activity activity, DatabaseHelper databaseHelper, RecyclerView recycler, String tipo, AdapterAnuncios adapter, RecibirAnuncioFragment recibirAnuncioFragment, String email){
+    public RecibirAnunciosActivity(Context context, Activity activity, DatabaseHelper databaseHelper, RecyclerView recycler, String tipo, String ciudad, AdapterAnuncios adapter, RecibirAnuncioFragment recibirAnuncioFragment, String email) {
         this.context = context;
         this.activity = activity;
         this.databaseHelper = new DatabaseHelper(activity);
@@ -44,6 +44,7 @@ public class RecibirAnunciosActivity extends AsyncTask {
         this.adapter = adapter;
         this.recibirAnuncioFragment = recibirAnuncioFragment;
         this.email = email;
+        this.ciudad = ciudad;
     }
 
     protected void onPreExecute() {
@@ -58,6 +59,8 @@ public class RecibirAnunciosActivity extends AsyncTask {
             String link = "https://apptfg.000webhostapp.com/recibeAnuncios.php";
             String data = URLEncoder.encode("email", "UTF-8") + "=" +
                     URLEncoder.encode("email", "UTF-8");
+            data += "&" + URLEncoder.encode("ciudad", "UTF-8") + "=" +
+                    URLEncoder.encode(ciudad, "UTF-8");
 
             URL url = new URL(link);
             URLConnection conn = url.openConnection();
@@ -85,13 +88,13 @@ public class RecibirAnunciosActivity extends AsyncTask {
 
     protected void onPostExecute(Object res) {
         String aux = res.toString();
-        if(aux.compareTo("ERROR")!=0) {
+        if (aux.compareTo("ERROR") != 0) {
             String respuesta[] = aux.split("<.>");
             Anuncio anuncio = new Anuncio();
             Anuncio anuncioPermanente;
 
             Solicitud sol = databaseHelper.getSolicitud(email);
-            if(sol.getEstado()==null) {
+            if (sol.getEstado() == null) {
                 for (int i = 0; i < respuesta.length; i = i + 7) {
 
                     anuncio.setEmail(respuesta[i]);
@@ -105,13 +108,13 @@ public class RecibirAnunciosActivity extends AsyncTask {
                     databaseHelper.addAnuncio(anuncio);
                 }
 
-            }else if(sol.getEstado().compareTo("En curso") == 0){
+            } else if (sol.getEstado().compareTo("En curso") == 0) {
                 anuncioPermanente = databaseHelper.getAnuncio(databaseHelper.getSolicitudEstado(email, "En curso").getEmailSolicitante());
                 databaseHelper.setEliminaTodosLosAnuncios();
                 databaseHelper.addAnuncio(anuncioPermanente);
             }
             final List<Anuncio> lista = databaseHelper.getAnunciosPorTipo(tipo);
-            adapter = new AdapterAnuncios((ArrayList<Anuncio>)lista, recibirAnuncioFragment, activity);
+            adapter = new AdapterAnuncios((ArrayList<Anuncio>) lista, recibirAnuncioFragment, activity);
             recycler.setAdapter(adapter);
         }
     }
