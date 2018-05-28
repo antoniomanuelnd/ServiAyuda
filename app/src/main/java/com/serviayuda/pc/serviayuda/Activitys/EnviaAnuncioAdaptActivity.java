@@ -79,7 +79,7 @@ public class EnviaAnuncioAdaptActivity extends AsyncTask {
             Alerter.create(activity)
                     .setTitle("ANUNCIO ENVIADO")
                     .setText("El anuncio ha sido enviado")
-                    .setBackgroundColorInt(Color.BLACK)
+                    .setBackgroundColorInt(Color.MAGENTA)
                     .setDuration(10000)
                     .enableSwipeToDismiss()
                     .show();
@@ -87,7 +87,7 @@ public class EnviaAnuncioAdaptActivity extends AsyncTask {
             Alerter.create(activity)
                     .setTitle("ANUNCIO ENVIADO")
                     .setText("El anuncio ha sido enviado")
-                    .setBackgroundColorInt(Color.BLACK)
+                    .setBackgroundColorInt(Color.MAGENTA)
                     .setDuration(10000)
                     .enableSwipeToDismiss()
                     .show();
@@ -95,7 +95,7 @@ public class EnviaAnuncioAdaptActivity extends AsyncTask {
             Alerter.create(activity)
                     .setTitle("ANUNCIO NO ENVIADO")
                     .setText("El anuncio no ha podido ser enviado")
-                    .setBackgroundColorInt(Color.BLACK)
+                    .setBackgroundColorInt(Color.RED)
                     .setDuration(10000)
                     .enableSwipeToDismiss()
                     .show();

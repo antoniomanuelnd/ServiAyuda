@@ -32,6 +32,7 @@ public class AnuncioAmpliado extends AppCompatActivity {
     Anuncio anuncio = new Anuncio();
     ManejadorPreferencias mp;
     private DatabaseHelper databaseHelper;
+    private final AppCompatActivity activity = AnuncioAmpliado.this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +108,7 @@ public class AnuncioAmpliado extends AppCompatActivity {
         botonSolicitar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                new EnviaSolicitudActivity(AnuncioAmpliado.this, anuncio).execute(emailProveedor);
+                new EnviaSolicitudActivity(AnuncioAmpliado.this, activity, anuncio).execute(emailProveedor);
             }
         });
 

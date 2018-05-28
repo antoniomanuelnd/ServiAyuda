@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,8 +24,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -34,7 +33,6 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
-import com.serviayuda.pc.serviayuda.Activitys.EditarActivity;
 import com.serviayuda.pc.serviayuda.Activitys.EditarCampoActivity;
 import com.serviayuda.pc.serviayuda.BBDD.DatabaseHelper;
 import com.serviayuda.pc.serviayuda.Objetos.Imagen;
@@ -71,6 +69,8 @@ public class Editar extends AppCompatActivity {
     private DatabaseReference DatabaseRef;
     private StorageTask subidaTask;
     String referencia;
+
+    private final AppCompatActivity activity = Editar.this;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -197,7 +197,13 @@ public class Editar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (subidaTask != null && subidaTask.isInProgress()) {
-                    Toast.makeText(Editar.this, "Ya se está subiendo una foto", Toast.LENGTH_LONG).show();
+                    Alerter.create(Editar.this)
+                            .setTitle("ESPERE")
+                            .setText("Ya se está subiendo una foto")
+                            .setBackgroundColorInt(0Xffcc00)
+                            .setDuration(3000)
+                            .enableSwipeToDismiss()
+                            .show();
                 } else {
                     subirImagen();
                 }
@@ -223,17 +229,13 @@ public class Editar extends AppCompatActivity {
             public void onClick(View view) {
                 if (!nombreEt.getText().toString().isEmpty()) {
                     if (nombreEt.getText().toString().compareTo(nombreTv.getText().toString()) != 0) {
-                        new EditarCampoActivity(Editar.this, usuario).execute("nombre", nombreEt.getText().toString());
+                        new EditarCampoActivity(Editar.this, activity, usuario).execute("nombre", nombreEt.getText().toString());
                         nombreEt.setVisibility(View.GONE);
                         nombreGuardar.setVisibility(View.GONE);
                         nombreEditar.setVisibility(View.VISIBLE);
                         nombreCont.setVisibility(View.GONE);
                         nombreTv.setVisibility(View.VISIBLE);
                         nombreTv.setText(nombreEt.getText().toString());
-                        Alerter.create(Editar.this)
-                                .setTitle("Editado")
-                                .setText("Editado con éxito")
-                                .show();
                     } else {
                         nombreEt.setVisibility(View.GONE);
                         nombreGuardar.setVisibility(View.GONE);
@@ -264,7 +266,7 @@ public class Editar extends AppCompatActivity {
             public void onClick(View view) {
                 if (!apellidosEt.getText().toString().isEmpty()) {
                     if (apellidosEt.getText().toString().compareTo(apellidosTv.getText().toString()) != 0) {
-                        new EditarCampoActivity(Editar.this, usuario).execute("apellidos", apellidosEt.getText().toString());
+                        new EditarCampoActivity(Editar.this, activity, usuario).execute("apellidos", apellidosEt.getText().toString());
                         apellidosEt.setVisibility(View.GONE);
                         apellidosGuardar.setVisibility(View.GONE);
                         apellidosEditar.setVisibility(View.VISIBLE);
@@ -304,13 +306,14 @@ public class Editar extends AppCompatActivity {
                     Integer iedad = Integer.parseInt(edad);
                     if (iedad < 120 && iedad >= 18) {
                         if (edadEt.getText().toString().compareTo(edadTv.getText().toString()) != 0) {
-                            new EditarCampoActivity(Editar.this, usuario).execute("edad", edadEt.getText().toString());
+                            new EditarCampoActivity(Editar.this, activity, usuario).execute("edad", edadEt.getText().toString());
                             edadEt.setVisibility(View.GONE);
                             edadGuardar.setVisibility(View.GONE);
                             edadEditar.setVisibility(View.VISIBLE);
                             edadCont.setVisibility(View.GONE);
                             edadTv.setVisibility(View.VISIBLE);
                             edadTv.setText(edadEt.getText().toString());
+
                         } else {
                             edadEt.setVisibility(View.GONE);
                             edadGuardar.setVisibility(View.GONE);
@@ -319,10 +322,22 @@ public class Editar extends AppCompatActivity {
                             edadTv.setVisibility(View.VISIBLE);
                         }
                     } else {
-                        Toast.makeText(Editar.this, "La edad es incorrecta", Toast.LENGTH_SHORT).show();
+                        Alerter.create(Editar.this)
+                                .setTitle("ERROR")
+                                .setText("La edad es incorrecta")
+                                .setBackgroundColorInt(Color.RED)
+                                .setDuration(3000)
+                                .enableSwipeToDismiss()
+                                .show();
                     }
                 } else {
-                    Toast.makeText(Editar.this, "La edad no puede quedar vacía", Toast.LENGTH_SHORT).show();
+                    Alerter.create(Editar.this)
+                            .setTitle("ERROR")
+                            .setText("La edad no puede quedar vacía")
+                            .setBackgroundColorInt(Color.RED)
+                            .setDuration(3000)
+                            .enableSwipeToDismiss()
+                            .show();
                 }
             }
         });
@@ -345,7 +360,7 @@ public class Editar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (descripcionEt.getText().toString().compareTo(descripcionTv.getText().toString()) != 0) {
-                    new EditarCampoActivity(Editar.this, usuario).execute("descripcion", descripcionEt.getText().toString());
+                    new EditarCampoActivity(Editar.this, activity, usuario).execute("descripcion", descripcionEt.getText().toString());
                     descripcionEt.setVisibility(View.GONE);
                     descripcionGuardar.setVisibility(View.GONE);
                     descripcionEditar.setVisibility(View.VISIBLE);
@@ -381,7 +396,7 @@ public class Editar extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (experienciaEt.getText().toString().compareTo(experienciaTv.getText().toString()) != 0) {
-                        new EditarCampoActivity(Editar.this, usuario).execute("experiencia", experienciaEt.getText().toString());
+                        new EditarCampoActivity(Editar.this, activity, usuario).execute("experiencia", experienciaEt.getText().toString());
                         experienciaEt.setVisibility(View.GONE);
                         experienciaGuardar.setVisibility(View.GONE);
                         experienciaEditar.setVisibility(View.VISIBLE);
@@ -419,7 +434,7 @@ public class Editar extends AppCompatActivity {
             public void onClick(View view) {
                 if (!ciudadEt.getText().toString().isEmpty()) {
                     if (ciudadEt.getText().toString().compareTo(ciudadTv.getText().toString()) != 0) {
-                        new EditarCampoActivity(Editar.this, usuario).execute("ciudad", ciudadEt.getText().toString());
+                        new EditarCampoActivity(Editar.this, activity, usuario).execute("ciudad", ciudadEt.getText().toString());
                         ciudadEt.setVisibility(View.GONE);
                         ciudadGuardar.setVisibility(View.GONE);
                         ciudadEditar.setVisibility(View.VISIBLE);
@@ -456,7 +471,7 @@ public class Editar extends AppCompatActivity {
             public void onClick(View view) {
                 if (!localidadEt.getText().toString().isEmpty()) {
                     if (localidadEt.getText().toString().compareTo(localidadTv.getText().toString()) != 0) {
-                        new EditarCampoActivity(Editar.this, usuario).execute("localidad", localidadEt.getText().toString());
+                        new EditarCampoActivity(Editar.this, activity, usuario).execute("localidad", localidadEt.getText().toString());
                         localidadEt.setVisibility(View.GONE);
                         localidadGuardar.setVisibility(View.GONE);
                         localidadEditar.setVisibility(View.VISIBLE);
@@ -497,7 +512,7 @@ public class Editar extends AppCompatActivity {
             public void onClick(View view) {
                 if (!direccionEt.getText().toString().isEmpty()) {
                     if (direccionEt.getText().toString().compareTo(direccionTv.getText().toString()) != 0) {
-                        new EditarCampoActivity(Editar.this, usuario).execute("direccion", direccionEt.getText().toString());
+                        new EditarCampoActivity(Editar.this, activity, usuario).execute("direccion", direccionEt.getText().toString());
                         direccionEt.setVisibility(View.GONE);
                         direccionGuardar.setVisibility(View.GONE);
                         direccionEditar.setVisibility(View.VISIBLE);
@@ -538,7 +553,7 @@ public class Editar extends AppCompatActivity {
             public void onClick(View view) {
                 if (!cpEt.getText().toString().isEmpty()) {
                     if (cpEt.getText().toString().compareTo(cpTv.getText().toString()) != 0) {
-                        new EditarCampoActivity(Editar.this, usuario).execute("codigo_postal", cpEt.getText().toString());
+                        new EditarCampoActivity(Editar.this, activity, usuario).execute("codigo_postal", cpEt.getText().toString());
                         cpEt.setVisibility(View.GONE);
                         cpGuardar.setVisibility(View.GONE);
                         cpEditar.setVisibility(View.VISIBLE);
@@ -742,7 +757,13 @@ public class Editar extends AppCompatActivity {
                                     barraProgreso.setProgress(0);
                                 }
                             }, 500);
-                            Toast.makeText(Editar.this, "Subida exitosa", Toast.LENGTH_LONG).show();
+                            Alerter.create(Editar.this)
+                                    .setTitle("SUBIDA EXITOSA")
+                                    .setText("Subida exitosa")
+                                    .setBackgroundColorInt(Color.MAGENTA)
+                                    .setDuration(3000)
+                                    .enableSwipeToDismiss()
+                                    .show();
                             Imagen img = new Imagen(referencia, taskSnapshot.getDownloadUrl().toString());
                             String imgid = DatabaseRef.push().getKey();
                             DatabaseRef.child(imgid).setValue(img);
@@ -750,7 +771,13 @@ public class Editar extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(Editar.this, "No se ha podido subir", Toast.LENGTH_SHORT).show();
+                            Alerter.create(Editar.this)
+                                    .setTitle("ERROR")
+                                    .setText("No se ha podido subir la foto")
+                                    .setBackgroundColorInt(Color.RED)
+                                    .setDuration(3000)
+                                    .enableSwipeToDismiss()
+                                    .show();
                         }
                     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -760,7 +787,13 @@ public class Editar extends AppCompatActivity {
                         }
                     });
         } else {
-            Toast.makeText(this, "No se ha seleccionado ningún archivo", Toast.LENGTH_LONG).show();
+            Alerter.create(Editar.this)
+                    .setTitle("ERROR")
+                    .setText("No se ha seleccionado ningún archivo")
+                    .setBackgroundColorInt(Color.RED)
+                    .setDuration(3000)
+                    .enableSwipeToDismiss()
+                    .show();
         }
     }
 
@@ -769,13 +802,5 @@ public class Editar extends AppCompatActivity {
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
-/*
-    public void showAlerter(View v){
 
-        Alerter.create(this)
-                .setTitle("Editado")
-                .setText("Editado con éxito")
-                .show();
-    }
-*/
 }

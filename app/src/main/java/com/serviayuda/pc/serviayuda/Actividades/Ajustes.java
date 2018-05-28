@@ -36,6 +36,7 @@ public class Ajustes extends AppCompatActivity {
     private DatabaseHelper databaseHelper;
     Usuario usuario;
     Boolean estadoPrevioSwitch;
+    private final AppCompatActivity activity = Ajustes.this;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,11 +102,11 @@ public class Ajustes extends AppCompatActivity {
                 if (isChecked) {
                     snInterfaz.setText("Si");
                     mp.guardarPreferencias("KEY_INTERFAZ", "Si");
-                    new InterfazActivity(Ajustes.this, mp.cargarPreferencias("KEY_EMAIL"), "Si").execute();
+                    new InterfazActivity(Ajustes.this, activity, mp.cargarPreferencias("KEY_EMAIL"), "Si").execute();
                 } else {
                     snInterfaz.setText("No");
                     mp.guardarPreferencias("KEY_INTERFAZ", "No");
-                    new InterfazActivity(Ajustes.this, mp.cargarPreferencias("KEY_EMAIL"), "No").execute();
+                    new InterfazActivity(Ajustes.this, activity, mp.cargarPreferencias("KEY_EMAIL"), "No").execute();
                 }
             }
         });

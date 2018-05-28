@@ -1,5 +1,6 @@
 package com.serviayuda.pc.serviayuda.Activitys;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import com.serviayuda.pc.serviayuda.Actividades.InicioSesion;
 import com.serviayuda.pc.serviayuda.Objetos.Usuario;
+import com.tapadoo.alerter.Alerter;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -27,11 +29,13 @@ public class RegistroActivity extends AsyncTask {
     private Context context;
     private TextView campoResultado;
     private Usuario usuario;
+    private Activity activity;
 
-    public RegistroActivity(Context context, TextView campoResultado, Usuario usuario){
+    public RegistroActivity(Context context, Activity activity, TextView campoResultado, Usuario usuario){
         this.context = context;
         this.campoResultado = campoResultado;
         this.usuario = usuario;
+        this.activity = activity;
     }
 
     protected void onPreExecute(){
@@ -118,14 +122,27 @@ public class RegistroActivity extends AsyncTask {
             this.campoResultado.setVisibility(View.VISIBLE);
             this.campoResultado.setTextColor(Color.GREEN);
             this.campoResultado.setText("Usuario creado con éxito");
-            Toast.makeText(context.getApplicationContext(), "Usuario creado con éxito", Toast.LENGTH_LONG).show();
-            //Aquí puede ir tanto a la actividad InicioSesion, como a la actividad Perfil
+
+            Alerter.create(activity)
+                    .setTitle("USUARIO CREADO CON ÉXITO")
+                    .setText("El usuario ha sido creado")
+                    .setBackgroundColorInt(Color.MAGENTA)
+                    .setDuration(3000)
+                    .enableSwipeToDismiss()
+                    .show();
             Intent i = new Intent(context, InicioSesion.class);
             context.startActivity(i);
         }else {
             this.campoResultado.setVisibility(View.VISIBLE);
             this.campoResultado.setTextColor(Color.RED);
             this.campoResultado.setText("El usuario no ha podido ser registrado");
+            Alerter.create(activity)
+                    .setTitle("ERROR")
+                    .setText("El usuario no ha podido ser creado")
+                    .setBackgroundColorInt(Color.RED)
+                    .setDuration(3000)
+                    .enableSwipeToDismiss()
+                    .show();
         }
     }
 

@@ -1,11 +1,14 @@
 package com.serviayuda.pc.serviayuda.Activitys;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.serviayuda.pc.serviayuda.BBDD.DatabaseHelper;
 import com.serviayuda.pc.serviayuda.Objetos.Usuario;
+import com.tapadoo.alerter.Alerter;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -23,12 +26,14 @@ public class InterfazActivity extends AsyncTask {
     private Context context;
     private String email, estado;
     private DatabaseHelper databaseHelper;
+    private Activity activity;
 
-    public InterfazActivity(Context context, String email, String estado) {
+    public InterfazActivity(Context context, Activity activity, String email, String estado) {
         this.context = context;
         this.email = email;
         this.estado = estado;
         this.databaseHelper = new DatabaseHelper(context);
+        this.activity = activity;
     }
 
     protected void onPreExecute() {
@@ -75,8 +80,21 @@ public class InterfazActivity extends AsyncTask {
         String respuesta = resultado.toString();
         if (respuesta.compareTo("Correcto") == 0) {
             Toast.makeText(context.getApplicationContext(), "OK", Toast.LENGTH_LONG).show();
+            Alerter.create(activity)
+                    .setTitle("INTERFAZ CAMBIADA")
+                    .setText("La interfaz ha sido cambiada")
+                    .setBackgroundColorInt(Color.MAGENTA)
+                    .setDuration(3000)
+                    .enableSwipeToDismiss()
+                    .show();
         } else {
-            Toast.makeText(context.getApplicationContext(), "ERROR", Toast.LENGTH_LONG).show();
+            Alerter.create(activity)
+                    .setTitle("ERROR")
+                    .setText("La interfaz no ha podido ser cambiada")
+                    .setBackgroundColorInt(Color.RED)
+                    .setDuration(3000)
+                    .enableSwipeToDismiss()
+                    .show();
         }
     }
 }

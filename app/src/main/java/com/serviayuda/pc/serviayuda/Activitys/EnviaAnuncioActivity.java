@@ -1,10 +1,14 @@
 package com.serviayuda.pc.serviayuda.Activitys;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.serviayuda.pc.serviayuda.Actividades.Editar;
 import com.serviayuda.pc.serviayuda.Objetos.Anuncio;
+import com.tapadoo.alerter.Alerter;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -21,10 +25,12 @@ public class EnviaAnuncioActivity extends AsyncTask {
 
     private Context context;
     private Anuncio anuncio;
+    private Activity activity;
 
-    public EnviaAnuncioActivity(Context context, Anuncio anuncio){
+    public EnviaAnuncioActivity(Context context, Activity activity, Anuncio anuncio){
         this.context = context;
         this.anuncio = anuncio;
+        this.activity = activity;
     }
 
     protected void onPreExecute() {
@@ -78,11 +84,29 @@ public class EnviaAnuncioActivity extends AsyncTask {
         String respuesta = res.toString();
 
         if (respuesta.compareTo("ACTUALIZADO") == 0) {
-            Toast.makeText(context.getApplicationContext(), "Anuncio actualizado", Toast.LENGTH_LONG).show();
+            Alerter.create(activity)
+                    .setTitle("ANUNCIO ACTUALIZADO")
+                    .setText("El anuncio se ha actualizado con éxito")
+                    .setBackgroundColorInt(Color.MAGENTA)
+                    .setDuration(3000)
+                    .enableSwipeToDismiss()
+                    .show();
         }else if (respuesta.compareTo("INSERTADO") == 0){
-            Toast.makeText(context.getApplicationContext(), "Nuevo anuncio enviado", Toast.LENGTH_LONG).show();
+            Alerter.create(activity)
+                    .setTitle("ANUNCIO ENVIADO")
+                    .setText("El anuncio se ha enviado con éxito")
+                    .setBackgroundColorInt(Color.MAGENTA)
+                    .setDuration(3000)
+                    .enableSwipeToDismiss()
+                    .show();
         }else {
-            Toast.makeText(context.getApplicationContext(), "El anuncio no ha podido ser enviado", Toast.LENGTH_LONG).show();
+            Alerter.create(activity)
+                    .setTitle("ERROR")
+                    .setText("El anuncio no ha podido ser enviado")
+                    .setBackgroundColorInt(Color.RED)
+                    .setDuration(3000)
+                    .enableSwipeToDismiss()
+                    .show();
         }
     }
 

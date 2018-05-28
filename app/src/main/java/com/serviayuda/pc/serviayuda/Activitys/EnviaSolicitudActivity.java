@@ -1,10 +1,13 @@
 package com.serviayuda.pc.serviayuda.Activitys;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.serviayuda.pc.serviayuda.Objetos.Anuncio;
+import com.tapadoo.alerter.Alerter;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -21,10 +24,12 @@ public class EnviaSolicitudActivity extends AsyncTask {
 
     private Context context;
     private Anuncio anuncio;
+    private Activity activity;
 
-    public EnviaSolicitudActivity(Context context, Anuncio anuncio){
+    public EnviaSolicitudActivity(Context context, Activity activity, Anuncio anuncio){
         this.context = context;
         this.anuncio = anuncio;
+        this.activity = activity;
     }
 
     protected void onPreExecute() {
@@ -72,9 +77,21 @@ public class EnviaSolicitudActivity extends AsyncTask {
         String respuesta = res.toString();
 
         if (respuesta.compareTo("INSERTADO") == 0) {
-            Toast.makeText(context.getApplicationContext(), "INSERTADO", Toast.LENGTH_LONG).show();
+            Alerter.create(activity)
+                    .setTitle("SOLICITUD ENVIADA")
+                    .setText("Se ha enviado la solicitud")
+                    .setBackgroundColorInt(Color.MAGENTA)
+                    .setDuration(3000)
+                    .enableSwipeToDismiss()
+                    .show();
         } else if (respuesta.compareTo("ERROR") == 0) {
-            Toast.makeText(context.getApplicationContext(), "ERROR", Toast.LENGTH_LONG).show();
+            Alerter.create(activity)
+                    .setTitle("ERROR")
+                    .setText("No se ha podido enviar la solicitud")
+                    .setBackgroundColorInt(Color.MAGENTA)
+                    .setDuration(3000)
+                    .enableSwipeToDismiss()
+                    .show();
         }
     }
 }

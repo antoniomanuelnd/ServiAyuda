@@ -105,6 +105,6 @@ public class EnviarAnuncioFragment extends Fragment {
 
     //Método que inserta/actualiza un anuncio en la base de datos
     private void enviaAnuncio(Anuncio anuncio){
-        new EnviaAnuncioActivity(getContext(), anuncio).execute();
+        new EnviaAnuncioActivity(getContext(), getActivity(), anuncio).execute();
     }
 }

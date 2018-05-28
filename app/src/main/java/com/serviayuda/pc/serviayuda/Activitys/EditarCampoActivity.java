@@ -2,9 +2,11 @@ package com.serviayuda.pc.serviayuda.Activitys;
 
         import android.app.Activity;
         import android.content.Context;
+        import android.graphics.Color;
         import android.os.AsyncTask;
         import android.widget.Toast;
 
+        import com.serviayuda.pc.serviayuda.Actividades.Editar;
         import com.serviayuda.pc.serviayuda.BBDD.DatabaseHelper;
         import com.serviayuda.pc.serviayuda.Objetos.Usuario;
         import com.tapadoo.alerter.Alert;
@@ -27,11 +29,13 @@ public class EditarCampoActivity extends AsyncTask {
     private Usuario usuario;
     private String whatSQLite, whereSQLite;
     private DatabaseHelper databaseHelper;
+    private Activity activity;
 
-    public EditarCampoActivity(Context context, Usuario usuario) {
+    public EditarCampoActivity(Context context, Activity activity, Usuario usuario) {
         this.context = context;
         this.usuario = usuario;
         this.databaseHelper = new DatabaseHelper(context);
+        this.activity = activity;
     }
 
     protected void onPreExecute() {
@@ -114,12 +118,22 @@ public class EditarCampoActivity extends AsyncTask {
                     break;
             }
             databaseHelper.addUsuario(usuario);
-
-            Toast.makeText(context.getApplicationContext(), "Editado con éxito", Toast.LENGTH_LONG).show();
-            //Aquí puede ir tanto a la actividad InicioSesion, como a la actividad Perfil
+            Alerter.create(activity)
+                    .setTitle("GUARDADO")
+                    .setText("Guardado con éxito")
+                    .setBackgroundColorInt(Color.MAGENTA)
+                    .setDuration(3000)
+                    .enableSwipeToDismiss()
+                    .show();
 
         } else {
-            Toast.makeText(context.getApplicationContext(), "No se ha podido editar", Toast.LENGTH_LONG).show();
+            Alerter.create(activity)
+                    .setTitle("ERROR")
+                    .setText("No se ha podido editar")
+                    .setBackgroundColorInt(Color.RED)
+                    .setDuration(3000)
+                    .enableSwipeToDismiss()
+                    .show();
         }
     }
 }

@@ -80,11 +80,6 @@ public class EnviaPuntuacionActivity extends AsyncTask {
 
     protected void onPostExecute(Object res) {
         String respuesta = res.toString();
-
-        if (respuesta.compareTo("OK")==0){
-            Toast.makeText(context, "OK", Toast.LENGTH_LONG).show();
-
-        }
     }
 
 }

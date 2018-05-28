@@ -1,12 +1,15 @@
 package com.serviayuda.pc.serviayuda.Activitys;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.serviayuda.pc.serviayuda.Actividades.Registro;
 import com.serviayuda.pc.serviayuda.BBDD.DatabaseHelper;
 import com.serviayuda.pc.serviayuda.Objetos.Solicitud;
 import com.serviayuda.pc.serviayuda.Fragments.VerSolicitudesFragment;
+import com.tapadoo.alerter.Alerter;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -73,6 +76,12 @@ public class AceptaSolicitudActivity  extends AsyncTask {
     }
 
     protected void onPostExecute(Object res) {
-
+        Alerter.create(activity)
+                .setTitle("SOLICITUD ACEPTADA")
+                .setText("Has aceptado la solicitud, visite en breve la pestaña Servicio en curso")
+                .setBackgroundColorInt(Color.MAGENTA)
+                .setDuration(3000)
+                .enableSwipeToDismiss()
+                .show();
     }
 }

@@ -25,14 +25,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
+
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
@@ -43,6 +42,7 @@ import com.serviayuda.pc.serviayuda.Objetos.Usuario;
 import com.serviayuda.pc.serviayuda.Objetos.Utilidades;
 import com.serviayuda.pc.serviayuda.R;
 import com.squareup.picasso.Picasso;
+import com.tapadoo.alerter.Alerter;
 
 /**
  * Created by PC on 06/02/2018.
@@ -70,6 +70,8 @@ public class Registro extends AppCompatActivity {
     private DatabaseReference DatabaseRef;
     private StorageTask subidaTask;
     String referencia;
+
+    private final AppCompatActivity activity = Registro.this;
 
 
     @Override
@@ -271,7 +273,13 @@ public class Registro extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(Registro.this, "No se ha podido subir", Toast.LENGTH_SHORT).show();
+                            Alerter.create(Registro.this)
+                                    .setTitle("ERROR")
+                                    .setText("No se ha seleccionado ningún archivo")
+                                    .setBackgroundColorInt(Color.RED)
+                                    .setDuration(3000)
+                                    .enableSwipeToDismiss()
+                                    .show();
                         }
                     });
         }
@@ -670,9 +678,15 @@ public class Registro extends AppCompatActivity {
                 uProveedor.setTipoServicio(tipoServicio);
                 uProveedor.setCiudad(ciudad);
                 uProveedor.setLocalidad(localidad);
-                new RegistroActivity(this, campoResultado, uProveedor).execute(password);
+                new RegistroActivity(this, activity, campoResultado, uProveedor).execute(password);
                 if(subidaTask != null && subidaTask.isInProgress()){
-                    Toast.makeText(Registro.this, "Ya se está creando un usuario, espere", Toast.LENGTH_LONG).show();
+                    Alerter.create(Registro.this)
+                            .setTitle("ESPERE")
+                            .setText("Ya se está creando un usuario")
+                            .setBackgroundColorInt(Color.RED)
+                            .setDuration(3000)
+                            .enableSwipeToDismiss()
+                            .show();
                 }else {
                     subirImagen();
                 }
@@ -703,9 +717,15 @@ public class Registro extends AppCompatActivity {
                     uSolicitante.setDireccion("Calle " + calle + " nº " + numero + ", Bloque " + bloque + ", Piso " + piso);
                 }
                 uSolicitante.setCodigoPostal(codigoPostal);
-                new RegistroActivity(this, campoResultado, uSolicitante).execute(password);
+                new RegistroActivity(this, activity, campoResultado, uSolicitante).execute(password);
                 if(subidaTask != null && subidaTask.isInProgress()){
-                    Toast.makeText(Registro.this, "Ya se está creando un usuario, espere", Toast.LENGTH_LONG).show();
+                    Alerter.create(Registro.this)
+                            .setTitle("ESPERE")
+                            .setText("Ya se está creando un usuario")
+                            .setBackgroundColorInt(Color.RED)
+                            .setDuration(3000)
+                            .enableSwipeToDismiss()
+                            .show();
                 }else {
                     subirImagen();
                 }

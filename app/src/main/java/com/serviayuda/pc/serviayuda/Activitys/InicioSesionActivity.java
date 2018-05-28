@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.serviayuda.pc.serviayuda.Objetos.Usuario;
 import com.serviayuda.pc.serviayuda.Preferencias.ManejadorPreferencias;
+import com.tapadoo.alerter.Alerter;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -87,21 +88,44 @@ public class InicioSesionActivity extends AsyncTask {
         String respuesta = res.toString();
 
         if (respuesta.compareTo("Solicitante") == 0) {
-            Toast.makeText(context.getApplicationContext(), "Iniciando sesión", Toast.LENGTH_LONG).show();
+            Alerter.create(activity)
+                    .setTitle("INICIANDO SESIÓN")
+                    .setText("Iniciando sesión")
+                    .setBackgroundColorInt(Color.MAGENTA)
+                    .setDuration(3000)
+                    .enableSwipeToDismiss()
+                    .show();
             mp.guardarPreferencias("KEY_SESION", sSesion);
             mp.guardarPreferencias("KEY_EMAIL", usuario.getEmail());
             new RecibeUsuarioActivity(context, activity, usuario).execute(usuario.getEmail(), "Solicitante");
         } else if (respuesta.compareTo("Proveedor") == 0) {
-            Toast.makeText(context.getApplicationContext(), "Iniciando sesión", Toast.LENGTH_LONG).show();
+            Alerter.create(activity)
+                    .setTitle("INICIANDO SESIÓN")
+                    .setText("Iniciando sesión")
+                    .setBackgroundColorInt(Color.MAGENTA)
+                    .setDuration(3000)
+                    .enableSwipeToDismiss()
+                    .show();
             mp.guardarPreferencias("KEY_SESION", sSesion);
             mp.guardarPreferencias("KEY_EMAIL", usuario.getEmail());
             new RecibeUsuarioActivity(context, activity, usuario).execute(usuario.getEmail(), "Proveedor");
         }else if (respuesta.compareTo("Administrador") == 0){
-            Toast.makeText(context.getApplicationContext(), "Iniciando sesión", Toast.LENGTH_LONG).show();
+            Alerter.create(activity)
+                    .setTitle("INICIANDO SESIÓN")
+                    .setText("Iniciando sesión")
+                    .setBackgroundColorInt(Color.MAGENTA)
+                    .setDuration(3000)
+                    .enableSwipeToDismiss()
+                    .show();
             new RecibeUsuarioActivity(context, activity, usuario).execute(usuario.getEmail(), "Administrador");
         } else {
-            this.res.setTextColor(Color.parseColor("#CF000F"));
-            this.res.setText("No se ha podido iniciar sesión");
+            Alerter.create(activity)
+                    .setTitle("ERROR AL INICIAR SESIÓN")
+                    .setText("Error en las credenciales")
+                    .setBackgroundColorInt(Color.RED)
+                    .setDuration(4000)
+                    .enableSwipeToDismiss()
+                    .show();
         }
     }
 

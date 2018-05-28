@@ -14,6 +14,7 @@ import com.serviayuda.pc.serviayuda.Actividades.MenuInterfazAdaptada;
 import com.serviayuda.pc.serviayuda.BBDD.DatabaseHelper;
 import com.serviayuda.pc.serviayuda.Objetos.Usuario;
 import com.serviayuda.pc.serviayuda.Preferencias.ManejadorPreferencias;
+import com.tapadoo.alerter.Alerter;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -116,9 +117,23 @@ public class RecibeUsuarioSesionActivity extends AsyncTask {
                 }else{
                     i = new Intent(context, MenuInterfazAdaptada.class);
                 }
+                Alerter.create(activity)
+                        .setTitle("INICIANDO SESIÓN")
+                        .setText("Iniciando sesión")
+                        .setBackgroundColorInt(0X005073)
+                        .setDuration(3000)
+                        .enableSwipeToDismiss()
+                        .show();
                 context.startActivity(i);
             } else if (usuario.getTipoPerfil().compareTo("Proveedor") == 0) {
                 Intent i = new Intent(context, ActivitySetViewPagerProveedor.class);
+                Alerter.create(activity)
+                        .setTitle("INICIANDO SESIÓN")
+                        .setText("Iniciando sesión")
+                        .setBackgroundColorInt(0X005073)
+                        .setDuration(3000)
+                        .enableSwipeToDismiss()
+                        .show();
                 context.startActivity(i);
             } else if (usuario.getTipoPerfil().compareTo("Administrador") == 0) {
                 Intent i = new Intent(context, ActivitySetViewPagerAdmin.class);
