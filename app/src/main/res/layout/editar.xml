@@ -609,21 +609,13 @@
                             android:gravity="center"
                             android:textColor="@color/blanco" />
 
-                        <EditText
-                            android:id="@+id/editarCiudadEditText"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/envioanuncioedittext"
+                        <android.support.v7.widget.AppCompatSpinner
+                            android:id="@+id/spinnerCiudadEditar"
+                            android:layout_width="@dimen/_240sdp"
+                            android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:inputType="textMultiLine"
-                            android:maxLines="1"
-                            android:maxLength="50"
-                            android:paddingLeft="@dimen/_5sdp"
-                            android:paddingRight="@dimen/_60sdp"
-                            android:paddingTop="@dimen/_5sdp"
-                            android:paddingBottom="@dimen/_5sdp"
-                            android:textColor="@color/blanco"
-                            android:visibility="gone" />
+                            android:layout_marginTop="@dimen/_7sdp"
+                            android:visibility="gone"/>
 
                         <TextView
                             android:id="@+id/editarCiudadCont"

@@ -51,17 +51,19 @@ import com.tapadoo.alerter.Alerter;
 public class Registro extends AppCompatActivity {
 
     Button botonFinalizar, elegirFoto;
-    EditText campoNombre, campoApellidos, campoEdad, campoEmail, campoPassword1, campoPassword2, campoCiudad, campoLocalidad, campoCodigoPostal,
+    EditText campoNombre, campoApellidos, campoEdad, campoEmail, campoPassword1, campoPassword2, campoLocalidad, campoCodigoPostal,
             campoCalle, campoNumero, campoBloque, campoPiso;
-    TextView avisoNombre, avisoApellidos, avisoEdad, avisoEmail, avisoPassword1, avisoPassword2, avisoCiudad, avisoLocalidad, avisoCodigoPostal, campoResultado;
+    TextView avisoNombre, avisoApellidos, avisoEdad, avisoEmail, avisoPassword1, avisoPassword2, avisoLocalidad, avisoCodigoPostal, campoResultado;
     CheckBox proveedor, solicitante;
-    ImageView tickNombre, tickApellidos, tickEdad, tickEmail, tickPassword1, tickPassword2, tickCiudad, tickLocalidad, tickCalle, tickNumero,
+    ImageView tickNombre, tickApellidos, tickEdad, tickEmail, tickPassword1, tickPassword2, tickLocalidad, tickCalle, tickNumero,
             tickBloque, tickPiso, tickCodigoPostal, imagenPerfil;
     RoundedBitmapDrawable imagenTick;
     LinearLayout layoutDireccion, layoutCodigoPostal, layoutTipoServicio;
-    Spinner spinnerTipos;
+    Spinner spinnerTipos, spinnerCiudad;
     AdapterView.OnItemSelectedListener spinnerListenerTipos;
+    AdapterView.OnItemSelectedListener spinnerListenerCiudad;
     Uri fotoUri;
+
 
     boolean bProveedor = false, bSolicitante = false;
 
@@ -91,7 +93,6 @@ public class Registro extends AppCompatActivity {
         campoEmail = findViewById(R.id.registroEmail);
         campoPassword1 = findViewById(R.id.registroPassword1);
         campoPassword2 = findViewById(R.id.registroPassword2);
-        campoCiudad = findViewById(R.id.registroCiudad);
         campoLocalidad = findViewById(R.id.registroLocalidad);
         campoCalle = findViewById(R.id.registroCalle);
         campoNumero = findViewById(R.id.registroNumero);
@@ -108,7 +109,7 @@ public class Registro extends AppCompatActivity {
         avisoEmail = findViewById(R.id.registroAvisoEmail);
         avisoPassword1 = findViewById(R.id.registroAvisoPassword1);
         avisoPassword2 = findViewById(R.id.registroAvisoPassword2);
-        avisoCiudad = findViewById(R.id.registroAvisoCiudad);
+
         avisoLocalidad = findViewById(R.id.registroAvisoLocalidad);
         avisoCodigoPostal = findViewById(R.id.registroAvisoCodigoPostal);
 
@@ -125,7 +126,6 @@ public class Registro extends AppCompatActivity {
         tickEmail = findViewById(R.id.registroTickEmail);
         tickPassword1 = findViewById(R.id.registroTickPassword1);
         tickPassword2 = findViewById(R.id.registroTickPassword2);
-        tickCiudad = findViewById(R.id.registroTickCiudad);
         tickLocalidad = findViewById(R.id.registroTickLocalidad);
         tickCalle = findViewById(R.id.registroTickCalle);
         tickNumero = findViewById(R.id.registroTickNumero);
@@ -157,6 +157,13 @@ public class Registro extends AppCompatActivity {
         adapterTipos.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinnerTipos.setAdapter(adapterTipos);
         spinnerTipos.setOnItemSelectedListener(spinnerListenerTipos);
+
+        spinnerCiudad = findViewById(R.id.spinnerCiudad);
+        ArrayAdapter<CharSequence> adapterCiudades = ArrayAdapter.createFromResource(Registro.this, R.array.spinnerCiudades, android.R.layout.simple_spinner_item);
+        adapterCiudades.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spinnerCiudad.setAdapter(adapterCiudades);
+        spinnerCiudad.setOnItemSelectedListener(spinnerListenerCiudad);
+
 
     }
 
@@ -222,7 +229,6 @@ public class Registro extends AppCompatActivity {
         campoEmail.addTextChangedListener(registroWatcherEmail);
         campoPassword1.addTextChangedListener(registroWatcherPassword);
         campoPassword2.addTextChangedListener(registroWatcherPassword);
-        campoCiudad.addTextChangedListener(registroWatcherCiudad);
         campoLocalidad.addTextChangedListener(registroWatcherLocalidad);
         campoCalle.addTextChangedListener(registroWatcherCalle);
         campoNumero.addTextChangedListener(registroWatcherNumero);
@@ -479,32 +485,7 @@ public class Registro extends AppCompatActivity {
 
         }
     };
-    private TextWatcher registroWatcherCiudad = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            String ciudad = campoCiudad.getText().toString();
-            if (ciudad.isEmpty()) {
-                avisoCiudad.setText("Este campo no puede quedar vacío");
-                avisoCiudad.setTextColor(Color.RED);
-                avisoCiudad.setVisibility(View.VISIBLE);
-                tickCiudad.setImageResource(0);
-            } else {
-                avisoCiudad.setText("");
-                avisoCiudad.setVisibility(View.GONE);
-                tickCiudad.setImageDrawable(imagenTick);
-            }
-        }
-
-        @Override
-        public void afterTextChanged(Editable editable) {
-
-        }
-    };
     private TextWatcher registroWatcherLocalidad = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -653,7 +634,7 @@ public class Registro extends AppCompatActivity {
         String edad = campoEdad.getText().toString();
         String email = campoEmail.getText().toString();
         String password = campoPassword1.getText().toString();
-        String ciudad = campoCiudad.getText().toString();
+        String ciudad = spinnerCiudad.getSelectedItem().toString();
         String localidad = campoLocalidad.getText().toString();
         String calle = campoCalle.getText().toString();
         String numero = campoNumero.getText().toString();

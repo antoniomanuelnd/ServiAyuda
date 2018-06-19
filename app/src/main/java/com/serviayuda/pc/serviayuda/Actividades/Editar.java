@@ -18,11 +18,14 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -58,8 +61,11 @@ public class Editar extends AppCompatActivity {
     private LinearLayout experienciaLayout, direccionLayout, cpLayout;
     private TextView descripcionTv, descripcionCont, experienciaTv, experienciaCont, ciudadTv, ciudadCont, localidadTv, localidadCont, direccionTv, direccionCont, cpTv, cpCont,
             nombreTv, nombreCont, apellidosTv, apellidosCont, edadTv, edadCont;
-    private EditText descripcionEt, experienciaEt, ciudadEt, localidadEt, direccionEt, cpEt, nombreEt, apellidosEt, edadEt;
+    private EditText descripcionEt, experienciaEt, localidadEt, direccionEt, cpEt, nombreEt, apellidosEt, edadEt;
     Usuario usuario;
+
+    AdapterView.OnItemSelectedListener spinnerListenerCiudades;
+    Spinner spinnerCiudad;
 
     ManejadorPreferencias mp;
     private DatabaseHelper databaseHelper;
@@ -120,7 +126,6 @@ public class Editar extends AppCompatActivity {
         experienciaCont = findViewById(R.id.editarExperienciaCont);
 
         ciudadTv = findViewById(R.id.editarCiudadTextView);
-        ciudadEt = findViewById(R.id.editarCiudadEditText);
         ciudadCont = findViewById(R.id.editarCiudadCont);
 
         localidadTv = findViewById(R.id.editarLocalidadTextView);
@@ -148,6 +153,13 @@ public class Editar extends AppCompatActivity {
         edadTv = findViewById(R.id.editarEdadTextView);
         edadEt = findViewById(R.id.editarEdadEditText);
         edadCont = findViewById(R.id.editarEdadCont);
+
+        //Spinner
+        spinnerCiudad = findViewById(R.id.spinnerCiudadEditar);
+        ArrayAdapter<CharSequence> adapterCiudades = ArrayAdapter.createFromResource(Editar.this, R.array.spinnerCiudades, android.R.layout.simple_spinner_item);
+        adapterCiudades.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spinnerCiudad.setAdapter(adapterCiudades);
+        spinnerCiudad.setOnItemSelectedListener(spinnerListenerCiudades);
 
         //Preferencias
         SharedPreferences preferences = this.getSharedPreferences("SESION", Activity.MODE_PRIVATE);
@@ -422,33 +434,21 @@ public class Editar extends AppCompatActivity {
                 ciudadTv.setVisibility(View.GONE);
                 ciudadEditar.setVisibility(View.GONE);
                 ciudadGuardar.setVisibility(View.VISIBLE);
-                ciudadEt.setVisibility(View.VISIBLE);
-                ciudadEt.setText(usuario.getCiudad());
-                ciudadCont.setVisibility(View.VISIBLE);
-                ciudadCont.setText("50/" + usuario.getCiudad().length());
-                ciudadEt.addTextChangedListener(editarWatcherCiudad);
+                spinnerCiudad.setVisibility(View.VISIBLE);
+
             }
         });
         ciudadGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!ciudadEt.getText().toString().isEmpty()) {
-                    if (ciudadEt.getText().toString().compareTo(ciudadTv.getText().toString()) != 0) {
-                        new EditarCampoActivity(Editar.this, activity, usuario).execute("ciudad", ciudadEt.getText().toString());
-                        ciudadEt.setVisibility(View.GONE);
+
+                        new EditarCampoActivity(Editar.this, activity, usuario).execute("ciudad", spinnerCiudad.getSelectedItem().toString());
+                        spinnerCiudad.setVisibility(View.GONE);
                         ciudadGuardar.setVisibility(View.GONE);
                         ciudadEditar.setVisibility(View.VISIBLE);
                         ciudadCont.setVisibility(View.GONE);
                         ciudadTv.setVisibility(View.VISIBLE);
-                        ciudadTv.setText(ciudadEt.getText().toString());
-                    } else {
-                        ciudadEt.setVisibility(View.GONE);
-                        ciudadGuardar.setVisibility(View.GONE);
-                        ciudadEditar.setVisibility(View.VISIBLE);
-                        ciudadCont.setVisibility(View.GONE);
-                        ciudadTv.setVisibility(View.VISIBLE);
-                    }
-                }
+                        ciudadTv.setText(spinnerCiudad.getSelectedItem().toString());
             }
         });
 
@@ -658,23 +658,7 @@ public class Editar extends AppCompatActivity {
 
         }
     };
-    private TextWatcher editarWatcherCiudad = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            String ciudad = ciudadEt.getText().toString();
-            ciudadCont.setText("50/" + ciudad.length());
-        }
-
-        @Override
-        public void afterTextChanged(Editable editable) {
-
-        }
-    };
     private TextWatcher editarWatcherLocalidad = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
